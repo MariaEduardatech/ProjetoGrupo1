@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoramento de Umidade - Pitaya</title>
+</head>
+
+<body>
+
+    <b><i>MONITORAMENTO DA UMIDADE - PRODUÇÃO DE PITAYA</i></b>
+    <br><br>
+
+    Informe a umidade do solo atual (%):
+    <br>
+    <input type="text" id="input_umidade">
+    <br><br>
+
+    Informe a produção mensal estimada (Kg):
+    <br>
+    <input type="text" id="input_kg">
+    <br><br>
+
+    Informe o preço do Kg da pitaya (R$):
+    <br>
+    <input type="text" id="input_preco">
+    <br><br>
+
+    Selecione o período da análise:
+    <select id="select_periodo">
+        <option value="12">Anual</option>
+        <option value="6">Semestral</option>
+        <option value="3">Trimestral</option>
+    </select>
+    <br><br>
+
+    <button onclick="analisar()">Analisar</button>
+    <br><br>
+
+    <div id="div_resultado"></div>
+
+</body>
+
+</html>
+
+<script>
+    function analisar() {
+        const umidade = Number(input_umidade.value);
+        const kg = Number(input_kg.value);
+        const preco = Number(input_preco.value);
+        const periodo = Number(select_periodo.value);
+        const rendimentoMensal = kg * preco;
+
+        let periodoTexto = '';
+        if (periodo === 12) periodoTexto = 'Anual';
+        else if (periodo === 6) periodoTexto = 'Semestral';
+        else periodoTexto = 'Trimestral';
+
+        let resultado = '';
+
+        if (umidade < 30) {
+            const perda = rendimentoMensal * 0.4;
+            resultado = `
+            <b><i style="color: DarkRed;">Alerta de baixa umidade:</i></b><br>
+            Umidade atual: ${umidade}%<br>
+            Status: <b>Risco de estresse hídrico</b><br>
+            Perda estimada: <b style="color: red">R$ ${perda.toFixed(2)}</b> por mês<br>
+            Prejuízo ${periodoTexto}: <b style="color: red">R$ ${(perda * periodo).toFixed(2)}</b><br><br>
+            <b><i style="color: green;">Cenário ideal:</i></b><br>
+            Umidade entre 30% e 50%<br>
+            Produção estimada: <b>R$ ${rendimentoMensal.toFixed(2)}</b> por mês
+            `;
+        } else if (umidade >= 30 && umidade <= 50) {
+            resultado = `
+            <b><i style="color: DarkGreen;">Condições ideais!</i></b><br>
+            Umidade atual: ${umidade}%<br>
+            Status: <b>Solo ideal para produção</b><br>
+            Produção mensal estimada: <b>R$ ${rendimentoMensal.toFixed(2)}</b><br>
+            Receita ${periodoTexto}: <b>R$ ${(rendimentoMensal * periodo).toFixed(2)}</b>
+            `;
+        } else if (umidade > 50 && umidade <= 70) {
+            const perda = rendimentoMensal * 0.25;
+            resultado = `
+            <b><i style="color: DarkOrange;">Umidade alta:</i></b><br>
+            Umidade atual: ${umidade}%<br>
+            Status: <b>Risco de apodrecimento das raízes</b><br>
+            Perda estimada: <b style="color: red">R$ ${perda.toFixed(2)}</b> por mês<br>
+            Prejuízo ${periodoTexto}: <b style="color: red">R$ ${(perda * periodo).toFixed(2)}</b><br><br>
+            <b><i style="color: green;">Cenário ideal:</i></b><br>
+            Umidade entre 30% e 50%<br>
+            Produção estimada: <b>R$ ${rendimentoMensal.toFixed(2)}</b> por mês
+            `;
+        } else {
+            resultado = `
+            <b><i style="color: DarkRed;">Excesso de umidade!</i></b><br>
+            Umidade atual: ${umidade}%<br>
+            Status: <b>Risco de perdas totais</b><br>
+            Produção estimada: <b style="color: red">R$ 0,00</b><br><br>
+            <b><i style="color: green;">Cenário ideal:</i></b><br>
+            Umidade entre 30% e 50%<br>
+            Produção ideal: <b>R$ ${rendimentoMensal.toFixed(2)}</b> por mês
+            `;
+        }
+
+        div_resultado.innerHTML = resultado;
+    }
+</script>
