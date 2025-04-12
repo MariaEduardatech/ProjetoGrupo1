@@ -8,7 +8,7 @@ const SERIAL_BAUD_RATE = 9600;
 const SERVIDOR_PORTA = 3300;
 
 // habilita ou desabilita a inserção de dados no banco de dados
-const HABILITAR_OPERACAO_INSERIR = true;
+const HABILITAR_OPERACAO_INSERIR = false;
 
 // função para comunicação serial
 const serial = async (
@@ -18,11 +18,11 @@ const serial = async (
     // conexão com o banco de dados MySQL
     let poolBancoDados = mysql.createPool(
         {
-            host: 'localhost',
-            user: 'aluno',
-            password: 'Sptech#2024',
-            database: 'Sensor',
-            port: 3307
+            host: 'HOST_DO_BANCO',
+            user: 'USUARIO_DO_BANCO',
+            password: 'SENHA_DO_BANCO',
+            database: 'DATABASE_DO_BANCO',
+            port: 3306
         }
     ).promise();
 
@@ -49,8 +49,8 @@ const serial = async (
     // processa os dados recebidos do Arduino
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
         console.log(data);
-        const valores = data.split(';');
-         const sensorAnalogico = parseFloat(valores[0]);
+        // const valores = data.split(';');
+        // const sensorAnalogico = parseFloat(valores[1]);
 
         // armazena os valores dos sensores nos arrays correspondentes
         valoresSensorAnalogico.push(data);
