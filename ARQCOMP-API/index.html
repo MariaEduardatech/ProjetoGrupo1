@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+    <title>Monitoramento de Umidade do Solo</title>
+
+    <!-- Importa a biblioteca Chart.js, usada para criar gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Importa o plugin que permite adicionar anotações no gráfico (como linhas de limite) -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
+</head>
+<body>
+
+    <!-- Título da página -->
+    <h1>Gráfico de Umidade do Solo</h1>
+
+    <!-- Container do gráfico -->
+    <div style="display: flex;">
+        <div style="width: 50%;">
+            <canvas id="sensorAnalogico"></canvas> <!-- Área onde o gráfico será desenhado -->
+        </div>
+    </div>
+
+
+    <script>
+        // Criação do gráfico utilizando o Chart.js
+        var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
+            type: 'line', // Tipo do gráfico: linha (line)
+            data: {
+                labels: [], // Eixo X: tempo (preenchido dinamicamente)
+                datasets: [{
+                    label: 'Umidade atual',
+                    borderColor: 'black', // Cor da linha do gráfico
+                    backgroundColor: 'magenta', // Cor de fundo (área abaixo da linha)
+                    data: [] // Dados de umidade que serão preenchidos em tempo real
+                }]
+            },
+            options: {
+                responsive: true, // O gráfico se ajusta ao tamanho da tela
+                scales: {
+                    x: {
+                        beginAtZero: true // Eixo X inicia do zero
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: '(%)' // Unidade de medida exibida no eixo Y
+                        },
+                        beginAtZero: true,
+                        max: 100 // Limite máximo do eixo Y: 100%
+                    }
+                },
+                plugins: {
+                    annotation: {
+                        annotations: {
+                            linhaMinima: {
+                                type: 'line',
+                                yMin: 20,
+                                yMax: 20,
+                                borderColor: 'red', // Cor da linha mínima
+                                borderWidth: 2,
+                                label: {
+                                    content: 'Mínimo (20%)', // Texto da anotação
+                                    enabled: true,
+                                    position: 'start'
+                                }
+                            },
+                            linhaMaxima: {
+                                type: 'line',
+                                yMin: 50,
+                                yMax: 50,
+                                borderColor: 'green', // Cor da linha máxima
+                                borderWidth: 2,
+                                label: {
+                                    content: 'Máximo (50%)',
+                                    enabled: true,
+                                    position: 'start'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+
+
+        // Objetos para controlar a numeração do tempo e evitar repetição de dados
+        var paginacao = {};
+        var tempo = {};
+
+        // Função para buscar os dados da API Node.js e atualizar o gráfico
+        function obterDados(grafico, endpoint) {
+            fetch('http://localhost:3300/sensores/' + endpoint) // Requisição GET para a API
+                .then(response => response.json()) // Converte a resposta para JSON
+                .then(valores => {
+                    // Inicializa os controladores caso não existam
+                    if (paginacao[endpoint] == null) {
+                        paginacao[endpoint] = 0;
+                    }
+                    if (tempo[endpoint] == null) {
+                        tempo[endpoint] = 0;
+                    }
+
+                    // Atualiza a paginação para buscar apenas os dados novos
+                    var ultimaPaginacao = paginacao[endpoint];
+                    paginacao[endpoint] = valores.length;
+                    valores = valores.slice(ultimaPaginacao);
+
+
+
+                    
+                    // Para cada novo valor recebido, adiciona ao gráfico
+                    valores.forEach((valor) => {
+                        // Mantém o gráfico com no máximo 10 pontos (desliza os dados antigos para a esquerda)
+                        if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+                            grafico.data.labels.shift();
+                            grafico.data.datasets[0].data.shift();
+                        }
+
+                        // Adiciona novo valor de tempo e umidade
+                        grafico.data.labels.push(tempo[endpoint]++);
+                        grafico.data.datasets[0].data.push(parseFloat(valor));
+                        grafico.update(); // Atualiza visualmente o gráfico
+                    });
+                })
+                .catch(error => console.error('Erro ao obter dados:', error)); // Trata erros de comunicação com o servidor
+        }
+
+        // Chama a função a cada 1 segundo (1000ms) para manter o gráfico em tempo real
+        setInterval(() => {
+            obterDados(sensorAnalogico, 'analogico');
+        }, 1000);
+    </script>
+</body>
+
+</html>
