@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira de Perdas por Umidade na Produção de Pitaya</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+        }
+
+        b i {
+            font-size: 1.1em;
+        }
+
+        .alerta-baixo {
+            color: DarkRed;
+            font-weight: bold;
+        }
+
+        .alerta-alto {
+            color: DarkOrange;
+            font-weight: bold;
+        }
+
+        .ideal {
+            color: DarkGreen;
+            font-weight: bold;
+        }
+
+        .perda {
+            color: red;
+            font-weight: bold;
+        }
+
+        .informacao {
+            margin-top: 25px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            line-height: 1.6;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="number"],
+        select {
+            width: 200px;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #div_resultado {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            line-height: 1.6;
+        }
+
+        #div_resultado b i {
+            font-size: 1.05em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <b><i>CALCULADORA FINANCEIRA DE PERDAS POR UMIDADE NA PRODUÇÃO DE PITAYA</i></b>
+    <br><br>
+
+    <label for="input_umidade">Informe a umidade do solo atual (%):</label>
+    <input type="number" id="input_umidade" min="0" max="100">
+    <br><br>
+
+    <label for="input_kg">Informe a produção mensal estimada (Kg):</label>
+    <input type="number" id="input_kg" min="0">
+    <br><br>
+
+    <label for="input_preco">Informe o preço do Kg da pitaya (R$):</label>
+    <input type="number" id="input_preco" min="0" step="0.01">
+    <br><br>
+
+    <label for="select_periodo">Selecione o período da análise:</label>
+    <select id="select_periodo">
+        <option value="12">Anual</option>
+        <option value="6">Semestral</option>
+        <option value="3">Trimestral</option>
+    </select>
+    <br><br>
+
+    <button onclick="analisar()">Analisar</button>
+    <br><br>
+
+    <div id="div_resultado"></div>
+
+    <div class="informacao">
+        <b>Informações Importantes sobre Perdas por Umidade:</b>
+        <ul>
+            <li><b>Umidade abaixo de 60%:</b> Estima-se uma perda de produção de <b>10%</b> devido ao estresse hídrico.</li>
+            <li><b>Umidade acima de 80%:</b> Estima-se uma perda de produção de <b>30%</b> devido ao risco de doenças e apodrecimento.</li>
+            <li>A faixa ideal de umidade para o cultivo da pitaya geralmente se situa entre 60% e 80%.</li>
+        </ul>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    function analisar() {
+        var umidade = Number(input_umidade.value);
+        var kg = Number(input_kg.value);
+        var preco = Number(input_preco.value);
+        var periodo = Number(select_periodo.value);
+        var rendimentoMensalBruto = kg * preco;
+
+        var periodoTexto = '';
+        if (periodo == 12) periodoTexto = 'Anual';
+        else if (periodo == 6) periodoTexto = 'Semestral';
+        else periodoTexto = 'Trimestral';
+
+        var resultado = '';
+
+        if (umidade < 60) {
+            var perdaPercentual = 0.10;
+            var perdaKg = kg * perdaPercentual;
+            var perdaFinanceiraMensal = rendimentoMensalBruto * perdaPercentual;
+
+            resultado = `
+                <b class="alerta-baixo"><i>Alerta de baixa umidade:</i></b><br>
+                Umidade atual: ${umidade}%<br>
+                Status: <b>Risco de estresse hídrico e perda de produção</b><br>
+                Perda estimada: <b class="perda">R$ ${perdaFinanceiraMensal.toFixed(2)}</b> por mês (aproximadamente <b class="perda">${perdaKg.toFixed(2)} Kg</b>)<br>
+                Prejuízo estimado no período (${periodoTexto}): <b class="perda">R$ ${(perdaFinanceiraMensal * periodo).toFixed(2)}</b><br><br>
+                <b class="ideal"><i>Cenário ideal (60% - 80%):</i></b><br>
+                Produção mensal estimada: <b>R$ ${rendimentoMensalBruto.toFixed(2)}</b>
+            `;
+        } else if (umidade >= 60 && umidade <= 80) {
+            resultado = `
+                <b class="ideal"><i>Condições ideais!</i></b><br>
+                Umidade atual: ${umidade}%<br>
+                Status: <b>Solo com umidade ideal para a produção</b><br>
+                Produção mensal estimada: <b>R$ ${rendimentoMensalBruto.toFixed(2)}</b><br>
+                Receita estimada no período (${periodoTexto}): <b>R$ ${(rendimentoMensalBruto * periodo).toFixed(2)}</b>
+            `;
+        } else if (umidade > 80) {
+            var perdaPercentual = 0.30;
+            var perdaKg = kg * perdaPercentual;
+            var perdaFinanceiraMensal = rendimentoMensalBruto * perdaPercentual;
+
+            resultado = `
+                <b class="alerta-alto"><i>Umidade alta:</i></b><br>
+                Umidade atual: ${umidade}%<br>
+                Status: <b>Risco de doenças fúngicas e apodrecimento de raízes</b><br>
+                Perda estimada: <b class="perda">R$ ${perdaFinanceiraMensal.toFixed(2)}</b> por mês (aproximadamente <b class="perda">${perdaKg.toFixed(2)} Kg</b>)<br>
+                Prejuízo estimado no período (${periodoTexto}): <b class="perda">R$ ${(perdaFinanceiraMensal * periodo).toFixed(2)}</b><br><br>
+                <b class="ideal"><i>Cenário ideal (60% - 80%):</i></b><br>
+                Produção mensal estimada: <b>R$ ${rendimentoMensalBruto.toFixed(2)}</b>
+            `;
+        } else {
+            resultado = `
+                <b><i>Erro: Umidade informada é inválida. Por favor, insira um valor entre 0 e 100.</i></b>
+            `;
+        }
+
+        div_resultado.innerHTML = resultado;
+    }
+</script>
+
+</html>
