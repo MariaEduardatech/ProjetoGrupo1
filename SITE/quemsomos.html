@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/CSS.css">
+    <link rel="icon" href="./style/PitaTech_logo.png">
+    <title>Quem  Somos</title>
+</head>
+
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
+
+    * {
+        margin: 0%;
+    }
+
+    body {
+            font-family: 'Aclonica', sans-serif;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        main {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .quem-somos-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            text-align: center;
+        }
+
+        .quem-somos-container h1 {
+            font-size: 3em;
+            color: #d91b77;
+        }
+
+        .quem-somos-container p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            max-width: 900px;
+        }
+
+        .imagem-ilustrativa {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+</style>
+
+<body>
+
+    <header>
+
+        <div class="navbar">
+
+            <img src="./style/PitaTech_logo.png" alt="Logo Pitatech">
+
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="calculadora.html">Calculadora</a></li>
+                <li id="selecionado"><a href="">Quem somos</a></li>
+            </ul>
+
+            <div id="div_mensagem"><a href="./login.html">Entrar</a></div>
+
+        </div>
+    </header>
+
+    <main>
+        <div class="quem-somos-container">
+            <h1>Quem Somos</h1>
+            <img src="./style/plantacao_pitaya.jpg" alt="Plantação de pitaya com sensores" class="imagem-ilustrativa">
+            <p>
+                A <strong>PitaTech</strong> é uma startup brasileira que nasceu com o propósito de transformar a agricultura por meio da tecnologia. Nosso foco principal está na <strong>produção sustentável de pitaya</strong>, utilizando sistemas inteligentes de monitoramento de umidade do solo.
+            </p>
+            <p>
+                Através de sensores de solo conectados a uma plataforma digital, oferecemos aos produtores dados em tempo real sobre a umidade, possibilitando decisões mais precisas sobre irrigação. Isso reduz o desperdício de água, melhora a qualidade da fruta e otimiza os custos de produção.
+            </p>
+            <p>
+                Unimos inovação, sustentabilidade e paixão pela agricultura para construir um futuro mais eficiente e produtivo no campo.
+            </p>
+            <p>
+                <strong>Bem-vindo à revolução tecnológica na pitayicultura. Bem-vindo à PitaTech.</strong>
+            </p>
+        </div>
+    </main>
+
+    <section style="height: 100px;"></section>
+
+    <footer>
+        <div class="navfot">
+            <div id="menu-redes">
+                <div id="lista">
+                    <ul>
+                        <li><a href="./home.html">Home</a></li>
+                        <li><a href="./dashboard.html">Dashboard</a></li>
+                        <li><a href="#">Calculadora</a></li>
+                        <li><a href="./quemsomos.html">Quem somos</a></li>     
+                    </ul>
+                </div>
+
+                <div id="logo">
+                    <img src="./style/PitaTech_logo.png" alt="PitaTech_logo">
+                </div>
+             
+                <div id="redes2">
+                    <img src="./style/instagram.png" alt="Logo do Instagram"><span id="instagram">Instagram</span>
+                    <img src="./style/linkedin.png" alt="Logo do Linkedin"><span id="linkedin">Linkedin</span>
+                    <img src="./style/facebook.png" alt="Logo do Facebook"><span id="facebook">Facebook</span>
+                </div>
+            </div>
+    
+            <span id="direitos">PITATECH © 2025. Todos os direitos reservados. Desenvolvido por PITATECH TEAM.</span>
+        </div>
+    </footer>
+    
+</body>
+</html>

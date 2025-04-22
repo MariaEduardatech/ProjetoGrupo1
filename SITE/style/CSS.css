@@ -1,0 +1,558 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Aclonica','Courier New', Courier, monospace;
+    color: white;
+}
+
+#bodyLogin {
+
+    background-image: url(../style/maracuja-pitaya-rosa-isolado-em-um-fundo-preto_181624-45565.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    align-items: center;
+    justify-items: center;
+    font-family: 'Aclonica','Courier New', Courier, monospace;
+    
+
+}
+
+#card-login{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 400px;
+    width: 500px;
+    background-color: #410d32bc;
+    border-radius: 20px;
+    align-self: center;
+    margin-top: 11%;
+
+}
+
+#login{
+    font-size: 3.0rem;
+    text-align: center;
+
+}
+
+.container span{
+
+    font-size: 0.7rem;
+
+}
+
+#voltar{
+    font-size: 0.5rem;
+    margin-top: 20px;
+    margin-right: 80%;
+}
+
+#input_login, #input_senha {
+    color: white;
+    background-color: rgba(137, 43, 226, 0);
+    border: solid 2px;
+    padding: 1%;
+    border-top: transparent;
+    font-family: 'Aclonica','Courier New', Courier, monospace;
+    border-left: transparent;
+    border-right: transparent;
+    border-bottom: solid 2px white;
+    width: 300px;
+
+}
+
+#input_senha{
+
+    margin-top: 4%;
+
+}
+
+#input_login{
+
+    margin-top: 3%;
+
+}
+
+::-webkit-input-placeholder{
+
+    color: white;
+
+}
+
+#botao_enviar{
+
+    width: 100px;
+    height: 50px;
+    padding: 2%;
+    border-radius: 4px;
+    color: white;
+    background-color: #700938;
+    font-family: 'Aclonica','Courier New', Courier, monospace;
+    border: transparent;
+    transition: 0.4s;
+}
+
+#botao_enviar:hover{
+
+    background-color: #ca118f;
+    transition: 0.4s;
+
+}
+
+.container {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.container a {
+
+    color: white;
+    text-decoration: none;
+
+}
+
+.container a:hover {
+
+    text-decoration: underline;
+
+}
+
+.navbar {
+
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(to right, #A13490, #500745);
+    margin: 0%;
+    display: flex;
+    font-family: 'Aclonica','Courier New', Courier, monospace;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 3.5);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    
+}
+
+.navbar img {
+
+    width: 10%;
+    height: 80%;
+    margin-top: 1%;
+    margin-left: 1%;
+
+}
+
+.navbar a {
+
+    text-decoration: none;
+    color: white;
+
+}
+
+#div_mensagem{
+
+    margin-top: 5%;
+    margin-left: 6%;
+
+}
+
+.navbar ul {
+
+    justify-content: space-around;
+    display: flex;
+    list-style-type: none;
+    width: 60%;
+    margin-top: 5%;
+
+}
+
+#selecionado{
+
+    text-decoration: underline white;
+
+}
+
+.navbar span {
+
+    color: white;
+    margin-top: 30%;
+
+}
+
+
+
+/* FOOTER */
+
+footer {
+    width: 100%;
+    background: linear-gradient(to right, #A13490, #500745);
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    padding: 2%;
+}
+
+.navfot {
+    display: flex;
+    flex-direction: column;
+}
+
+#menu-redes {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+#lista ul {
+    list-style-type: none;
+    font-size: 0.8rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#lista li a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+#redes2 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+#redes2 img {
+    width: 24px;
+    height: 24px;
+}
+
+#redes2 span {
+    color: white;
+    font-size: 0.8rem;
+}
+
+#logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#logo img {
+    width: 180px;
+    height: auto;
+}
+
+#direitos {
+    display: flex;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-family: inherit;
+    color: white;
+    text-align: center;
+}
+
+
+main.container {
+    max-width: 680px;
+    margin: 50px auto;
+    padding: 20px 25px;
+    border: 2px solid rgba(128, 0, 128, 0.3); 
+    border-radius: 12px;
+    background-color: rgba(128, 0, 128, 0.07); 
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); 
+    font-family: 'Barlow', sans-serif;
+    color: #333;
+    backdrop-filter: blur(4px);
+}
+
+
+main.container h3 {
+    text-align: center;
+    font-size: 1.4em;
+    color: indigo;
+    margin-bottom: 15px;
+}
+
+main.container label {
+    display: block;
+    margin-top: 16px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #141313;
+}
+
+main.container input,
+main.container select {
+    width: 100%;
+    max-width: 280px;
+    padding: 8px;
+    border: 1px solid indigo;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+main.container button {
+    margin-top: 16px;
+    padding: 10px 18px;
+    background-color: indigo;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+main.container button:hover {
+    background-color: darkorchid;
+    font-size: 1em;
+}
+
+#div_resultado {
+    display: none;
+    margin-top: 20px;
+    padding: 18px;
+    border: 2px solid indigo;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    line-height: 1.6;
+    font-weight: 500;
+    color: #141313;
+}
+
+#div_resultado:not(:empty) {
+    display: block;
+}
+
+#div_resultado b i {
+    font-size: 1.05em;
+}
+
+.informacao {
+    margin-top: 30px;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-left: 5px solid indigo;
+    background-color: #fdfdfd;
+    border-radius: 6px;
+    line-height: 1.6;
+}
+
+.informacao b {
+    color: indigo;
+}
+
+.alerta-baixo {
+    color: DarkRed;
+    font-weight: bold;
+}
+
+.alerta-alto {
+    color: DarkOrange;
+    font-weight: bold;
+}
+
+.ideal {
+    color: DarkGreen;
+    font-weight: bold;
+}
+
+.perda {
+    color: red;
+    font-weight: bold;
+}
+
+b i {
+    font-size: 1.1em;
+}
+
+
+
+
+
+
+.dashboard {
+    padding: 40px;
+    text-align: center;
+    font-family: 'Aclonica', sans-serif;
+}
+
+.dashboard h1 {
+    color: purple;
+    margin-bottom: 30px;
+}
+
+.KPIALERTA {
+    background-color: rgb(235, 9, 9);
+    padding: 20px;
+    border-radius: 20px;
+    margin: 20px auto;
+    width: 80%;
+    color: black;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.talhao {
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    grid-template-rows: repeat(3, 300px);
+    gap: 20px;
+    padding: 30px;
+    background: linear-gradient(to right, #A13490, #500745);
+    border-radius: 20px;
+    margin: 40px auto;
+    max-width: 1000px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.lote {
+    background: white;
+    border: 3px solid #a7d488;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+}
+
+.lote:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.localS {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: black;
+}
+
+.lote img {
+    width: 50px;
+    transition: transform 0.3s;
+}
+
+.lote:hover img {
+    transform: scale(1.2);
+}
+
+.lote button {
+    background: none;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.graficos {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.grafico1, .grafico2 {
+    background: linear-gradient(to right, #A13490, #500745);
+    border-radius: 15px;
+    padding: 20px;
+    width: 500px;
+    height: auto;
+}
+
+
+
+
+
+
+
+.dashSensor
+{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 30px;
+}
+
+.dashSensor .KPI
+{
+    position: relative;
+    background-color: rgb(243, 173, 188);
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+.dashSensor .KPI .nomeKPI
+{
+    color: black;
+    font-size: 19px;
+    margin-top: 5px;
+}
+.dashSensor .KPI .dados
+{
+    position: relative;
+    font-weight: 500px;
+    font-size: 45px;
+    color: #ea0b55;
+}
+
+.dashSensor .KPI:hover
+{
+    background-color: #ea0b55;
+}
+.dashSensor .KPI:hover .dados,
+.dashSensor .KPI:hover .nomeKPI
+{
+color: white;
+}
+
+.graficosensor {
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.grafico1, .grafico2 {
+    background: linear-gradient(to right, #A13490, #500745);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    color: white;
+}
+
+.grafico1 h2, .grafico2 h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+}
+
+
+
+
+

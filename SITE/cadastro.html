@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="./style/CSS.css">
+    <link rel="icon" href="./style/PitaTech_logo.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
+    </style>
+</head>
+
+<body id="bodyLogin">
+    <div class="container">
+        <div id="card-login">
+            <a id="voltar" href="./home.html">Ir para Home</a>
+            <h1 id="login">CADASTRO</h1>
+
+            <input type="text" id="input_nome" placeholder="Nome da empresa" required><br>
+            <input type="text" id="input_cnpj" placeholder="CNPJ" required><br>
+            <input type="text" id="input_telefone" placeholder="Telefone" required><br>
+            <input type="email" id="input_email" placeholder="Email" required><br>
+            <input type="text" id="input_rua" placeholder="Rua" required><br>
+            <input type="text" id="input_bairro" placeholder="Bairro" required><br>
+            <input type="text" id="input_cidade" placeholder="Cidade" required><br>
+            <input type="text" id="input_numero" placeholder="Número" required><br>
+            <input type="text" id="input_uf" placeholder="UF" required maxlength="2"><br>
+
+            <button id="botao_enviar" onclick="cadastrar()">Cadastrar</button><br>
+        </div>
+
+        <a href="home.html">
+            <img src="./style/PitaTech_logo.png" height="130px" width="130px">
+        </a>
+    </div>
+</body>
+
+<script>
+    function cadastrar() {
+        var campos = [
+            'input_nome', 'input_cnpj', 'input_telefone', 'input_email',
+            'input_rua', 'input_bairro', 'input_cidade', 'input_numero', 'input_uf'
+        ];
+
+        var valido = true;
+        for (var i = 0; i < campos.length; i++) {
+            var campo = document.getElementById(campos[i]);
+            if (!campo.value.trim()) {
+                campo.style.borderColor = 'red';
+                valido = false;
+            } else {
+                campo.style.borderColor = 'white';
+            }
+        }
+
+        if (valido) {
+            alert("Cadastro realizado com sucesso!");
+            window.location.href = './login.html';
+        } else {
+            alert("Preencha todos os campos corretamente!");
+        }
+    }
+</script>
+
+</html>

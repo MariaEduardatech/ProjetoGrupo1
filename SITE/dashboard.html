@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/CSS.css">
+    <link rel="icon" href="./style/PitaTech_logo.png">
+    <title>Dashboard | Pitatech</title>
+</head>
+
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
+
+    * {
+
+        margin: 0%;
+
+    }
+
+</style>
+
+<body>
+
+    <header>
+
+        <div class="navbar">
+
+            <img src="./style/PitaTech_logo.png" alt="Logo Pitatech">
+
+            <ul>
+
+                
+                <li><a href="home.html">Home</a></li>
+                <li id="selecionado"><a href="">Dashboard</a></li>
+                <li><a href="calculadora.html">Calculadora</a></li>
+                <li><a href="quemsomos.html">Quem somos</a></li>
+
+            </ul>
+
+            <div id="div_mensagem"><a href="./login.html">Entrar</a></div>
+
+        </div>
+
+    </header>
+
+    <section class="dashboard">
+        <h1>Mapa dos Sensores</h1>
+    
+        <div class="KPIALERTA">
+            <div class="nomeKPI">
+                <b>SENSOR 4 NECESSITA DE VERIFICAÇÃO! UMIDADE IRREGULAR</b><br>
+                <img src="https://cdn-icons-png.freepik.com/256/8425/8425341.png" width="50px" height="50px" alt="">
+            </div>
+        </div>
+    
+        <div class="talhao">
+            <div class="lote"><div class="localS">A1</div><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></div>
+            <div class="lote"><div class="localS">A2</div><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></div>
+            <div class="lote"><div class="localS">A3</div><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></div>
+            <div class="lote"><div class="localS">B1</div><a href="./dashboardsensor.html"><button><img src="https://cdn-icons-png.freepik.com/256/9365/9365738.png" alt=""></button></a></div>
+            <div class="lote"><div class="localS">B2</div><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></div>
+            <div class="lote"><div class="localS">B3</div><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></div>
+            <div class="lote"><div class="localS">C1</div><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></div>
+            <div class="lote"><div class="localS">C2</div><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></div>
+            <div class="lote"><div class="localS">C3</div><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></div>
+        </div>
+    
+        <div class="graficos">
+            <div class="grafico1">
+                <h2>Umidade do Solo (últimos dias)</h2>
+                <canvas id="umidadeSoloChart"></canvas>
+            </div>
+    
+            <div class="grafico2">
+                <h2>Umidade Atual dos Sensores</h2>
+                <canvas id="umidadetalhaoChart"></canvas>
+            </div>
+        </div>
+    </section>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx1 = document.getElementById('umidadeSoloChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['11 abr', '13 abr', '15 abr', '17 abr', '19 abr', '21 abr', '23 abr', '25 abr'],
+                datasets: [{
+                    label: 'Umidade (%)',
+                    data: [75, 73, 68, 62, 80, 78, 65, 72],
+                    fill: true,
+                    backgroundColor: 'rgba(100, 221, 23, 0.2)',
+                    borderColor: '#64dd17',
+                    tension: 0.3,
+                    pointBackgroundColor: '#64dd17'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        ticks: { color: 'white' }
+                    },
+                    y: {
+                        min: 60,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'Umidade (%)',
+                            color: 'white'
+                        },
+                        ticks: { color: 'white' }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: { color: 'white' }
+                    }
+                }
+            }
+        });
+    
+        const ctx2 = document.getElementById('umidadetalhaoChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['Talhão 1','Talhão 2','Talhão 3'],
+                datasets: [{
+                    label: 'Umidade',
+                    backgroundColor: '#42aaf5',
+                    borderColor: '#1e88e5',
+                    borderWidth: 1,
+                    data: [10, 30, 20],
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        ticks: { color: 'white' }
+                    },
+                    y: {
+                        ticks: { color: 'white' },
+                        title: {
+                            display: true,
+                            text: 'Umidade (%)',
+                            color: 'white'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: { color: 'white' }
+                    }
+                }
+            }
+        });
+    </script>
+    
+    <section style="height: 100px;"></section>
+
+    <footer>
+        <div class="navfot">
+            <div id="menu-redes">
+                <div id="lista">
+                    <ul>
+                        <li><a href="./home.html">Home</a></li>
+                        <li><a href="./dashboard.html">Dashboard</a></li>
+                        <li><a href="#">Calculadora</a></li>
+                        <li><a href="./quemsomos.html">Quem somos</a></li>     
+                    </ul>
+                </div>
+
+                <div id="logo">
+                    <img src="./style/PitaTech_logo.png" alt="PitaTech_logo">
+                </div>
+             
+                <div id="redes2">
+                    <img src="./style/instagram.png" alt="Logo do Instagram"><span id="instagram">Instagram</span>
+                    <img src="./style/linkedin.png" alt="Logo do Linkedin"><span id="linkedin">Linkedin</span>
+                    <img src="./style/facebook.png" alt="Logo do Facebook"><span id="facebook">Facebook</span>
+                </div>
+            </div>
+    
+            <span id="direitos">PITATECH © 2025. Todos os direitos reservados. Desenvolvido por PITATECH TEAM.</span>
+        </div>
+    
+    </footer>
+</body>
+</html>
