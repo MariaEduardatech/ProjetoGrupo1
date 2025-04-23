@@ -45,7 +45,15 @@
 
     <main class="container">
         <h3><b><i>SIMULADOR FINANCEIRO DE PERDAS POR UMIDADE DO SOLO NA PRODUÇÃO DE PITAYA</i></b></h3>
-        <br>
+
+        <div class="informacao">
+            <b>Informações Importantes sobre Perdas por Umidade:</b>
+            <ul>
+                <li><b>Umidade abaixo de 60%:</b> Estima-se uma perda de produção de <b>10%</b> devido ao estresse hídrico.</li>
+                <li><b>Umidade acima de 80%:</b> Estima-se uma perda de produção de <b>30%</b> devido ao risco de doenças e apodrecimento.</li>
+                <li><b>Umidade ideal</b> para o cultivo da pitaya geralmente se situa entre <b>60%</b> e <b>80%</b>.</li>
+            </ul>
+        </div>
 
         <label for="input_umidade">Informe a umidade do solo atual (%):</label>
         <input type="number" id="input_umidade" min="0" max="100">
@@ -66,18 +74,9 @@
         <button onclick="analisar()">Analisar</button>
 
         <div id="div_resultado"></div>
-
-        <div class="informacao">
-            <b>Informações Importantes sobre Perdas por Umidade:</b>
-            <ul>
-                <li><b>Umidade abaixo de 60%:</b> Estima-se uma perda de produção de <b>10%</b> devido ao estresse hídrico.</li>
-                <li><b>Umidade acima de 80%:</b> Estima-se uma perda de produção de <b>30%</b> devido ao risco de doenças e apodrecimento.</li>
-                <li><b>Umidade ideal</b> para o cultivo da pitaya geralmente se situa entre <b>60%</b> e <b>80%</b>.</li>
-            </ul>
-        </div>
     </main>
 
-    <section style="height: 100px;"></section>    
+    <section style="height: 80px;"></section>    
 
     <footer>
         <div class="navfot">

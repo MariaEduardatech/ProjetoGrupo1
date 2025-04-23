@@ -274,6 +274,7 @@ main.container button {
     border: none;
     border-radius: 6px;
     cursor: pointer;
+    margin-bottom: 20px;
     font-size: 1em;
     transition: background-color 0.3s ease;
 }
@@ -286,7 +287,8 @@ main.container button:hover {
 #div_resultado {
     display: none;
     margin-top: 20px;
-    padding: 18px;
+    padding: 20px;
+    margin-bottom: 20px;
     border: 2px solid indigo;
     border-radius: 8px;
     background-color: #f8f8f8;
@@ -342,8 +344,6 @@ b i {
     font-size: 1.1em;
 }
 
-
-
 .dashboard {
     padding: 40px 20px;
     text-align: center;
@@ -355,40 +355,41 @@ b i {
 .dashboard h1 {
     color: purple;
     margin-bottom: 30px;
+    font-size: 50px;
 }
 
 .KPIALERTA {
     background-color: rgb(235, 9, 9);
-    padding: 20px;
+    padding: 10px;
     border-radius: 20px;
     margin: 20px auto;
-    width: 90%;
-    max-width: 800px;
+    height: auto;
+    width: 70%;
+    max-width: 900px;
     color: white;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 .talhao {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 30px;
-    background: linear-gradient(to right, #A13490, #500745);
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    padding: 20px;
+    background: linear-gradient(to right, #A13490, #750b65);
     border-radius: 20px;
-    margin: 40px auto;
+    margin: 30px auto;
     width: 100%;
-    max-width: 1000px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
 .lote {
     background: white;
-    border: 3px solid #a7d488;
-    width: 100%;
+    border: 2px solid #a7d488;
     aspect-ratio: 1;
-    border-radius: 20px;
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -398,18 +399,18 @@ b i {
 
 .lote:hover {
     transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 .localS {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     color: black;
 }
 
 .lote img {
-    width: 50px;
+    width: 35px;
     transition: transform 0.3s;
 }
 
@@ -417,12 +418,67 @@ b i {
     transform: scale(1.2);
 }
 
+/* Muda a cor do lote em manutenção */
+.em-manutencao {
+    background-color: #fff3cd; /* amarelo claro */
+    border: 2px solid #ffc107; /* amarelo */
+}
+
+
+/* Tooltip flutuante */
+.tooltip {
+    visibility: hidden;
+    background-color: #d40000;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* Setinha do tooltip */
+.tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #d40000 transparent transparent transparent;
+}
+
+/* Mostrar tooltip ao passar o mouse */
+.btn-manutencao:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+
 .lote button {
     background: none;
     border: none;
-    margin-top: 10px;
+    margin-top: 6px;
     cursor: pointer;
 }
+
+.tituloTalhoes {
+    color: #4b0055;
+    font-family: 'Aclonica', sans-serif;
+    margin-bottom: 15px;
+    font-size: 22px;
+    margin-top: 30px;
+}
+
 
 .graficos {
     display: flex;
@@ -444,17 +500,19 @@ b i {
     text-align: center;
 }
 
-.grafico1, .grafico2 {
+.grafico1, .grafico2, .grafico3 {
     background: linear-gradient(to right, #A13490, #500745);
     border-radius: 15px;
+    border: solid 2px springgreen;
     padding: 20px;
     width: 48%; 
     height: 380px; 
 }
 
-.grafico3 {
+.graficopizza {
     background: linear-gradient(to right, #A13490, #500745);
     border-radius: 15px;
+    border: solid 2px springgreen;
     padding: 20px;
     width: 100%; 
     max-width: 300px; 
@@ -462,12 +520,19 @@ b i {
     height: 350px; 
 }
 
-
 .graficos h2 {
     margin-bottom: 15px;
     font-size: 18px;
     color: #fff;
     font-weight: bold;
+}
+.container-dashboard {
+    background-color: #f3f0f7;
+    padding: 40px 20px;
+    border-radius: 30px;
+    max-width: 1300px;
+    margin: 30px auto;
+    border: 3px solid #A13490;
 }
 
 /* === DASHBOARD DE SENSOR === */
@@ -491,6 +556,7 @@ b i {
     align-items: center;
     cursor: pointer;
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border: solid 2px black;
     transition: all 0.3s ease;
 }
 
@@ -516,46 +582,51 @@ b i {
 }
 
 /* === GRÁFICOS SENSOR === */
-
 .graficosensor {
     width: 100%;
     padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+   
 }
 
 .graficosensor .grafico1,
+.graficosensor .grafico2,
 .graficosensor .grafico3 {
-    width: 100%;
-    max-width: 500px;
-    min-width: 300px;
-    height: 350px;
     background: linear-gradient(to right, #A13490, #500745);
     border-radius: 20px;
-    padding: 20px;
+    padding: 10px;
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
     color: white;
-    box-sizing: border-box;
+    width: 100%;
+    height: 360px; /* altura fixa padronizada */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     transition: transform 0.3s ease;
 }
 
-.graficosensor :hover {
+
+.graficosensor .grafico1:hover,
+.graficosensor .grafico2:hover,
+.graficosensor .grafico3:hover {
     transform: scale(1.02);
 }
 
 .graficosensor h2 {
-    margin-bottom: 10px;
-    font-size: 20px;
+    margin-bottom: 15px;
+    font-size: 18px;
     text-align: center;
     font-weight: 600;
     color: white;
 }
+
+
+
+
+
+
 
 

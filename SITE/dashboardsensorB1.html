@@ -54,7 +54,7 @@
         <div class="KPI">
             <div>
                 <div class="nomeKPI">Umidade Atual</div>
-                <div class="dados">65%</div>
+                <div class="dados">70%</div>
 
             </div>
             <div class="icone">
@@ -76,7 +76,7 @@
         <div class="KPI">
             <div>
                 <div class="nomeKPI">Alertas</div>
-                <div class="dados">0</div>
+                <div class="dados">3</div>
 
             </div>
             <div class="icone">
@@ -89,6 +89,11 @@
         <div class="grafico1">
             <h2>Umidade do Solo (horário)</h2>
             <canvas id="umidadeSoloChart"></canvas>
+        </div>
+
+        <div class="grafico2">
+            <h2>Média Semanal de Umidade</h2>
+            <canvas id="mediaSemanalChart"></canvas>
         </div>
     
         <div class="grafico3">
@@ -104,7 +109,7 @@
                 labels: ['06:00','08:00', '10:00', '12:00', '14:00', '16:00', '18:00'],
                 datasets: [{
                     label: 'Umidade (%)',
-                    data: [65, 68, 75, 70, 65, 74, 69],
+                    data: [70, 88, 85, 60, 65, 44, 61],
                     fill: true,
                     backgroundColor: 'rgba(138, 43, 226, 0.2)',
                     borderColor: '#8A2BE2',
@@ -147,6 +152,53 @@
             }
         });
     
+        new Chart(document.getElementById('mediaSemanalChart').getContext('2d'), {
+    type: 'bar',
+    data: {
+        labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+        datasets: [{
+            label: 'Média Umidade (%)',
+            data: [32, 55, 78, 66, 70, 68, 70],
+            backgroundColor: 'rgba(255, 255, 255, 0.4)',
+            borderColor: '#ffffff',
+            borderWidth: 2
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            x: {
+                ticks: {
+                    color: 'white',
+                    font: { weight: 'bold' }
+                }
+            },
+            y: {
+                beginAtZero: true,
+                max: 100,
+                title: {
+                    display: true,
+                    text: 'Umidade (%)',
+                    color: 'white',
+                    font: { weight: 'bold' }
+                },
+                ticks: {
+                    color: 'white',
+                    font: { weight: 'bold' }
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    color: 'white',
+                    font: { weight: 'bold' }
+                }
+            }
+        }
+    }
+});
+
     
         new Chart(document.getElementById('alertasChart').getContext('2d'), {
             type: 'bar',
@@ -154,8 +206,10 @@
                 labels: ['06:00','08:00', '10:00', '12:00', '14:00', '16:00', '18:00'],
                 datasets: [{
                     label: 'Em Alerta',
-                    data: [0, 0, 0, 0, 0, 0, 0], 
-                    backgroundColor: '#ff1744'
+                    data: [0, 1, 1, 0, 0, 1, 0], 
+                    backgroundColor: '#ff1744',
+                    borderColor: '#ffffff', 
+                    borderWidth: 2
                 }]
             },
             options: {
@@ -172,7 +226,7 @@
                             display: true, 
                             text: 'Alerta (1=Sim)', 
                             color: 'white',
-                            font: { weight: 'bold' } 
+                            font: { weight: 'bold' }
                         },
                         ticks: { 
                             stepSize: 1, 
@@ -192,7 +246,6 @@
             }
         });
     </script>
-    
       <footer>
         <div class="navfot">
             <div id="menu-redes">

@@ -43,7 +43,7 @@
         <div class="KPI">
             <div>
                 <div class="nomeKPI">Sensor</div>
-                <div class="dados">A2</div>
+                <div class="dados">B4</div>
 
             </div>
             <div class="icone">
@@ -54,7 +54,7 @@
         <div class="KPI">
             <div>
                 <div class="nomeKPI">Umidade Atual</div>
-                <div class="dados">85%</div>
+                <div class="dados">77%</div>
 
             </div>
             <div class="icone">
@@ -76,7 +76,7 @@
         <div class="KPI">
             <div>
                 <div class="nomeKPI">Alertas</div>
-                <div class="dados">4</div>
+                <div class="dados">1</div>
 
             </div>
             <div class="icone">
@@ -109,7 +109,7 @@
                 labels: ['06:00','08:00', '10:00', '12:00', '14:00', '16:00', '18:00'],
                 datasets: [{
                     label: 'Umidade (%)',
-                    data: [85, 88, 85, 80, 75, 84, 79],
+                    data: [77, 88, 78, 70, 65, 65, 76],
                     fill: true,
                     backgroundColor: 'rgba(138, 43, 226, 0.2)',
                     borderColor: '#ffffff', 
@@ -151,14 +151,14 @@
                 }
             }
         });
-    
+
         new Chart(document.getElementById('mediaSemanalChart').getContext('2d'), {
     type: 'bar',
     data: {
         labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
         datasets: [{
             label: 'Média Umidade (%)',
-            data: [72, 75, 78, 76, 70, 68, 85],
+            data: [52, 75, 98, 76, 50, 68, 77],
             backgroundColor: 'rgba(255, 255, 255, 0.4)',
             borderColor: '#ffffff',
             borderWidth: 2
@@ -199,16 +199,17 @@
     }
 });
     
+    
         new Chart(document.getElementById('alertasChart').getContext('2d'), {
             type: 'bar',
             data: {
                 labels: ['06:00','08:00', '10:00', '12:00', '14:00', '16:00', '18:00'],
                 datasets: [{
                     label: 'Em Alerta',
-                    data: [1, 1, 1, 0, 0, 1, 0], 
+                    data: [0, 1, 0, 0, 0, 0, 0], 
                     backgroundColor: '#ff1744',
-                    borderColor: '#ffffff', 
-                    borderWidth: 2
+                     borderColor: '#ffffff', 
+            borderWidth: 2
                 }]
             },
             options: {
@@ -245,6 +246,7 @@
             }
         });
     </script>
+    
     
       <footer>
         <div class="navfot">

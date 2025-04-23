@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/CSS.css">
     <link rel="icon" href="./style/PitaTech_logo.png">
-    <title>Dashboard | Pitatech</title>
+    <title>Dashboard  Pitatech</title>
 </head>
 
 <style>
@@ -38,48 +38,52 @@
         </div>
 
     </header>
-
+    <div class="container-dashboard">
     <section class="dashboard">
-        <h1>Mapa dos Sensores</h1>
+        <h1>Dashboard de Todos os Sensores</h1>
     
         <div class="KPIALERTA">
             <div class="nomeKPI">
-                <b>SENSOR B1 NECESSITA DE VERIFICAÇÃO! UMIDADE IRREGULAR</b><br>
+                <b>SENSORES A2, A3 e B2 NECESSITAM DE VERIFICAÇÃO! UMIDADE IRREGULAR</b><br>
                 <img src="https://cdn-icons-png.freepik.com/256/8425/8425341.png" width="50px" height="50px" alt="">
             </div>
         </div>
     
-        <div class="talhao">
-            <div class="lote"><div class="localS">A1</div><a href="./dashboardsensorA1.html"><button><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></button></a></div>
-            <div class="lote"><div class="localS">A2</div><a href="./dashboardsensorA2.html"><button><img src="https://cdn-icons-png.freepik.com/256/9365/9365738.png" alt=""></button></a></div>
-            <div class="lote"><div class="localS">A3</div><a href="./dashboardsensorA3.html"><button><img src="https://cdn-icons-png.freepik.com/256/9365/9365738.png" alt=""></button></a></div>
-            <div class="lote"><div class="localS">B1</div><a href="./dashboardsensorB1.html"><button><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></button></a></div>
-            <div class="lote"><div class="localS">B2</div><a href="./dashboardsensorB2.html"><button><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></button></a></div>
-            <div class="lote"><div class="localS">B3</div><a href="./dashboardsensorB3.html"><button><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></button></a></div>
-            <div class="lote"><div class="localS">C1</div><a href="./dashboardsensorC1.html"><button><img src="https://cdn-icons-png.freepik.com/256/9365/9365738.png" alt=""></button></a></div>
-            <div class="lote"><div class="localS">C2</div><a href="./dashboardsensorC2.html"><button><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></button></a></div>
-            <div class="lote"><div class="localS">C3</div><a href="./dashboardsensorC3.html"><button><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></button></a></div>
-        </div>
-    
+        <!-- GRÁFICOS PRIMEIRO -->
         <div class="graficos">
             <div class="grafico1">
-              <h2>Comparativo de Todos os Sensores</h2>
-              <canvas id="umidadeSoloChart"></canvas>
+                <h2>Comparativo de Todos os Sensores</h2>
+                <canvas id="umidadeSoloChart"></canvas>
             </div>
           
             <div class="grafico2">
-              <h2>Umidade Atual dos Sensores por Talhão</h2>
-              <canvas id="umidadetalhaoChart"></canvas>
+                <h2>Umidade Atual dos Sensores por Talhão</h2>
+                <canvas id="umidadetalhaoChart"></canvas>
             </div>
-
-            <div class="grafico3">
+    
+            <div class="graficopizza">
                 <h2>Sensores em Alerta</h2>
                 <canvas id="alertaChart"></canvas>
-              </div>
-          </div>
-          
+            </div>
+        </div>
+
+        <!-- TALHÕES DEPOIS DOS GRÁFICOS -->
+        <h2 class="tituloTalhoes">Mapa dos Sensores</h2>
+        <div class="talhao">
+            <div class="lote"><div class="localS">A1</div><a href="./dashboardsensorA1.html"><button><img src="https://cdn-icons-png.freepik.com/256/16322/16322583.png" alt=""></button></a></div>    
+            <div class="lote"><div class="localS">A2</div><a href="./dashboardsensorA2.html"><button><img src="https://cdn-icons-png.freepik.com/256/8425/8425341.png" alt=""></button></a></div>
+            <div class="lote"><div class="localS">A3</div><a href="./dashboardsensorA3.html"><button><img src="https://cdn-icons-png.freepik.com/256/8425/8425341.png" alt=""></button></a></div>
+            <div class="lote"><div class="localS">A4</div><a href="./dashboardsensorA4.html"><button><img src="https://cdn-icons-png.freepik.com/256/16322/16322583.png" alt=""></button></a></div>
+            <div class="lote"><div class="localS">A5</div><a href="./dashboardsensorA5.html"><button><img src="https://cdn-icons-png.freepik.com/256/16322/16322583.png" alt=""></button></a></div>
+            <div class="lote"><div class="localS">B1</div><a href="./dashboardsensorB1.html"><button><img src="https://cdn-icons-png.freepik.com/256/16322/16322583.png" alt=""></button></a></div>
+            <div class="lote"><div class="localS">B2</div><a href="./dashboardsensorB2.html"><button><img src="https://cdn-icons-png.freepik.com/256/8425/8425341.png" alt=""></button></a></div>
+            <div class="lote"><div class="localS">B3</div><a href="./dashboardsensorB3.html"><button><img src="https://cdn-icons-png.freepik.com/256/16322/16322583.png" alt=""></button></a></div>
+            <div class="lote"><div class="localS">B4</div><a href="./dashboardsensorB4.html"><button><img src="https://cdn-icons-png.freepik.com/256/16322/16322583.png" alt=""></button></a></div>
+            <div class="lote em-manutencao"><div class="localS">B5</div><button class="btn-manutencao"><img src="https://cdn-icons-png.freepik.com/512/8509/8509746.png" alt=""><span class="tooltip">Em manutenção</span></button></div>
+        </div>
     </section>
-   
+    </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
 // === 1. COMPARATIVO DE TODOS OS SENSORES ===
@@ -91,9 +95,9 @@ new Chart(ctx1, {
         datasets: [{
             label: 'Umidade Atual (%)',
             data: [70, 85, 55, 65, 75, 70, 90, 73, 77],
-            backgroundColor: 'rgba(131, 191, 79, 0.7)', 
-            borderColor: '#83BF4F', 
-            borderWidth: 1
+            backgroundColor: 'rgba(0,255,127, 0.7)', 
+            borderColor: '#ffffff', 
+            borderWidth: 2
         }]
     },
     options: {
@@ -139,39 +143,52 @@ new Chart(ctx1, {
 });
 
 // === 2. TALHÕES ===
+// Obtém o contexto do canvas com id 'umidadetalhaoChart'
 const ctx3 = document.getElementById('umidadetalhaoChart').getContext('2d');
+
+// Cria um novo gráfico usando Chart.js
 new Chart(ctx3, {
+    // Tipo de gráfico: barra (horizontal com indexAxis: 'y')
     type: 'bar',
     data: {
-        labels: ['Talhão 1', 'Talhão 2', 'Talhão 3'],
+        // Rótulos dos talhões
+        labels: ['Talhão 1', 'Talhão 2'],
         datasets: [{
+            // Nome da série de dados
             label: 'Umidade Média (%)',
-            data: [70, 66, 80],
-            backgroundColor: 'rgba(131, 191, 79, 0.7)', 
-            borderColor: '#83BF4F', 
-            borderWidth: 1
+            // Dados de umidade média para cada talhão
+            data: [70, 66],
+            // Cor de preenchimento das barras (verde claro com transparência)
+            backgroundColor: 'rgba(0,255,127, 0.7)', 
+            // Cor da borda das barras
+            borderColor: '#ffffff', 
+            // Espessura da borda
+            borderWidth: 2
         }]
     },
     options: {
         responsive: true,
+        indexAxis: 'y',
         scales: {
             x: {
                 ticks: {
-                    color: '#ffffff',
-                    font: { weight: 'bold' }
-                }
-            },
-            y: {
-                min: 0,
-                max: 100,
-                ticks: {
-                    stepSize: 10,
                     color: '#ffffff',
                     font: { weight: 'bold' }
                 },
                 title: {
                     display: true,
                     text: 'Umidade (%)',
+                    color: '#ffffff',
+                    font: { weight: 'bold' }
+                },
+                min: 10,
+                max: 100,
+                ticks: {
+                    stepSize: 10
+                }
+            },
+            y: {
+                ticks: {
                     color: '#ffffff',
                     font: { weight: 'bold' }
                 }
@@ -196,9 +213,9 @@ new Chart(ctx2, {
         labels: ['Estáveis', 'Em Alerta'],
         datasets: [{
             data: [6, 3],
-            backgroundColor: ['#83BF4F', '#42A5F5'], 
-            borderColor: ['#6A9F3D', '#1E88E5'], 
-            borderWidth: 1
+            backgroundColor: ['rgba(0,255,127, 0.7)', 'rgba(255,69,0, 0.7)'], 
+            borderColor: ['#ffffff'], 
+            borderWidth: 2,
         }]
     },
     options: {
@@ -215,7 +232,7 @@ new Chart(ctx2, {
 });
 
     </script>
-    <section style="height: 80px;"></section>
+    <section style="height: 50px;"></section>
 
     <footer>
         <div class="navfot">
