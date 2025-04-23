@@ -21,7 +21,7 @@ const serial = async (valoresSensorAnalogico) => {
         host: 'localhost',
         user: 'aluno',
         password: 'Sptech#2024',
-        database: 'Sensor',
+        database: 'PI',
         port: 3307
     }).promise(); // .promise() permite usar async/await nas queries
 
@@ -63,7 +63,7 @@ const serial = async (valoresSensorAnalogico) => {
             // Se estiver habilitado, insere o valor no banco de dados
             if (HABILITAR_OPERACAO_INSERIR) {
                 await poolBancoDados.execute(
-                    'INSERT INTO medida (sensor_analogico) VALUES (?)',
+                    'INSERT INTO registro (porcentagemUmidade) VALUES (?)',
                     [sensorAnalogico]
                 );
                 console.log("Valor inserido no banco: ", sensorAnalogico);
