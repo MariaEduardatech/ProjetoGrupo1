@@ -5,8 +5,8 @@ use PI;
 create table empresa (
 idEmpresa int primary key auto_increment,
 nome varchar(45),
-cnpj char(14),
-telefone char(11),
+cnpj char(14) unique not null,
+telefone char(11) unique,
 email varchar(80),
 rua varchar(45),
 bairro varchar(45),
@@ -26,7 +26,7 @@ create table usuario (
 idUsuario int auto_increment,
 fk1Empresa int,
 nome varchar (45),
-telefone char(11),
+telefone char(11) unique,
 email varchar(80),
 senha varchar(8),
 cargo varchar(45),
@@ -76,7 +76,7 @@ insert into sensor(fk2Empresa, statusSensor, areaSensor, dtInstalacao) values
 
 create table localizacao (
 idLocalizacao int auto_increment,
-fk1Sensor int,
+fk1Sensor int unique,
 localS varchar(7),
 constraint pkLocSens primary key (idlocalizacao,fk1Sensor),
 constraint fkSenLocal 
@@ -159,14 +159,14 @@ constraint fkRegAlert
 );
 
 insert into alerta values
-(default, 1, '2025-04-19 11:13:28'),
-(default, 3, '2025-04-19 11:14:33'),
-(default, 4, '2025-04-19 11:15:18'),
-(default, 7, '2025-04-19 11:16:06'),
-(default, 8, '2025-04-19 11:17:03'),
-(default, 9, '2025-04-19 11:17:09'),
-(default, 10, '2025-04-19 11:18:04'),
-(default, 12, '2025-04-19 11:20:00');
+(default, 1, '2025-04-23 17:11:48'),
+(default, 3, '2025-04-23 17:13:59'),
+(default, 4, '2025-04-23 17:14:21'),
+(default, 7, '2025-04-23 17:17:01'),
+(default, 8, '2025-04-23 17:18:15'),
+(default, 9, '2025-04-23 17:19:03'),
+(default, 10, '2025-04-23 17:20:01'),
+(default, 12, '2025-04-23 17:22:01');
 
 
 create table manutencao (
@@ -369,6 +369,17 @@ manutencao.dtManutencao as 'Data de Manutenção',
 manutencao.idManutencao as 'Manutenção'
 from sensor join manutencao
 on sensor.idSensor = manutencao.fk3Sensor;
+
+-- Junção das tabelas sensor e manutenção, mostrando todos os sensores, mesmo os que não tiveram manutenção, renomeando os campos
+select sensor.areaSensor as 'Área',
+sensor.idSensor as 'Sensor',
+sensor.statusSensor as 'Status do Sensor',
+case when manutencao.dtManutencao is null then 'Sem Manutenção'
+else 'Sensor já passou por manutenção'
+end as Manutencao
+from manutencao right join sensor on manutencao.fk3Sensor = sensor.idSensor;
+
+
 
 -- -- Junção das tabelas sensor e manutenção, mostrando todos os sensores, mesmo os que não tiveram manutenção, renomeando os campos
 select sensor.areaSensor as 'Área',
