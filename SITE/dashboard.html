@@ -13,9 +13,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
 
     * {
-
         margin: 0%;
-
     }
 
 </style>
@@ -29,13 +27,10 @@
             <img src="./style/PitaTech_logo.png" alt="Logo Pitatech">
 
             <ul>
-
-                
                 <li><a href="home.html">Home</a></li>
                 <li id="selecionado"><a href="">Dashboard</a></li>
                 <li><a href="calculadora.html">Calculadora</a></li>
                 <li><a href="quemsomos.html">Quem somos</a></li>
-
             </ul>
 
             <div id="div_mensagem"><a href="./login.html">Entrar</a></div>
@@ -49,116 +44,178 @@
     
         <div class="KPIALERTA">
             <div class="nomeKPI">
-                <b>SENSOR 4 NECESSITA DE VERIFICAÇÃO! UMIDADE IRREGULAR</b><br>
+                <b>SENSOR B1 NECESSITA DE VERIFICAÇÃO! UMIDADE IRREGULAR</b><br>
                 <img src="https://cdn-icons-png.freepik.com/256/8425/8425341.png" width="50px" height="50px" alt="">
             </div>
         </div>
     
         <div class="talhao">
-            <div class="lote"><div class="localS">A1</div><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></div>
-            <div class="lote"><div class="localS">A2</div><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></div>
-            <div class="lote"><div class="localS">A3</div><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></div>
-            <div class="lote"><div class="localS">B1</div><a href="./dashboardsensor.html"><button><img src="https://cdn-icons-png.freepik.com/256/9365/9365738.png" alt=""></button></a></div>
-            <div class="lote"><div class="localS">B2</div><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></div>
-            <div class="lote"><div class="localS">B3</div><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></div>
-            <div class="lote"><div class="localS">C1</div><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></div>
-            <div class="lote"><div class="localS">C2</div><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></div>
-            <div class="lote"><div class="localS">C3</div><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></div>
+            <div class="lote"><div class="localS">A1</div><a href="./dashboardsensorA1.html"><button><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></button></a></div>
+            <div class="lote"><div class="localS">A2</div><a href="./dashboardsensorA2.html"><button><img src="https://cdn-icons-png.freepik.com/256/9365/9365738.png" alt=""></button></a></div>
+            <div class="lote"><div class="localS">A3</div><a href="./dashboardsensorA3.html"><button><img src="https://cdn-icons-png.freepik.com/256/9365/9365738.png" alt=""></button></a></div>
+            <div class="lote"><div class="localS">B1</div><a href="./dashboardsensorB1.html"><button><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></button></a></div>
+            <div class="lote"><div class="localS">B2</div><a href="./dashboardsensorB2.html"><button><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></button></a></div>
+            <div class="lote"><div class="localS">B3</div><a href="./dashboardsensorB3.html"><button><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></button></a></div>
+            <div class="lote"><div class="localS">C1</div><a href="./dashboardsensorC1.html"><button><img src="https://cdn-icons-png.freepik.com/256/9365/9365738.png" alt=""></button></a></div>
+            <div class="lote"><div class="localS">C2</div><a href="./dashboardsensorC2.html"><button><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></button></a></div>
+            <div class="lote"><div class="localS">C3</div><a href="./dashboardsensorC3.html"><button><img src="https://cdn-icons-png.freepik.com/256/9564/9564856.png" alt=""></button></a></div>
         </div>
     
         <div class="graficos">
             <div class="grafico1">
-                <h2>Umidade do Solo (últimos dias)</h2>
-                <canvas id="umidadeSoloChart"></canvas>
+              <h2>Comparativo de Todos os Sensores</h2>
+              <canvas id="umidadeSoloChart"></canvas>
             </div>
-    
+          
             <div class="grafico2">
-                <h2>Umidade Atual dos Sensores</h2>
-                <canvas id="umidadetalhaoChart"></canvas>
+              <h2>Umidade Atual dos Sensores por Talhão</h2>
+              <canvas id="umidadetalhaoChart"></canvas>
             </div>
-        </div>
+
+            <div class="grafico3">
+                <h2>Sensores em Alerta</h2>
+                <canvas id="alertaChart"></canvas>
+              </div>
+          </div>
+          
     </section>
-    
+   
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        const ctx1 = document.getElementById('umidadeSoloChart').getContext('2d');
-        new Chart(ctx1, {
-            type: 'line',
-            data: {
-                labels: ['11 abr', '13 abr', '15 abr', '17 abr', '19 abr', '21 abr', '23 abr', '25 abr'],
-                datasets: [{
-                    label: 'Umidade (%)',
-                    data: [75, 73, 68, 62, 80, 78, 65, 72],
-                    fill: true,
-                    backgroundColor: 'rgba(100, 221, 23, 0.2)',
-                    borderColor: '#64dd17',
-                    tension: 0.3,
-                    pointBackgroundColor: '#64dd17'
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    x: {
-                        ticks: { color: 'white' }
-                    },
-                    y: {
-                        min: 60,
-                        max: 100,
-                        title: {
-                            display: true,
-                            text: 'Umidade (%)',
-                            color: 'white'
-                        },
-                        ticks: { color: 'white' }
-                    }
+// === 1. COMPARATIVO DE TODOS OS SENSORES ===
+const ctx1 = document.getElementById('umidadeSoloChart').getContext('2d');
+new Chart(ctx1, {
+    type: 'bar',
+    data: {
+        labels: ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3'],
+        datasets: [{
+            label: 'Umidade Atual (%)',
+            data: [70, 85, 55, 65, 75, 70, 90, 73, 77],
+            backgroundColor: 'rgba(131, 191, 79, 0.7)', 
+            borderColor: '#83BF4F', 
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            x: {
+                ticks: {
+                    color: '#ffffff',
+                    font: { weight: 'bold' }
                 },
-                plugins: {
-                    legend: {
-                        labels: { color: 'white' }
-                    }
+                title: {
+                    display: true,
+                    text: 'Sensores',
+                    color: '#ffffff',
+                    font: { weight: 'bold' }
+                }
+            },
+            y: {
+                min: 0,
+                max: 100,
+                ticks: {
+                    stepSize: 10,
+                    color: '#ffffff',
+                    font: { weight: 'bold' }
+                },
+                title: {
+                    display: true,
+                    text: 'Umidade (%)',
+                    color: '#ffffff',
+                    font: { weight: 'bold' }
                 }
             }
-        });
-    
-        const ctx2 = document.getElementById('umidadetalhaoChart').getContext('2d');
-        new Chart(ctx2, {
-            type: 'bar',
-            data: {
-                labels: ['Talhão 1','Talhão 2','Talhão 3'],
-                datasets: [{
-                    label: 'Umidade',
-                    backgroundColor: '#42aaf5',
-                    borderColor: '#1e88e5',
-                    borderWidth: 1,
-                    data: [10, 30, 20],
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    x: {
-                        ticks: { color: 'white' }
-                    },
-                    y: {
-                        ticks: { color: 'white' },
-                        title: {
-                            display: true,
-                            text: 'Umidade (%)',
-                            color: 'white'
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        labels: { color: 'white' }
-                    }
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    color: '#ffffff',
+                    font: { weight: 'bold' }
                 }
             }
-        });
+        }
+    }
+});
+
+// === 2. TALHÕES ===
+const ctx3 = document.getElementById('umidadetalhaoChart').getContext('2d');
+new Chart(ctx3, {
+    type: 'bar',
+    data: {
+        labels: ['Talhão 1', 'Talhão 2', 'Talhão 3'],
+        datasets: [{
+            label: 'Umidade Média (%)',
+            data: [70, 66, 80],
+            backgroundColor: 'rgba(131, 191, 79, 0.7)', 
+            borderColor: '#83BF4F', 
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            x: {
+                ticks: {
+                    color: '#ffffff',
+                    font: { weight: 'bold' }
+                }
+            },
+            y: {
+                min: 0,
+                max: 100,
+                ticks: {
+                    stepSize: 10,
+                    color: '#ffffff',
+                    font: { weight: 'bold' }
+                },
+                title: {
+                    display: true,
+                    text: 'Umidade (%)',
+                    color: '#ffffff',
+                    font: { weight: 'bold' }
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    color: '#ffffff',
+                    font: { weight: 'bold' }
+                }
+            }
+        }
+    }
+});
+
+// === 3. ALERTAS - PIZZA ===
+const ctx2 = document.getElementById('alertaChart').getContext('2d');
+new Chart(ctx2, {
+    type: 'doughnut',
+    data: {
+        labels: ['Estáveis', 'Em Alerta'],
+        datasets: [{
+            data: [6, 3],
+            backgroundColor: ['#83BF4F', '#42A5F5'], 
+            borderColor: ['#6A9F3D', '#1E88E5'], 
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                labels: {
+                    color: '#ffffff',
+                    font: { weight: 'bold' }
+                }
+            }
+        }
+    }
+});
+
     </script>
-    
-    <section style="height: 100px;"></section>
+    <section style="height: 80px;"></section>
 
     <footer>
         <div class="navfot">

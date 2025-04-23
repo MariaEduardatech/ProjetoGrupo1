@@ -11,7 +11,6 @@ body, html {
 }
 
 #bodyLogin {
-
     background-image: url(../style/maracuja-pitaya-rosa-isolado-em-um-fundo-preto_181624-45565.jpg);
     background-size: cover;
     background-repeat: no-repeat;
@@ -19,12 +18,9 @@ body, html {
     align-items: center;
     justify-items: center;
     font-family: 'Aclonica','Courier New', Courier, monospace;
-    
-
 }
 
 #card-login{
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,19 +30,15 @@ body, html {
     border-radius: 20px;
     align-self: center;
     margin-top: 11%;
-
 }
 
 #login{
     font-size: 3.0rem;
     text-align: center;
-
 }
 
 .container span{
-
     font-size: 0.7rem;
-
 }
 
 #voltar{
@@ -66,29 +58,21 @@ body, html {
     border-right: transparent;
     border-bottom: solid 2px white;
     width: 300px;
-
 }
 
 #input_senha{
-
     margin-top: 4%;
-
 }
 
 #input_login{
-
     margin-top: 3%;
-
 }
 
 ::-webkit-input-placeholder{
-
     color: white;
-
 }
 
 #botao_enviar{
-
     width: 100px;
     height: 50px;
     padding: 2%;
@@ -101,35 +85,26 @@ body, html {
 }
 
 #botao_enviar:hover{
-
     background-color: #ca118f;
     transition: 0.4s;
-
 }
 
 .container {
-
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 .container a {
-
     color: white;
     text-decoration: none;
-
 }
 
 .container a:hover {
-
     text-decoration: underline;
-
 }
 
 .navbar {
-
     width: 100%;
     height: 150px;
     background: linear-gradient(to right, #A13490, #500745);
@@ -139,56 +114,42 @@ body, html {
     box-shadow: 0 0 10px rgba(0, 0, 0, 3.5);
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    
 }
 
 .navbar img {
-
     width: 10%;
     height: 80%;
     margin-top: 1%;
     margin-left: 1%;
-
 }
 
 .navbar a {
-
     text-decoration: none;
     color: white;
-
 }
 
 #div_mensagem{
-
     margin-top: 5%;
     margin-left: 6%;
-
 }
 
 .navbar ul {
-
     justify-content: space-around;
     display: flex;
     list-style-type: none;
     width: 60%;
     margin-top: 5%;
-
 }
 
 #selecionado{
-
     text-decoration: underline white;
-
 }
 
 .navbar span {
-
     color: white;
     margin-top: 30%;
 
 }
-
-
 
 /* FOOTER */
 
@@ -278,7 +239,6 @@ main.container {
     color: #333;
     backdrop-filter: blur(4px);
 }
-
 
 main.container h3 {
     text-align: center;
@@ -384,13 +344,12 @@ b i {
 
 
 
-
-
-
 .dashboard {
-    padding: 40px;
+    padding: 40px 20px;
     text-align: center;
     font-family: 'Aclonica', sans-serif;
+    max-width: 1200px;
+    margin: auto;
 }
 
 .dashboard h1 {
@@ -403,21 +362,23 @@ b i {
     padding: 20px;
     border-radius: 20px;
     margin: 20px auto;
-    width: 80%;
-    color: black;
+    width: 90%;
+    max-width: 800px;
+    color: white;
     font-size: 22px;
     font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .talhao {
     display: grid;
-    grid-template-columns: repeat(3, 300px);
-    grid-template-rows: repeat(3, 300px);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     padding: 30px;
     background: linear-gradient(to right, #A13490, #500745);
     border-radius: 20px;
     margin: 40px auto;
+    width: 100%;
     max-width: 1000px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
@@ -433,7 +394,6 @@ b i {
     justify-content: center;
     align-items: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    position: relative;
 }
 
 .lote:hover {
@@ -466,93 +426,136 @@ b i {
 
 .graficos {
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+}
+
+.graficos {
+    display: flex;
+    justify-content: space-between; 
+    flex-wrap: wrap; /* Permite que os itens se movam para a linha de baixo se necessário */
+    gap: 20px;
+    padding: 20px;
+    text-align: center;
 }
 
 .grafico1, .grafico2 {
     background: linear-gradient(to right, #A13490, #500745);
     border-radius: 15px;
     padding: 20px;
-    width: 500px;
-    height: auto;
+    width: 48%; 
+    height: 380px; 
+}
+
+.grafico3 {
+    background: linear-gradient(to right, #A13490, #500745);
+    border-radius: 15px;
+    padding: 20px;
+    width: 100%; 
+    max-width: 300px; 
+    margin: 0 auto; 
+    height: 350px; 
 }
 
 
+.graficos h2 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #fff;
+    font-weight: bold;
+}
 
+/* === DASHBOARD DE SENSOR === */
 
-
-
-
-.dashSensor
-{
+.dashSensor {
     position: relative;
     width: 100%;
     padding: 20px;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
-    grid-gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
 }
 
-.dashSensor .KPI
-{
+.dashSensor .KPI {
     position: relative;
     background-color: rgb(243, 173, 188);
     padding: 30px;
     border-radius: 20px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     cursor: pointer;
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
 }
-.dashSensor .KPI .nomeKPI
-{
+
+.dashSensor .KPI .nomeKPI {
     color: black;
     font-size: 19px;
     margin-top: 5px;
 }
-.dashSensor .KPI .dados
-{
-    position: relative;
-    font-weight: 500px;
+
+.dashSensor .KPI .dados {
+    font-weight: bold;
     font-size: 45px;
     color: #ea0b55;
 }
 
-.dashSensor .KPI:hover
-{
+.dashSensor .KPI:hover {
     background-color: #ea0b55;
 }
+
 .dashSensor .KPI:hover .dados,
-.dashSensor .KPI:hover .nomeKPI
-{
-color: white;
+.dashSensor .KPI:hover .nomeKPI {
+    color: white;
 }
+
+/* === GRÁFICOS SENSOR === */
 
 .graficosensor {
     width: 100%;
     padding: 20px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 30px;
+    flex-wrap: wrap;
+    box-sizing: border-box;
 }
 
-.grafico1, .grafico2 {
+.graficosensor .grafico1,
+.graficosensor .grafico3 {
+    width: 100%;
+    max-width: 500px;
+    min-width: 300px;
+    height: 350px;
     background: linear-gradient(to right, #A13490, #500745);
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
     color: white;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
 }
 
-.grafico1 h2, .grafico2 h2 {
+.graficosensor :hover {
+    transform: scale(1.02);
+}
+
+.graficosensor h2 {
     margin-bottom: 10px;
     font-size: 20px;
-    color: white;
     text-align: center;
+    font-weight: 600;
+    color: white;
 }
-
-
-
 
 

@@ -9,52 +9,69 @@
 </head>
 
 <style>
-
     @import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
-
+  
     * {
-        margin: 0%;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-
+  
     body {
-            font-family: 'Aclonica', sans-serif;
-            background-color: #ffffff;
-            color: #333;
-        }
-
-        main {
-            padding: 60px 20px;
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        .quem-somos-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-            text-align: center;
-        }
-
-        .quem-somos-container h1 {
-            font-size: 3em;
-            color: #d91b77;
-        }
-
-        .quem-somos-container p {
-            font-size: 1.2em;
-            line-height: 1.6;
-            max-width: 900px;
-        }
-
-        .imagem-ilustrativa {
-            max-width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-        }
-
-</style>
-
+      font-family: 'Aclonica', sans-serif;
+      background-color: #fff;
+      color: #333;
+    }
+  
+    main {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+  
+    .quem-somos-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 40px;
+    }
+  
+    .quem-somos-container h1 {
+      font-size: 3em;
+      color: #d91b77;
+      text-shadow: 1px 1px #ffeaf5;
+    }
+  
+    .quem-somos-container img {
+      max-width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(217, 27, 119, 0.2);
+      transition: transform 0.3s ease;
+    }
+  
+    .quem-somos-container img:hover {
+      transform: scale(1.03);
+    }
+  
+    .quem-somos-container p {
+      font-size: 1.25em;
+      line-height: 1.7;
+      max-width: 900px;
+    }
+  
+    .ods-box {
+      background-color: #fce4ec;
+      border-left: 8px solid #d91b77;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  
+    .ods-box strong {
+      color: #c2185b;
+    }
+  </style>
 <body>
 
     <header>
@@ -77,22 +94,30 @@
 
     <main>
         <div class="quem-somos-container">
-            <h1>Quem Somos</h1>
-            <img src="./style/plantacao_pitaya.jpg" alt="Plantação de pitaya com sensores" class="imagem-ilustrativa">
+          <h1>Quem Somos</h1>
+          <img src="https://www.infoescola.com/wp-content/uploads/2019/04/pitaya-126535605.jpg" alt="Plantação de pitaya com sensores" class="imagem-ilustrativa">
+          
+          <p>
+            A <strong>PitaTech</strong> é uma startup que une tecnologia e natureza para transformar o cultivo de pitaya no Brasil. Nosso projeto surgiu com o objetivo de tornar a agricultura mais eficiente, inteligente e, acima de tudo, sustentável.
+          </p>
+      
+          <p>
+            Desenvolvemos um sistema automatizado de irrigação que monitora, em tempo real, a umidade do solo com sensores inteligentes, garantindo economia de água e maior qualidade nos frutos.
+          </p>
+      
+          <div class="ods-box">
             <p>
-                A <strong>PitaTech</strong> é uma startup brasileira que nasceu com o propósito de transformar a agricultura por meio da tecnologia. Nosso foco principal está na <strong>produção sustentável de pitaya</strong>, utilizando sistemas inteligentes de monitoramento de umidade do solo.
+              Este projeto está alinhado à <strong>ODS 12</strong> da ONU: <strong>Consumo e Produção Responsáveis</strong>. Através do uso consciente da água e da tecnologia aplicada ao campo, buscamos impactar positivamente o meio ambiente e o agronegócio.
             </p>
-            <p>
-                Através de sensores de solo conectados a uma plataforma digital, oferecemos aos produtores dados em tempo real sobre a umidade, possibilitando decisões mais precisas sobre irrigação. Isso reduz o desperdício de água, melhora a qualidade da fruta e otimiza os custos de produção.
-            </p>
-            <p>
-                Unimos inovação, sustentabilidade e paixão pela agricultura para construir um futuro mais eficiente e produtivo no campo.
-            </p>
-            <p>
-                <strong>Bem-vindo à revolução tecnológica na pitayicultura. Bem-vindo à PitaTech.</strong>
-            </p>
+          </div>
+      
+          <p>
+            Nossa missão é impulsionar a agricultura familiar e comercial com soluções acessíveis, ecológicas e fáceis de usar. Estamos construindo o futuro da pitayicultura, e você faz parte dessa mudança.
+          </p>
+      
+          <p><strong>PitaTech – Tecnologia que floresce com a natureza.</strong></p>
         </div>
-    </main>
+      </main>
 
     <section style="height: 100px;"></section>
 
