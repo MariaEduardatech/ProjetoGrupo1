@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/CSS.css">
+    <link rel="icon" href="./style/PitaTech_logo.png">
+    <title>Login</title>
+
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
+
+    </style>
+</head>
+
+    
+
+<body id="bodyLogin">
+
+    <div class="container">
+        
+        <div id="card_login">
+            <a id="voltar" href="./home.html">Ir para Home</a>
+
+            <h1 id="login">LOGIN</h1>
+
+            <br>
+            <input type="text" id="input_login" required placeholder="Email"><br>
+            <div id="div_mensagem1"></div>
+            <input type="password" id="input_senha" required placeholder="Senha">
+            <div id="div_mensagem2"></div><br>
+            <span>Não possui uma conta? <a href="./cadastro.html">Cadastre-se agora!</a></span><br><br>
+
+            <button onclick="checar()" id="botao_enviar">Entrar</button>
+            <br>
+
+        </div>
+
+      <a href="home.html"> <img src="./style/PitaTech_logo.png" height="130px" width="130px"></a> 
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+var tentativas = 4;
+
+    function checar(){
+
+        var usuario = input_login.value;
+        var senha = input_senha.value;
+        var volta = 1
+
+        div_mensagem1.innerHTML = ``;
+        div_mensagem2.innerHTML = ``;
+
+        while(volta > 0){
+
+        if(tentativas == 0){
+
+            card_login.innerHTML = `adasdasdwdwd`;
+
+        }
+        else if(usuario == "pitatech@gmail.com" && senha == '12345'){
+
+            window.location.href = `./home.html`;
+
+        }
+        else if(usuario.indexOf("@") == -1 || usuario == ''){
+
+            div_mensagem1.innerHTML = `<span style="color: red;">Insira um email válido!</span>`;
+            
+        }
+        else if(senha == ''){
+
+            div_mensagem2.innerHTML = `<span style="color: red;">Insira uma senha!</span>`;
+
+        }
+        else {
+            
+            tentativas--;
+            alert(`Usuário ou senha inválidos! ${tentativas} restantes.`)  
+            
+            if(tentativas == 0){
+
+                alert(`Tentativas excedidas!`);
+
+            }
+
+        }
+        volta--;
+        
+    }
+
+    volta++;
+}
+
+</script>
