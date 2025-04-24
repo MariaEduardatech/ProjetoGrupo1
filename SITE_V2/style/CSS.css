@@ -299,7 +299,10 @@ footer {
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
+    flex-wrap: wrap; /* <- permite quebra de linha */
+    gap: 1rem; /* espaço entre os blocos */
 }
+
 
 #lista ul {
     list-style-type: none;
@@ -360,6 +363,7 @@ footer {
     color: white;
     text-align: center;
 }
+
 
 #carrossel{
 
@@ -857,16 +861,19 @@ b i {
 
 .dashboard {
     padding: 40px 20px;
+    flex: auto;
     text-align: center;
     font-family: 'Aclonica', sans-serif;
     max-width: 1200px;
-    margin: auto;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .dashboard h1 {
     color: purple;
     margin-bottom: 30px;
-    font-size: 50px;
+    font-size: clamp(28px, 5vw, 50px); /* Responsivo */
 }
 
 .KPIALERTA {
@@ -874,13 +881,13 @@ b i {
     padding: 10px;
     border-radius: 20px;
     margin: 20px auto;
-    height: auto;
-    width: 70%;
+    width: 90%;
     max-width: 900px;
     color: white;
-    font-size: 18px;
+    font-size: clamp(14px, 2vw, 18px);
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
 }
 
 .talhao {
@@ -894,6 +901,7 @@ b i {
     width: 100%;
     max-width: 800px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 
 .lote {
@@ -946,7 +954,7 @@ b i {
     padding: 5px 10px;
     position: absolute;
     z-index: 1;
-    bottom: 130%;
+    bottom: 80%;
     left: 50%;
     transform: translateX(-50%);
     opacity: 0;
@@ -973,8 +981,6 @@ b i {
     opacity: 1;
 }
 
-
-
 .lote button {
     background: none;
     border: none;
@@ -986,29 +992,21 @@ b i {
     color: #4b0055;
     font-family: 'Aclonica', sans-serif;
     margin-bottom: 15px;
-    font-size: 22px;
+    font-size: clamp(18px, 3vw, 22px);
     margin-top: 30px;
 }
-
 
 .graficos {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 30px;
-    margin-top: 40px;
-    width: 100%;
-    max-width: 1200px;
-    margin-inline: auto;
-}
-
-.graficos {
-    display: flex;
-    justify-content: space-between; 
-    flex-wrap: wrap; /* Permite que os itens se movam para a linha de baixo se necessário */
     gap: 20px;
     padding: 20px;
     text-align: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto 0 auto;
+    box-sizing: border-box;
 }
 
 .grafico1, .grafico2, .grafico3 {
@@ -1016,8 +1014,10 @@ b i {
     border-radius: 15px;
     border: solid 2px springgreen;
     padding: 20px;
-    width: 48%; 
-    height: 380px; 
+    flex: 1 1 300px;
+    max-width: 48%;
+    height: auto;
+    box-sizing: border-box;
 }
 
 .graficopizza {
@@ -1025,42 +1025,46 @@ b i {
     border-radius: 15px;
     border: solid 2px springgreen;
     padding: 20px;
-    width: 100%; 
-    max-width: 300px; 
-    margin: 0 auto; 
-    height: 350px; 
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .graficos h2 {
     margin-bottom: 15px;
-    font-size: 18px;
+    font-size: clamp(16px, 3vw, 18px);
     color: #fff;
     font-weight: bold;
 }
+
 .container-dashboard {
     background-color: #f3f0f7;
     padding: 40px 20px;
     border-radius: 30px;
+    width: 100%;
     max-width: 1300px;
     margin: 30px auto;
     border: 3px solid #A13490;
+    box-sizing: border-box;
 }
+
 
 /* === DASHBOARD DE SENSOR === */
-
 .dashSensor {
     position: relative;
-    width: 100%;
+    width: 95%;
     padding: 20px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-}
+    display: flex; /* Usando Flexbox */
+    flex-wrap: wrap; /* Permitindo que os KPIs quebrem para a próxima linha */
+    gap: 30px; /* Mantendo o espaçamento entre os KPIs */
+  }
+  
+  .dashSensor .KPI {
 
-.dashSensor .KPI {
-    position: relative;
     background-color: rgb(243, 173, 188);
-    padding: 30px;
+    padding: 25px;
     border-radius: 20px;
     display: flex;
     justify-content: space-between;
@@ -1069,55 +1073,57 @@ b i {
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
     border: solid 2px black;
     transition: all 0.3s ease;
-}
-
-.dashSensor .KPI .nomeKPI {
+    flex: 1 1 200px; /* Permite que cresçam e encolham, com largura inicial mínima */
+    min-width: 0px; /* Largura mínima para cada KPI */
+    box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
+  }
+  
+  .dashSensor .KPI .nomeKPI {
     color: black;
     font-size: 19px;
     margin-top: 5px;
-}
-
-.dashSensor .KPI .dados {
+  }
+  
+  .dashSensor .KPI .dados {
     font-weight: bold;
     font-size: 45px;
     color: #ea0b55;
-}
-
-.dashSensor .KPI:hover {
+  }
+  
+  .dashSensor .KPI:hover {
     background-color: #ea0b55;
-}
-
-.dashSensor .KPI:hover .dados,
-.dashSensor .KPI:hover .nomeKPI {
+  }
+  
+  .dashSensor .KPI:hover .dados,
+  .dashSensor .KPI:hover .nomeKPI {
     color: white;
-}
+  }
 
 /* === GRÁFICOS SENSOR === */
 .graficosensor {
-    width: 100%;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
     gap: 20px;
-   
-}
-
-.graficosensor .grafico1,
-.graficosensor .grafico2,
-.graficosensor .grafico3 {
+    padding: 20px;
+  }
+  
+  .graficosensor .grafico1,
+  .graficosensor .grafico2,
+  .graficosensor .grafico3 {
     background: linear-gradient(to right, #A13490, #500745);
     border-radius: 20px;
     padding: 10px;
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
     color: white;
-    width: 100%;
-    height: 360px; /* altura fixa padronizada */
+    flex: 1 1 300px; /* Define uma largura base para cada item */
+    min-width: 300px; /* Garante que cada item tenha pelo menos essa largura */
+    height: 360px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     transition: transform 0.3s ease;
-}
+  }
 
 
 .graficosensor .grafico1:hover,
@@ -1133,3 +1139,40 @@ b i {
     font-weight: 600;
     color: white;
 }
+
+        #voltar-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px; /* Espaço acima do botão */
+            margin-bottom: 20px; /* Espaço abaixo do botão */
+        }
+
+        .voltar-btn {
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: none;
+            font-family: 'Aclonica', 'Courier New', Courier, monospace;
+            background-color: rgba(220, 89, 200, 0.3);
+            color: white;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            cursor: pointer;
+            border: 2px solid #dc43c5;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 1000;
+            font-size: 1.1em;
+        }
+
+        .voltar-btn:hover {
+            background-color: #dc59c9;
+            color: white;
+            border-color: #dc59c9;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .voltar-btn img {
+            height: 24px;
+            width: auto;
+        }

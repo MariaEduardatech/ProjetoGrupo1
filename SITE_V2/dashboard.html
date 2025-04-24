@@ -15,15 +15,27 @@
     * {
 
         margin: 0%;
-        overflow-x: hidden;
+    
 
     }
 
     body {
 
         background-image: url(./style/plano_de_fundo_v2.png);
-
+        overflow-x: hidden;
     }
+
+    footer {
+
+margin-top: 5%;
+
+}
+
+footer #redes2 {
+
+margin-right: 4%;
+
+}
 
 </style>
 
@@ -100,7 +112,7 @@ const ctx1 = document.getElementById('umidadeSoloChart').getContext('2d');
 new Chart(ctx1, {
     type: 'bar',
     data: {
-        labels: ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3'],
+        labels: ['A1', 'A2', 'A3', 'A4', 'A5', 'B1', 'B2', 'B3', 'B4'],
         datasets: [{
             label: 'Umidade Atual (%)',
             data: [70, 85, 55, 65, 75, 70, 90, 73, 77],
@@ -152,26 +164,18 @@ new Chart(ctx1, {
 });
 
 // === 2. TALHÕES ===
-// Obtém o contexto do canvas com id 'umidadetalhaoChart'
 const ctx3 = document.getElementById('umidadetalhaoChart').getContext('2d');
 
-// Cria um novo gráfico usando Chart.js
 new Chart(ctx3, {
-    // Tipo de gráfico: barra (horizontal com indexAxis: 'y')
     type: 'bar',
     data: {
-        // Rótulos dos talhões
         labels: ['Talhão 1', 'Talhão 2'],
         datasets: [{
-            // Nome da série de dados
             label: 'Umidade Média (%)',
-            // Dados de umidade média para cada talhão
             data: [70, 66],
-            // Cor de preenchimento das barras (verde claro com transparência)
+           
             backgroundColor: 'rgba(0,255,127, 0.7)', 
-            // Cor da borda das barras
             borderColor: '#ffffff', 
-            // Espessura da borda
             borderWidth: 2
         }]
     },
@@ -193,7 +197,9 @@ new Chart(ctx3, {
                 min: 10,
                 max: 100,
                 ticks: {
-                    stepSize: 10
+                    stepSize: 10,
+                    color: '#ffffff',
+                    font: { weight: 'bold' }
                 }
             },
             y: {
@@ -243,6 +249,7 @@ new Chart(ctx2, {
     </script>
     <section style="height: 50px;"></section>
 
+   
     <footer>
         <div class="navfot">
             <div id="menu-redes">
@@ -268,7 +275,6 @@ new Chart(ctx2, {
     
             <span id="direitos">PITATECH © 2025. Todos os direitos reservados. Desenvolvido por PITATECH TEAM.</span>
         </div>
-    
     </footer>
 </body>
 </html>
