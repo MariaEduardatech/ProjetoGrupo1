@@ -378,7 +378,7 @@ footer {
 
     object-fit: cover;
     height: 450px;
-    width: 1300px;
+    width: 1520px;
 
 }
 
@@ -396,7 +396,7 @@ footer {
 
 .msg_carrossel #contato{
     position: absolute;
-    left: 550px;
+    left: 450px;
     bottom: 90px;
     padding: 0.4%;
     border-radius: 10px;
@@ -419,21 +419,21 @@ footer {
 #texto_2{
 
     bottom: 250px;
-    left: 1450px;
+    left: 1650px;
 
 }
 
 #texto_3 {
 
     bottom: 250px;
-    left: 2650px;
+    left: 3250px;
 
 }
 
 #botao_2{
 
     position: absolute;
-    left: 1450px;
+    left: 1750px;
     bottom: 105px;
     padding: 0.4%;
     border-radius: 10px;
@@ -449,7 +449,7 @@ footer {
 #botao_3 {
 
     position: absolute;
-    left: 2700px;
+    left: 3300px;
     bottom: 105px;
     padding: 0.4%;
     border-radius: 10px;
@@ -477,10 +477,10 @@ footer {
 
     0%     { transform: translateX(0); }
     27.77% { transform: translateX(0); }        /* delay */
-    33.33% { transform: translateX(-1300px); }   /* desliza */
-    61.1%  { transform: translateX(-1300px); }   /* delay */
-    66.66% { transform: translateX(-2600px); }   /* desliza */
-    94.4%  { transform: translateX(-2600px); }   /* delay */
+    33.33% { transform: translateX(-1520px); }   /* desliza */
+    61.1%  { transform: translateX(-1520px); }   /* delay */
+    66.66% { transform: translateX(-3040px); }   /* desliza */
+    94.4%  { transform: translateX(-3040px); }   /* delay */
     100%   { transform: translateX(0); }        /* desliza */
 
 }

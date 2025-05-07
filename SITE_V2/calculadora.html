@@ -1,47 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/CSS.css">
     <link rel="icon" href="./style/PitaTech_logo.png">
     <title>Calculadora | Pitatech</title>
+
+    <!-- Fonte personalizada -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
+
+        * {
+            margin: 0%;
+        }
+
+        body {
+            font-family: 'Aclonica', sans-serif;
+            background-image: url(./style/plano_de_fundo_v2.png);
+            overflow-x: hidden;
+        }
+
+        footer {
+            margin-top: 5%;
+        }
+
+        footer #redes2 {
+            margin-right: 4%;
+        }
+    </style>
 </head>
-
-<style>
-
-    @import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
-
-    * {
-        margin: 0%;
-    }
-
-    body{
-        font-family: 'Aclonica', sans-serif;
-        background-image: url(./style/plano_de_fundo_v2.png);
-        overflow-x: hidden;
-    }
-
-    footer {
-
-        margin-top: 5%;
-
-    }
-
-    footer #redes2 {
-
-        margin-right: 4%;
-
-    }
-
-</style>
-
 <body>
 
+    <!-- Cabeçalho / Navbar -->
     <header>
-
         <div class="navbar">
-
             <img src="./style/PitaTech_logo.png" alt="Logo Pitatech">
 
             <ul>
@@ -52,10 +45,10 @@
             </ul>
 
             <div id="div_mensagem"><a href="./login.html">Entrar</a></div>
-
         </div>
     </header>
 
+    <!-- Conteúdo principal -->
     <main class="container">
         <h3><b><i>SIMULADOR FINANCEIRO DE PERDAS POR UMIDADE DO SOLO NA PRODUÇÃO DE PITAYA</i></b></h3>
 
@@ -66,8 +59,10 @@
                 <li><b>Umidade acima de 80%:</b> Estima-se uma perda de produção de <b>30%</b> devido ao risco de doenças e apodrecimento.</li>
                 <li><b>Umidade ideal</b> para o cultivo da pitaya geralmente se situa entre <b>60%</b> e <b>80%</b>.</li>
             </ul>
+            <p><b>Período considerado: Safra da Pitaya (Novembro a Maio - 7 meses)</b></p>
         </div>
 
+        <!-- Formulário de entrada de dados -->
         <label for="input_umidade">Informe a umidade do solo atual (%):</label>
         <input type="number" id="input_umidade" min="0" max="100">
 
@@ -77,20 +72,15 @@
         <label for="input_preco">Informe o preço do Kg da pitaya (R$):</label>
         <input type="number" id="input_preco" min="0">
 
-        <label for="select_periodo">Selecione o período da análise:</label>
-        <select id="select_periodo">
-            <option value="12">Anual</option>
-            <option value="6">Semestral</option>
-            <option value="3">Trimestral</option>
-        </select>
-
         <button onclick="analisar()">Analisar</button>
 
         <div id="div_resultado"></div>
     </main>
 
-    <section style="height: 80px;"></section>    
+    <!-- Espaço para evitar sobreposição com o footer -->
+    <section style="height: 80px;"></section>
 
+    <!-- Rodapé -->
     <footer>
         <div class="navfot">
             <div id="menu-redes">
@@ -106,7 +96,7 @@
                 <div id="logo">
                     <img src="./style/PitaTech_logo.png" alt="PitaTech_logo">
                 </div>
-        
+
                 <div id="redes2">
                     <img src="./style/instagram.png" alt="Logo do Instagram"><span id="instagram">Instagram</span>
                     <img src="./style/linkedin.png" alt="Logo do Linkedin"><span id="linkedin">Linkedin</span>
@@ -116,64 +106,60 @@
             <span id="direitos">PITATECH © 2025. Todos os direitos reservados. Desenvolvido por PITATECH TEAM.</span>
         </div>
     </footer>
-    
+
+    <!-- Script da calculadora -->
+    <script>
+        function analisar() {
+            var umidade = Number(input_umidade.value);
+            var kg = Number(input_kg.value);
+            var preco = Number(input_preco.value);
+            var rendimentoMensalBruto = kg * preco;
+
+            if (umidade === 0 && kg === 0 && preco === 0) {
+                alert("Por favor, preencha todos os campos antes de continuar.");
+            } else {
+                var mesesSafra = 7;
+                var textoPeriodo = "Safra da Pitaya (Novembro a Maio)";
+                var resultado = '';
+
+                if (umidade < 60) {
+                    var perdaPercentual = 0.10;
+                    var perdaKg = kg * perdaPercentual;
+                    var perdaFinanceiraMensal = rendimentoMensalBruto * perdaPercentual;
+
+                    resultado = `<b class="alerta-baixo"><i>Alerta de baixa umidade:</i></b><br>
+                        Umidade atual: ${umidade}%<br>
+                        Status: <b>Risco de estresse hídrico e perda de produção</b><br>
+                        Perda estimada: <b class="perda">R$ ${perdaFinanceiraMensal.toFixed(2)}</b> por mês (aproximadamente <b class="perda">${perdaKg.toFixed(2)} Kg</b>)<br>
+                        Prejuízo estimado na safra (${textoPeriodo}): <b class="perda">R$ ${(perdaFinanceiraMensal * mesesSafra).toFixed(2)}</b><br><br>
+                        <b class="ideal"><i>Cenário ideal (60% - 80%):</i></b><br>
+                        Produção mensal estimada: <b>R$ ${rendimentoMensalBruto.toFixed(2)}</b>`;
+                } else if (umidade >= 60 && umidade <= 80) {
+                    resultado = `<b class="ideal"><i>Condições ideais!</i></b><br>
+                        Umidade atual: ${umidade}%<br>
+                        Status: <b>Solo com umidade ideal para a produção</b><br>
+                        Produção mensal estimada: <b>R$ ${rendimentoMensalBruto.toFixed(2)}</b><br>
+                        Receita estimada na safra (${textoPeriodo}): <b>R$ ${(rendimentoMensalBruto * mesesSafra).toFixed(2)}</b>`;
+                } else if (umidade > 80) {
+                    var perdaPercentual = 0.30;
+                    var perdaKg = kg * perdaPercentual;
+                    var perdaFinanceiraMensal = rendimentoMensalBruto * perdaPercentual;
+
+                    resultado = `<b class="alerta-alto"><i>Umidade alta:</i></b><br>
+                        Umidade atual: ${umidade}%<br>
+                        Status: <b>Risco de doenças fúngicas e apodrecimento de raízes</b><br>
+                        Perda estimada: <b class="perda">R$ ${perdaFinanceiraMensal.toFixed(2)}</b> por mês (aproximadamente <b class="perda">${perdaKg.toFixed(2)} Kg</b>)<br>
+                        Prejuízo estimado na safra (${textoPeriodo}): <b class="perda">R$ ${(perdaFinanceiraMensal * mesesSafra).toFixed(2)}</b><br><br>
+                        <b class="ideal"><i>Cenário ideal (60% - 80%):</i></b><br>
+                        Produção mensal estimada: <b>R$ ${rendimentoMensalBruto.toFixed(2)}</b>`;
+                } else {
+                    resultado = `<b><i>Erro: Umidade informada é inválida. Por favor, insira um valor entre 0 e 100.</i></b>`;
+                }
+
+                div_resultado.innerHTML = resultado;
+            }
+        }
+    </script>
+
 </body>
 </html>
-
-<script>
-    function analisar() {
-        var umidade = Number(input_umidade.value);
-        var kg = Number(input_kg.value);
-        var preco = Number(input_preco.value);
-        var periodo = Number(select_periodo.value);
-        var rendimentoMensalBruto = kg * preco;
-
-        if (umidade == '' || kg== '' || preco == '') {
-        alert("Por favor, preencha todos os campos antes de continuar.");
-        } else {
-
-            var periodoTexto = '';
-        if (periodo == 12) periodoTexto = 'Anual';
-        else if (periodo == 6) periodoTexto = 'Semestral';
-        else periodoTexto = 'Trimestral';
-
-        var resultado = '';
-
-        if (umidade < 60) {
-            var perdaPercentual = 0.10;
-            var perdaKg = kg * perdaPercentual;
-            var perdaFinanceiraMensal = rendimentoMensalBruto * perdaPercentual;
-
-            resultado = `<b class="alerta-baixo"><i>Alerta de baixa umidade:</i></b><br>
-                Umidade atual: ${umidade}%<br>
-                Status: <b>Risco de estresse hídrico e perda de produção</b><br>
-                Perda estimada: <b class="perda">R$ ${perdaFinanceiraMensal.toFixed(2)}</b> por mês (aproximadamente <b class="perda">${perdaKg.toFixed(2)} Kg</b>)<br>
-                Prejuízo estimado no período (${periodoTexto}): <b class="perda">R$ ${(perdaFinanceiraMensal * periodo).toFixed(2)}</b><br><br>
-                <b class="ideal"><i>Cenário ideal (60% - 80%):</i></b><br>
-                Produção mensal estimada: <b>R$ ${rendimentoMensalBruto.toFixed(2)}</b>`;
-        } else if (umidade >= 60 && umidade <= 80) {
-            resultado = `<b class="ideal"><i>Condições ideais!</i></b><br>
-                Umidade atual: ${umidade}%<br>
-                Status: <b>Solo com umidade ideal para a produção</b><br>
-                Produção mensal estimada: <b>R$ ${rendimentoMensalBruto.toFixed(2)}</b><br>
-                Receita estimada no período (${periodoTexto}): <b>R$ ${(rendimentoMensalBruto * periodo).toFixed(2)}</b>`;
-        } else if (umidade > 80) {
-            var perdaPercentual = 0.30;
-            var perdaKg = kg * perdaPercentual;
-            var perdaFinanceiraMensal = rendimentoMensalBruto * perdaPercentual;
-
-            resultado = `<b class="alerta-alto"><i>Umidade alta:</i></b><br>
-                Umidade atual: ${umidade}%<br>
-                Status: <b>Risco de doenças fúngicas e apodrecimento de raízes</b><br>
-                Perda estimada: <b class="perda">R$ ${perdaFinanceiraMensal.toFixed(2)}</b> por mês (aproximadamente <b class="perda">${perdaKg.toFixed(2)} Kg</b>)<br>
-                Prejuízo estimado no período (${periodoTexto}): <b class="perda">R$ ${(perdaFinanceiraMensal * periodo).toFixed(2)}</b><br><br>
-                <b class="ideal"><i>Cenário ideal (60% - 80%):</i></b><br>
-                Produção mensal estimada: <b>R$ ${rendimentoMensalBruto.toFixed(2)}</b>`;
-        } else {
-            resultado = ` <b><i>Erro: Umidade informada é inválida. Por favor, insira um valor entre 0 e 100.</i></b>`;
-        }
-        }
-
-        div_resultado.innerHTML = resultado;
-    }
-</script>
