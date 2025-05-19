@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/CSS.css">
+    <link rel="icon" href="./style/PitaTech_logo.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Dashboard  Pitatech</title>
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
+
+    * {
+        margin: 0%;
+        overflow-x: hidden;
+    }
+
+    footer {
+
+margin-top: 5%;
+
+}
+
+footer #redes2 {
+
+margin-right: 4%;
+
+}
+
+</style>
+
+<body>
+
+    <header>
+
+        <div class="navbar">
+
+            <img src="./style/PitaTech_logo.png" alt="Logo Pitatech">
+
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li id="selecionado"><a href="">Dashboard</a></li>
+                <li><a href="calculadora.html">Calculadora</a></li>
+                <li><a href="quemsomos.html">Quem somos</a></li>
+            </ul>
+
+            <div id="div_mensagem"><a href="./login.html">Entrar</a></div>
+
+        </div>
+
+    </header>
+
+    <div class="dashSensor">
+        <div class="KPI">
+            <div>
+                <div class="nomeKPI">Sensor</div>
+                <div class="dados">B1</div>
+
+            </div>
+            <div class="icone">
+                <img src="https://cdn-icons-png.freepik.com/256/4550/4550142.png?uid=R67004870&ga=GA1.1.1747413662.1742326457&semt=ais_hybrid"
+                    width="35px" height="30px" alt="">
+            </div>
+        </div>
+        <div class="KPI">
+            <div>
+                <div class="nomeKPI">Umidade Atual</div>
+                <div class="dados">70%</div>
+
+            </div>
+            <div class="icone">
+                <img src="https://cdn-icons-png.freepik.com/256/9462/9462322.png?uid=R67004870&ga=GA1.1.1747413662.1742326457&semt=ais_hybrid" width="35px" height="30px" alt="">
+            </div>
+        </div>
+        <div class="KPI">
+            <div>
+                <div class="nomeKPI">Umidade Ideal</div>
+                <div class="dados">60-80%</div>
+
+            </div>
+            <div class="icone">
+                <img src="https://cdn-icons-png.freepik.com/256/9462/9462324.png?uid=R67004870&ga=GA1.1.1747413662.1742326457&semt=ais_hybrid" width="35px" height="30px" alt="">
+            </div>
+        </div>
+
+
+        <div class="KPI">
+            <div>
+                <div class="nomeKPI">Alertas</div>
+                <div class="dados">3</div>
+
+            </div>
+            <div class="icone">
+                <img src="https://cdn-icons-png.freepik.com/256/6013/6013922.png?uid=R67004870&ga=GA1.1.1747413662.1742326457&semt=ais_hybrid" width="30px" height="30px" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="graficosensor">
+        <div class="grafico1">
+            <h2>Umidade do Solo (horário)</h2>
+            <canvas id="umidadeSoloChart"></canvas>
+        </div>
+
+        <div class="grafico2">
+            <h2>Média Semanal de Umidade</h2>
+            <canvas id="mediaSemanalChart"></canvas>
+        </div>
+    
+        <div class="grafico3">
+            <h2>Distribuição de Alertas</h2>
+            <canvas id="alertasChart"></canvas>
+        </div>
+    </div>
+
+    <div id="voltar-container">
+        <a href="dashboard.html" class="voltar-btn">
+            <img src="https://cdn-icons-png.freepik.com/256/9517/9517597.png" alt="Voltar">
+            Voltar
+        </a>
+    </div>
+    
+    <script>
+        new Chart(document.getElementById('umidadeSoloChart').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['06:00','08:00', '10:00', '12:00', '14:00', '16:00', '18:00'],
+                datasets: [{
+                    label: 'Umidade (%)',
+                    data: [70, 88, 85, 60, 65, 44, 61],
+                    fill: true,
+                    backgroundColor: 'rgba(138, 43, 226, 0.2)',
+                    borderColor: '#8A2BE2',
+                    tension: 0.3,
+                    pointBackgroundColor: '#8A2BE2'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: { 
+                        ticks: { 
+                            color: 'white',
+                            font: { weight: 'bold' } 
+                        } 
+                    },
+                    y: {
+                        min: 10,
+                        max: 100,
+                        title: { 
+                            display: true, 
+                            text: 'Umidade (%)', 
+                            color: 'white',
+                            font: { weight: 'bold' } 
+                        },
+                        ticks: { 
+                            color: 'white',
+                            font: { weight: 'bold' } 
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { 
+                        labels: { 
+                            color: 'white',
+                            font: { weight: 'bold' } 
+                        }
+                    }
+                }
+            }
+        });
+    
+        new Chart(document.getElementById('mediaSemanalChart').getContext('2d'), {
+    type: 'bar',
+    data: {
+        labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+        datasets: [{
+            label: 'Média Umidade (%)',
+            data: [32, 55, 78, 66, 70, 68, 70],
+            backgroundColor: 'rgba(255, 255, 255, 0.4)',
+            borderColor: '#ffffff',
+            borderWidth: 2
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            x: {
+                ticks: {
+                    color: 'white',
+                    font: { weight: 'bold' }
+                }
+            },
+            y: {
+                beginAtZero: true,
+                max: 100,
+                title: {
+                    display: true,
+                    text: 'Umidade (%)',
+                    color: 'white',
+                    font: { weight: 'bold' }
+                },
+                ticks: {
+                    color: 'white',
+                    font: { weight: 'bold' }
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    color: 'white',
+                    font: { weight: 'bold' }
+                }
+            }
+        }
+    }
+});
+
+    
+        new Chart(document.getElementById('alertasChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['06:00','08:00', '10:00', '12:00', '14:00', '16:00', '18:00'],
+                datasets: [{
+                    label: 'Em Alerta',
+                    data: [0, 1, 1, 0, 0, 1, 0], 
+                    backgroundColor: '#ff1744',
+                    borderColor: '#ffffff', 
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    x: { 
+                        ticks: { 
+                            color: 'white',
+                            font: { weight: 'bold' } 
+                        } 
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: { 
+                            display: true, 
+                            text: 'Alerta (1=Sim)', 
+                            color: 'white',
+                            font: { weight: 'bold' }
+                        },
+                        ticks: { 
+                            stepSize: 1, 
+                            color: 'white',
+                            font: { weight: 'bold' } 
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { 
+                        labels: { 
+                            color: 'white',
+                            font: { weight: 'bold' } 
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+      <footer>
+        <div class="navfot">
+            <div id="menu-redes">
+                <div id="lista">
+                    <ul>
+                        <li><a href="./home.html">Home</a></li>
+                        <li><a href="./dashboard.html">Dashboard</a></li>
+                        <li><a href="#">Calculadora</a></li>
+                        <li><a href="./quemsomos.html">Quem somos</a></li>     
+                    </ul>
+                </div>
+
+                <div id="logo">
+                    <img src="./style/PitaTech_logo.png" alt="PitaTech_logo">
+                </div>
+             
+                <div id="redes2">
+                    <img src="./style/instagram.png" alt="Logo do Instagram"><span id="instagram">Instagram</span>
+                    <img src="./style/linkedin.png" alt="Logo do Linkedin"><span id="linkedin">Linkedin</span>
+                    <img src="./style/facebook.png" alt="Logo do Facebook"><span id="facebook">Facebook</span>
+                </div>
+            </div>
+    
+            <span id="direitos">PITATECH © 2025. Todos os direitos reservados. Desenvolvido por PITATECH TEAM.</span>
+        </div>
+    </footer>   
+</body>
+</html>

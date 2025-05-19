@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/CSS.css">
+    <link rel="icon" href="./style/PitaTech_logo.png">
+    <title>Home | Pitatech</title>
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
+
+
+    * {
+
+        margin: 0%;
+    
+
+    }
+
+    body {
+
+        /* background-color: #bfffac36; */
+        background-image: url(./style/plano_de_fundo_v2.png);
+
+    }
+
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+
+        color: #333;
+    }
+
+    main {
+        padding: 60px 20px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .quem-somos-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .quem-somos-container h1 {
+        font-size: 3em;
+        color: #d91b77;
+        text-shadow: 1px 1px #ffeaf5;
+    }
+
+    .quem-somos-container img {
+        max-width: 100%;
+        border-radius: 20px;
+        box-shadow: 0 0 25px rgba(217, 27, 119, 0.2);
+        transition: transform 0.3s ease;
+    }
+
+    .quem-somos-container img:hover {
+        transform: scale(1.03);
+    }
+
+    .quem-somos-container p {
+        text-align: justify;
+        font-family: 'Aclonica', sans-serif;
+        font-size: 1.25em;
+        line-height: 1.7;
+        max-width: 900px;
+    }
+
+    .ods-box {
+        background-color: #fce4ec;
+        border-left: 8px solid #d91b77;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 80%;
+    }
+
+    .ods-box strong {
+        color: #c2185b;
+    }
+
+    .cont_ods {
+        display: flex;
+        justify-content: center;
+    }
+
+    #container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    #missao {
+
+        width: 40%;
+        margin-left: 50px;
+        align-self: center;
+        text-align: center;
+        font-size: 1.2rem;
+        background-color: rgba(230, 230, 230, 0.692);
+        padding: 2%;
+        border-radius: 20px;
+        border: solid 1px rgb(61, 1, 61);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+    }
+
+    #missao h1 {
+
+        margin-bottom: 5px;
+        font-family: 'Aclonica', 'Courier New', Courier, monospace;
+        color: #500745;
+        font-size: 1.7rem;
+    }
+
+    #visao {
+
+        width: 40%;
+        margin-left: 50px;
+        align-self: center;
+        text-align: center;
+        font-size: 1.2rem;
+        background-color: rgba(230, 230, 230, 0.692);
+        padding: 2%;
+        border-radius: 20px;
+        border: solid 1px rgb(61, 1, 61);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    #visao h1 {
+
+        margin-bottom: 5px;
+        font-family: 'Aclonica', 'Courier New', Courier, monospace;
+        color: #500745;
+        font-size: 1.7rem;
+    }
+
+    .cont_valores {
+        margin-block: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    #valores {
+
+        width: 40%;
+        margin-left: 50px;
+        align-self: center;
+        text-align: center;
+        font-size: 1.2rem;
+        background-color: rgba(230, 230, 230, 0.692);
+        padding: 2%;
+        border-radius: 20px;
+        border: solid 1px rgb(61, 1, 61);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #valores h1 {
+
+        margin-bottom: 5px;
+        font-family: 'Aclonica', 'Courier New', Courier, monospace;
+        color: #500745;
+        font-size: 1.7rem;
+    }
+
+    #cont_princ {
+
+        display: flex;
+        justify-content: center;
+
+    }
+
+    footer {
+
+        height: 285px;
+
+    }
+
+    h1 {
+
+        font-family: 'Aclonica','Courier New', Courier, monospace;
+
+    }
+</style>
+
+<body onload="validarSessao()">
+
+    <header>
+
+        <div class="navbar">
+
+            <img src="./style/PitaTech_logo.png" alt="Logo Pitatech">
+
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="calculadora.html">Calculadora</a></li>
+                <li id="selecionado"><a href="">Quem somos</a></li>
+            </ul>
+
+            <div id="div_mensagem"><a href="./login.html">Entrar</a></div>
+
+        </div>
+    </header>
+
+    <main>
+        <div class="quem-somos-container">
+            <h1>Quem Somos</h1>
+
+            <p>
+                A <strong>PitaTech</strong> é uma startup que usa tecnologia para transformar o cultivo de pitaya no
+                Brasil. A empresa surgiu com o objetivo de tornar a agricultura mais eficiente, inteligente e, acima de
+                tudo, sustentável.
+            </p>
+
+            <p>
+                Desenvolvemos um sistema automatizado de monitoramento da umidade do solo por meio do uso de sensores
+                inteligentes. Promovendo assim, informação para a tomada de decisão do cliente, que pode usar o sistema
+                a fim de garantir a produtividade, qualidade dos frutos e reduzir desperdícios.
+            </p>
+
+
+
+            <p>
+                Nossa missão é impulsionar a agricultura familiar e comercial com soluções acessíveis, ecológicas e
+                fáceis de usar. Estamos construindo o futuro da pitayicultura, e você faz parte dessa mudança.
+            </p>
+
+            <p><strong>PitaTech – Tecnologia que floresce com a natureza.</strong></p>
+        </div>
+    </main>
+
+
+
+    <div id="container">
+
+        <div id="cont_princ">
+
+
+
+            <div id="missao">
+                <h1>Missão</h1>
+                <hr>
+                <p style="text-align: justify;">Nossa missão é oferecer soluções inovadoras e confiáveis de
+                    monitoramento da umidade do solo, ajudando os agricultores de pitaia a otimizar seus cultivos,
+                    aumentar a produtividade e promover práticas agrícolas sustentáveis. Estamos comprometidos em
+                    fornecer tecnologia de ponta que facilite a tomada de decisão e contribua para o sucesso de nossos
+                    clientes.</p>
+
+            </div>
+
+
+            <div id="visao">
+                <h1>Visão</h1>
+                <hr>
+                <p style="text-align: justify;">Nossa visão é ser reconhecida como a principal empresa de monitoramento
+                    de umidade do solo no setor de cultivo de pitaia, liderando a inovação tecnológica e promovendo uma
+                    agricultura mais eficiente, sustentável e consciente do meio ambiente. Queremos transformar a forma
+                    como os agricultores cuidam de suas plantações, tornando-se referência no mercado.</p>
+
+            </div>
+
+
+        </div>
+
+        <div id="valores">
+            <h1>valores</h1>
+            <hr>
+            <p style="text-align: justify;">Valorizamos a inovação, a sustentabilidade, a confiabilidade e o compromisso
+                com nossos clientes. Acreditamos na importância de oferecer soluções precisas e acessíveis, respeitando
+                o meio ambiente e promovendo o desenvolvimento agrícola responsável. Nosso foco é construir
+                relacionamentos duradouros baseados na transparência e na excelência de nossos serviços.</p>
+
+        </div>
+
+    </div>
+
+    <br><br>
+
+    <div class="cont_ods">
+        <div class="ods-box">
+            <p style="font-family: 'Aclonica','Courier New', Courier, monospace;">
+                Este projeto está alinhado à <strong>ODS 9</strong> da ONU: <strong>Indústria, Inovação e
+                    Infraestrutura</strong>. Busca impactar positivamente o meio ambiente e o agronegócio através da
+                tecnologia aplicada ao campo. Nosso objetivo é promover infraestruturas resilientes, fomentar uma
+                industrialização inclusiva e sustentável no setor agrícola, e impulsionar a inovação para práticas mais
+                eficientes e ecologicamente conscientes.
+            </p>
+        </div>
+    </div>
+
+    <br><br>
+    </div>
+
+
+    <footer>
+        <div class="navfot">
+            <div id="menu-redes">
+                <div id="lista">
+                    <ul>
+                        <li><a href="./home.html">Home</a></li>
+                        <li><a href="./dashboard.html">Dashboard</a></li>
+                        <li><a href="#">Calculadora</a></li>
+                        <li><a href="./quemsomos.html">Quem somos</a></li>     
+                    </ul>
+                </div>
+
+                <div id="logo">
+                    <img src="./style/PitaTech_logo.png" alt="PitaTech_logo">
+                </div>
+             
+                <div id="redes2">
+                    <img src="./style/instagram.png" alt="Logo do Instagram"><span id="instagram">Instagram</span>
+                    <img src="./style/linkedin.png" alt="Logo do Linkedin"><span id="linkedin">Linkedin</span>
+                    <img src="./style/facebook.png" alt="Logo do Facebook"><span id="facebook">Facebook</span>
+                </div>
+            </div>
+    
+            <span id="direitos">PITATECH © 2025. Todos os direitos reservados. Desenvolvido por PITATECH TEAM.</span>
+        </div>
+    </footer>
+
+</body>
+
+</html>

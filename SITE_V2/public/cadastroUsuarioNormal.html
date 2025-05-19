@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/CSS.css">
+    <link rel="icon" href="./style/PitaTech_logo.png">
+    <title>Cadastro | PitaTech</title>
+
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
+
+</style>
+</head>
+
+<body id="bodyCadastro">
+
+<div class="container">
+    
+    <div id="card_cadastro2">
+        <a id="voltar" href="./login.html">Voltar para Login</a>
+
+        <h1 id="cadastrar">CADASTRE SEU USUARIO</h1>
+
+        <br>
+        <input type="text" id="input_nome" placeholder="Nome do Funcionario"><br>
+        <input type="text" id="input_email" placeholder="Email"><br>
+        <input type="text" id="input_telefone" placeholder="Telefone"><br><br>
+
+        <select id="select_cargo">
+
+            <option value="#" disabled selected>Selecione um cargo</option>
+            <option value="Funcionário">Funcionário</option>
+            <option value="Administrador">Administrador</option>
+
+        </select><br><br>
+
+        <input type="password" id="input_senha" placeholder="Senha"><br>
+        <input type="password" id="input_confSenha" placeholder="Confirmação de Senha"><br>
+
+        <input type="text" id="input_codigo" placeholder="Código de ativação"><br>
+
+        <div id="div_mensagem1"></div><br>
+            
+        <button onclick="checar()" id="botao_enviar">Cadastrar</button>
+        <br>
+
+    </div>
+
+  <a href="home.html"> <img src="./style/PitaTech_logo.png" height="130px" width="130px"></a> 
+</div>
+
+</body>
+
+</html>
+
+<script>
+
+function checar(){
+
+    var nome = input_nome.value;
+    var email = input_email.value;
+    var telefone = input_telefone.value;
+    var cargo = select_cargo.value;
+    var senha = input_senha.value;
+    var confSenha = input_confSenha.value;
+    var codigo = input_codigo.value;
+
+    div_mensagem1.innerHTML = ``;
+
+    if(email.indexOf("@") == -1 || email == ''){
+
+        div_mensagem1.innerHTML = `<span style="color: red;">Insira um email válido!</span>`;
+        
+    }
+    if(senha != confSenha){
+
+        div_mensagem1.innerHTML = `<span style="color: red;">Senhas diferentes!</span>`;
+
+    }
+    if(codigo == ''){
+
+        div_mensagem1.innerHTML = `<span style="color: red;">Insira uma código válido!</span>`;
+
+    }
+    else{
+
+        fetch('/usuario/cadastrarUsuario', {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              nomeServer: nome,
+              emailServer: email,
+              telefoneServer: telefone,
+              cargoServer: cargo,
+              senhaServer: senha,
+              codigoServer: codigo
+            })
+          })
+          alert("Cadastro realizado com sucesso")
+          setTimeout(() => {
+            window.location = "./login.html";
+          }, 1000);
+
+    }
+        
+}
+
+</script>

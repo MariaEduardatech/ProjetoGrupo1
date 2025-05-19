@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/CSS.css">
+    <link rel="icon" href="./style/PitaTech_logo.png">
+    <title>Login</title>
+
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
+
+    </style>
+</head>
+
+    
+
+<body id="bodyLogin">
+
+    <div class="container">
+        
+        <div id="card_login">
+            <a id="voltar" href="./home.html">Ir para Home</a>
+
+            <h1 id="login">LOGIN</h1>
+
+            <br>
+            <input type="text" id="input_email" required placeholder="Email"><br>
+            <div id="div_mensagem1"></div>
+            <input type="password" id="input_senha" required placeholder="Senha">
+            <div id="div_mensagem2"></div><br>
+            <span>Não possui uma conta? <a href="./cadastro.html">Cadastre-se agora!</a></span><br><br>
+
+            <button onclick="checar()" id="botao_enviar">Entrar</button><br>
+            <div id="div_mensagem"></div>
+            <br>
+
+        </div>
+
+      <a href="home.html"> <img src="./style/PitaTech_logo.png" height="130px" width="130px"></a> 
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+var tentativas = 4;
+
+    function checar(){
+
+        var emailVar = input_email.value;
+        var senhaVar = input_senha.value;
+
+        div_mensagem.innerHTML = ``;
+
+        if(tentativas == 0){
+
+            div_mensagem.innerHTML = `Tentativas excedidas!`;
+
+            botao_enviar.disabled;
+
+        }
+        else if(emailVar == '' || senhaVar == ''){
+
+            div_mensagem.innerHTML = `Preencha todos os campos!`;
+
+        }
+        else {
+
+            fetch("/usuario/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.CARGO_USUARIO = json.cargo;
+
+                    setTimeout(function () {
+                        window.location = "./index.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                div_mensagem.innerHTML = `Email ou senha incorretos!<br>`;
+                tentativas--;
+                div_mensagem.innerHTML += `Tentativas restantes: ${tentativas}`;
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+
+            }
+
+        }
+
+
+</script>
