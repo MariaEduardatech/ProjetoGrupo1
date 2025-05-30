@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/CSS.css">
     <link rel="icon" href="./style/PitaTech_logo.png">
+    <script src="./js/sessao.js"></script>
     <title>Home | Pitatech</title>
 </head>
 
@@ -211,15 +212,20 @@
             <img src="./style/PitaTech_logo.png" alt="Logo Pitatech">
 
             <ul>
-                <li><a href="home.html">Home</a></li>
+                <li id="selecionado"><a href="#">Home</a></li>
                 <li><a href="dashboard.html">Dashboard</a></li>
                 <li><a href="calculadora.html">Calculadora</a></li>
-                <li id="selecionado"><a href="">Quem somos</a></li>
+                <li><a href="quemsomos.html">Quem somos</a></li>
+
             </ul>
 
-            <div id="div_mensagem"><a href="./login.html">Entrar</a></div>
+            <div id="b_usuario"><a href="./login.html">Entrar</a></div>
+            <div class="sair" onclick="limparSessao()">
+                <h3><a href="./login.html">Sair</a></h3>
+            </div>
 
         </div>
+
     </header>
 
     <main>
