@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
+
+#bodyLogin {
+
+    background-image: url(../style/assets/maracuja-pitaya-rosa-isolado-em-um-fundo-preto_181624-45565.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    align-items: center;
+    justify-items: center;
+    font-family: 'Aclonica','Courier New', Courier, monospace;
+    
+
+}
+
+#bodyCadastro {
+
+    background-image: url(../style/assets/maracuja-pitaya-rosa-isolado-em-um-fundo-preto_181624-45565.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    align-items: center;
+    justify-items: center;
+    font-family: 'Aclonica','Courier New', Courier, monospace;
+    
+
+}
+
+#card_login{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    width: 500px;
+    background-color: #410d32bc;
+    border-radius: 20px;
+    align-self: center;
+    margin-top: 11%;
+
+}
+
+#card_cadastro, #card_cadastro2{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    width: 800px;
+    background-color: #410d32bc;
+    border-radius: 20px;
+    align-self: center;
+    margin-top: 11%;
+
+}
+
+#card_cadastro h1, #card_cadastro2 h1 {
+
+    margin-top: 3%;
+
+}
+
+#card_cadastro2{
+
+    height: 700px;
+
+}
+    
+#login, #cadastrar{
+    font-size: 3.0rem;
+    text-align: center;
+
+}
+
+#cadastrar {
+
+    margin-top: 10px;
+    margin-bottom: 0px;
+
+}
+
+.container span{
+
+    font-size: 0.7rem;
+
+}
+
+#voltar{
+    font-size: 0.5rem;
+    margin-top: 20px;
+    margin-right: 80%;
+}
+
+#form input, #input_login, #input_senha, #input_nome, #input_cnpj, #input_conf_senha, #input_telefone, #input_email,
+#input_rua, #input_bairro, #input_cidade, #input_complemento, #input_codigo, #input_confSenha {
+    color: white;
+    background-color: rgba(137, 43, 226, 0);
+    border: solid 2px;
+    padding: 1%;
+    border-top: transparent;
+    font-family: 'Aclonica','Courier New', Courier, monospace;
+    border-left: transparent;
+    border-right: transparent;
+    border-bottom: solid 2px white;
+    width: 300px;
+    margin-top: 2%;
+}
+
+#input_rua, #input_bairro, #input_complemento{
+
+    width: 160px;
+
+}
+
+#input_cidade {
+
+    width: 260px;
+    margin-right: 8%;
+
+}
+
+#input_codigo{
+
+    margin-top: 4%;
+    width: 25%;
+    text-align: center;
+
+}
+
+#select_sigla, #select_cargo{
+
+    width: 40%;
+    background-color: transparent;
+    color: white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid 2px white;
+    font-family: 'Aclonica','Courier New', Courier, monospace;
+
+}
+
+#select_sigla option, #select_cargo option {
+
+    background-color: #333;
+
+}
+
+#select_cargo {
+
+    width: 23%;
+    padding: 1%;
+
+}
+
+.endereco{
+
+    display: flex;
+
+}
+
+.endereco input {
+
+    margin-right: 5px;
+
+}
+
+#cidade {
+    margin-top: 2%;
+    display: flex;
+
+}
+
+
+::-webkit-input-placeholder{
+
+    color: white;
+
+}
+
+#botao_enviar{
+
+    width: 100px;
+    height: 50px;
+    padding: 2%;
+    border-radius: 4px;
+    color: white;
+    background-color: #700938;
+    font-family: 'Aclonica','Courier New', Courier, monospace;
+    border: transparent;
+    transition: 0.4s;
+}
+
+#botao_enviar:hover{
+
+    background-color: #ca118f;
+    transition: 0.4s;
+
+}
+
+#login{
+    font-size: 3.0rem;
+    text-align: center;
+}
+
+.container span{
+    font-size: 0.7rem;
+}
+
+#voltar{
+    font-size: 0.5rem;
+    margin-top: 20px;
+    margin-right: 80%;
+}
+
+#input_login, #input_senha {
+    color: white;
+    background-color: rgba(137, 43, 226, 0);
+    border: solid 2px;
+    padding: 1%;
+    border-top: transparent;
+    font-family: 'Aclonica','Courier New', Courier, monospace;
+    border-left: transparent;
+    border-right: transparent;
+    border-bottom: solid 2px white;
+    width: 300px;
+}
+
+#input_senha{
+    margin-top: 1%;
+}
+
+#input_login{
+    margin-top: 3%;
+}
+
+#botao_enviar{
+    width: 100px;
+    height: 50px;
+    padding: 2%;
+    border-radius: 4px;
+    color: white;
+    background-color: #700938;
+    font-family: 'Aclonica','Courier New', Courier, monospace;
+    border: transparent;
+    transition: 0.4s;
+}
+
+#botao_enviar:hover{
+    background-color: #ca118f;
+    transition: 0.4s;
+}

@@ -4,204 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/CSS.css">
-    <link rel="icon" href="./style/PitaTech_logo.png">
+    <link rel="stylesheet" href="./style/quemsomos.css">
+    <link rel="icon" href="./style/assets/PitaTech_logo.png">
     <script src="./js/sessao.js"></script>
     <title>Home | Pitatech</title>
 </head>
-
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
-
-
-    * {
-
-        margin: 0%;
-    
-
-    }
-
-    body {
-
-        /* background-color: #bfffac36; */
-        background-image: url(./style/plano_de_fundo_v2.png);
-
-    }
-
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-
-        color: #333;
-    }
-
-    main {
-        padding: 60px 20px;
-        max-width: 1200px;
-        margin: auto;
-    }
-
-    .quem-somos-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 40px;
-    }
-
-    .quem-somos-container h1 {
-        font-size: 3em;
-        color: #d91b77;
-        text-shadow: 1px 1px #ffeaf5;
-    }
-
-    .quem-somos-container img {
-        max-width: 100%;
-        border-radius: 20px;
-        box-shadow: 0 0 25px rgba(217, 27, 119, 0.2);
-        transition: transform 0.3s ease;
-    }
-
-    .quem-somos-container img:hover {
-        transform: scale(1.03);
-    }
-
-    .quem-somos-container p {
-        text-align: justify;
-        font-family: 'Aclonica', sans-serif;
-        font-size: 1.25em;
-        line-height: 1.7;
-        max-width: 900px;
-    }
-
-    .ods-box {
-        background-color: #fce4ec;
-        border-left: 8px solid #d91b77;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        width: 80%;
-    }
-
-    .ods-box strong {
-        color: #c2185b;
-    }
-
-    .cont_ods {
-        display: flex;
-        justify-content: center;
-    }
-
-    #container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 15px;
-    }
-
-    #missao {
-
-        width: 40%;
-        margin-left: 50px;
-        align-self: center;
-        text-align: center;
-        font-size: 1.2rem;
-        background-color: rgba(230, 230, 230, 0.692);
-        padding: 2%;
-        border-radius: 20px;
-        border: solid 1px rgb(61, 1, 61);
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-
-    }
-
-    #missao h1 {
-
-        margin-bottom: 5px;
-        font-family: 'Aclonica', 'Courier New', Courier, monospace;
-        color: #500745;
-        font-size: 1.7rem;
-    }
-
-    #visao {
-
-        width: 40%;
-        margin-left: 50px;
-        align-self: center;
-        text-align: center;
-        font-size: 1.2rem;
-        background-color: rgba(230, 230, 230, 0.692);
-        padding: 2%;
-        border-radius: 20px;
-        border: solid 1px rgb(61, 1, 61);
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-    }
-
-    #visao h1 {
-
-        margin-bottom: 5px;
-        font-family: 'Aclonica', 'Courier New', Courier, monospace;
-        color: #500745;
-        font-size: 1.7rem;
-    }
-
-    .cont_valores {
-        margin-block: 20px;
-        display: flex;
-        justify-content: center;
-    }
-
-    #valores {
-
-        width: 40%;
-        margin-left: 50px;
-        align-self: center;
-        text-align: center;
-        font-size: 1.2rem;
-        background-color: rgba(230, 230, 230, 0.692);
-        padding: 2%;
-        border-radius: 20px;
-        border: solid 1px rgb(61, 1, 61);
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    #valores h1 {
-
-        margin-bottom: 5px;
-        font-family: 'Aclonica', 'Courier New', Courier, monospace;
-        color: #500745;
-        font-size: 1.7rem;
-    }
-
-    #cont_princ {
-
-        display: flex;
-        justify-content: center;
-
-    }
-
-    footer {
-
-        height: 285px;
-
-    }
-
-    h1 {
-
-        font-family: 'Aclonica','Courier New', Courier, monospace;
-
-    }
-</style>
 
 <body onload="validarSessao()">
 
@@ -209,13 +16,13 @@
 
         <div class="navbar">
 
-            <img src="./style/PitaTech_logo.png" alt="Logo Pitatech">
+            <img src="./style/assets/PitaTech_logo.png" alt="Logo Pitatech">
 
             <ul>
-                <li id="selecionado"><a href="#">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="dashboard.html">Dashboard</a></li>
                 <li><a href="calculadora.html">Calculadora</a></li>
-                <li><a href="quemsomos.html">Quem somos</a></li>
+                <li id="selecionado"><a href="#">Quem somos</a></li>
 
             </ul>
 
@@ -331,13 +138,13 @@
                 </div>
 
                 <div id="logo">
-                    <img src="./style/PitaTech_logo.png" alt="PitaTech_logo">
+                    <img src="./style/assets/PitaTech_logo.png" alt="PitaTech_logo">
                 </div>
              
                 <div id="redes2">
-                    <img src="./style/instagram.png" alt="Logo do Instagram"><span id="instagram">Instagram</span>
-                    <img src="./style/linkedin.png" alt="Logo do Linkedin"><span id="linkedin">Linkedin</span>
-                    <img src="./style/facebook.png" alt="Logo do Facebook"><span id="facebook">Facebook</span>
+                    <img src="./style/assets/instagram.png" alt="Logo do Instagram"><span id="instagram">Instagram</span>
+                    <img src="./style/assets/linkedin.png" alt="Logo do Linkedin"><span id="linkedin">Linkedin</span>
+                    <img src="./style/assets/facebook.png" alt="Logo do Facebook"><span id="facebook">Facebook</span>
                 </div>
             </div>
     
