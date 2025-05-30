@@ -16,14 +16,10 @@ void loop() {
   float porcentagemUmidade = ((1023.0 - leituraSensor) / 1023.0) * 100;
 
   // Exibe os valores no monitor serial
-  Serial.print("Umidade_Máxima:");
-  Serial.print(80);
-  Serial.print(" ");
-  Serial.print("Umidade_Atual:");
+
   Serial.print(porcentagemUmidade);
   Serial.println(" ");
-  Serial.print("Umidade_Mínima:");
-  Serial.println(60);
+ 
 
   // Aguarda 1 segundo antes da próxima leitura
   delay(1000);

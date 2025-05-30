@@ -10,9 +10,6 @@ const SERVIDOR_PORTA = 3300;         // Porta onde o servidor Express irá rodar
 // Controle de gravação no banco (habilita ou desabilita a inserção de dados no MySQL)
 const HABILITAR_OPERACAO_INSERIR = true;
 
-
-
-
 // Função responsável por iniciar a comunicação com o Arduino
 const serial = async (valoresSensorAnalogico) => {
 
@@ -23,7 +20,7 @@ const serial = async (valoresSensorAnalogico) => {
         password: 'Sptech#2024',
         database: 'PI',
         port: 3307
-    }).promise(); // .promise() permite usar async/await nas queries
+    }).promise();
 
     // Busca todas as portas seriais conectadas e procura o Arduino
     const portas = await serialport.SerialPort.list();
@@ -45,28 +42,37 @@ const serial = async (valoresSensorAnalogico) => {
         console.log(`Leitura do Arduino iniciada na porta ${portaArduino.path} com baud rate ${SERIAL_BAUD_RATE}`);
     });
 
-
-
-
-
     // Quando o Arduino envia dados, eles são recebidos aqui
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' }))
         .on('data', async (data) => {
-            console.log(data); // Mostra os dados recebidos no console
+            console.log("Dados recebidos:", data);
 
-            const valores = data.split(';'); // Divide os valores enviados
-            const sensorAnalogico = parseFloat(valores[0]); // Converte o valor lido para número
+            const valores = data.split(';');
+            const sensorAnalogico = parseFloat(valores[0]);
 
-            // Armazena o valor em um array para ser usado na API
             valoresSensorAnalogico.push(data);
 
-            // Se estiver habilitado, insere o valor no banco de dados
             if (HABILITAR_OPERACAO_INSERIR) {
-                await poolBancoDados.execute(
-                    'INSERT INTO registro (porcentagemUmidade) VALUES (?)',
-                    [sensorAnalogico]
-                );
-                console.log("Valor inserido no banco: ", sensorAnalogico);
+                let nivel;
+
+                // Define o nível com base no valor da umidade
+                if (sensorAnalogico < 60) {
+                    nivel = 'Umidade baixa';
+                } else if (sensorAnalogico <= 80) {
+                    nivel = 'Umidade ideal';
+                } else {
+                    nivel = 'Umidade elevada';
+                }
+
+                try {
+                    await poolBancoDados.execute(
+                        'INSERT INTO registro (fk2Sensor, nivel, porcentagemUmidade) VALUES (?, ?, ?)',
+                        [100, nivel, sensorAnalogico] // Substitua 1 pelo ID real do sensor
+                    );
+                    console.log(`Valor inserido na tabela 'registro': ${sensorAnalogico}%, nível: ${nivel}`);
+                } catch (erro) {
+                    console.error('Erro ao inserir no banco:', erro);
+                }
             }
         });
 
@@ -76,11 +82,9 @@ const serial = async (valoresSensorAnalogico) => {
     });
 }
 
-
-
 // Função responsável por criar e iniciar o servidor web (API)
 const servidor = (valoresSensorAnalogico) => {
-    const app = express(); // Cria a aplicação web
+    const app = express();
 
     // Permite que qualquer origem (frontend) acesse a API (CORS)
     app.use((request, response, next) => {
@@ -96,22 +100,13 @@ const servidor = (valoresSensorAnalogico) => {
 
     // Rota da API para retornar os valores do sensor de umidade analógico
     app.get('/sensores/analogico', (_, response) => {
-        return response.json(valoresSensorAnalogico); // Retorna os dados em formato JSON
+        return response.json(valoresSensorAnalogico);
     });
 }
 
-
-
-
-
 // Função principal que executa tudo
 (async () => {
-    // Array para armazenar os valores que o Arduino envia
     const valoresSensorAnalogico = [];
-
-    // Inicia a leitura serial com o Arduino
     await serial(valoresSensorAnalogico);
-
-    // Inicia o servidor que fornece os dados para a interface web
     servidor(valoresSensorAnalogico);
 })();
