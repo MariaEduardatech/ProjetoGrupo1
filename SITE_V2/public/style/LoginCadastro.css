@@ -13,6 +13,24 @@
 
 }
 
+img {
+
+    margin-left: 35%;
+
+}
+
+a {
+
+    color: white;
+    text-decoration: none;
+}
+
+a:hover{
+
+    text-decoration: underline;
+
+}
+
 #bodyCadastro {
 
     background-image: url(../style/assets/maracuja-pitaya-rosa-isolado-em-um-fundo-preto_181624-45565.jpg);

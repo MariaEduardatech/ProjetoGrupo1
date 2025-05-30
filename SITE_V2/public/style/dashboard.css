@@ -1,4 +1,15 @@
-  @import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
+
+* {
+
+    margin: 0%;
+
+}
+
+body {
+    background-image: url(./style/assets/plano_de_fundo_v2.png);
+    overflow-x: hidden;
+}
 
 .navbar {
     width: 100%;
@@ -61,6 +72,7 @@ footer {
     height: 230px;
     padding: 2%;
     font-family: 'Aclonica','Courier New', Courier, monospace;
+    margin-top: 5%;
 }
 
 #menu-redes {
@@ -100,7 +112,7 @@ footer {
     flex-direction: column;
     align-items: flex-end;
     gap: 1.3rem;
-    margin-right: 20px;
+    margin-right: 4%;
 }
 
 #redes2 img {
