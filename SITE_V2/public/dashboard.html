@@ -5,19 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/dashboard.css">
     <link rel="icon" href="./style/assets/PitaTech_logo.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./js/sessao.js"></script>
-    <title>Dashboard  Pitatech</title>
+
+    <title>Home | Pitatech</title>
+
 </head>
 
 <body onload="validarSessao()">
 
-    <div class="navbar">
+    <header>
+
+        <div class="navbar">
 
             <img src="./style/assets/PitaTech_logo.png" alt="Logo Pitatech">
 
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li id="selecionado"><a href="#">Dashboard</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
                 <li><a href="calculadora.html">Calculadora</a></li>
                 <li><a href="quemsomos.html">Quem somos</a></li>
 
@@ -32,222 +38,157 @@
 
     </header>
 
-    <div class="container-dashboard">
-    <section class="dashboard">
-        <h1>Dashboard de Todos os Sensores</h1>
-    
-        <div class="KPIALERTA">
-            <div class="nomeKPI">
-                <b>SENSORES A2, A3 e B2 NECESSITAM DE VERIFICAÇÃO! UMIDADE IRREGULAR</b><br>
-                <img src="https://cdn-icons-png.freepik.com/256/8425/8425341.png" width="50px" height="50px" alt="">
-            </div>
-        </div>
-    
-        <!-- GRÁFICOS PRIMEIRO -->
-        <div class="graficos">
-            <div class="grafico1">
-                <h2>Comparativo de Todos os Sensores</h2>
-                <canvas id="umidadeSoloChart"></canvas>
-            </div>
-          
-            <div class="grafico2">
-                <h2>Umidade Atual dos Sensores por Talhão</h2>
-                <canvas id="umidadetalhaoChart"></canvas>
-            </div>
-    
-            <div class="graficopizza">
-                <h2>Sensores em Alerta</h2>
-                <canvas id="alertaChart"></canvas>
-            </div>
-        </div>
 
-        <!-- TALHÕES DEPOIS DOS GRÁFICOS -->
-        <h2 class="tituloTalhoes">Mapa dos Sensores</h2>
-        <div class="talhao">
-            <div class="lote"><div class="localS">A1</div><a href="./dashboardsensorA1.html"><button><img src="https://cdn-icons-png.freepik.com/256/16322/16322583.png" alt=""></button></a></div>    
-            <div class="lote"><div class="localS">A2</div><a href="./dashboardsensorA2.html"><button><img src="https://cdn-icons-png.freepik.com/256/8425/8425341.png" alt=""></button></a></div>
-            <div class="lote"><div class="localS">A3</div><a href="./dashboardsensorA3.html"><button><img src="https://cdn-icons-png.freepik.com/256/8425/8425341.png" alt=""></button></a></div>
-            <div class="lote"><div class="localS">A4</div><a href="./dashboardsensorA4.html"><button><img src="https://cdn-icons-png.freepik.com/256/16322/16322583.png" alt=""></button></a></div>
-            <div class="lote"><div class="localS">A5</div><a href="./dashboardsensorA5.html"><button><img src="https://cdn-icons-png.freepik.com/256/16322/16322583.png" alt=""></button></a></div>
-            <div class="lote"><div class="localS">B1</div><a href="./dashboardsensorB1.html"><button><img src="https://cdn-icons-png.freepik.com/256/16322/16322583.png" alt=""></button></a></div>
-            <div class="lote"><div class="localS">B2</div><a href="./dashboardsensorB2.html"><button><img src="https://cdn-icons-png.freepik.com/256/8425/8425341.png" alt=""></button></a></div>
-            <div class="lote"><div class="localS">B3</div><a href="./dashboardsensorB3.html"><button><img src="https://cdn-icons-png.freepik.com/256/16322/16322583.png" alt=""></button></a></div>
-            <div class="lote"><div class="localS">B4</div><a href="./dashboardsensorB4.html"><button><img src="https://cdn-icons-png.freepik.com/256/16322/16322583.png" alt=""></button></a></div>
-            <div class="lote em-manutencao"><div class="localS">B5</div><button class="btn-manutencao"><img src="https://cdn-icons-png.freepik.com/512/8509/8509746.png" alt=""><span class="tooltip">Em manutenção</span></button></div>
-        </div>
-    </section>
+  <main class="dashboardPrincipal">
+    <h1 class="titulo">Dashboard</h1>
+
+ <section class="kpis">
+    <div class="kpi">Sensores em Alerta: 4</div>
+    <div class="kpi">Talhão com Maior Umidade: T2 (90%)</div>
+    <div class="kpi">Talhão com Menor Umidade: T1 (45%)</div>
+  </section>
+
+
+<h2 class="tituloPlantação">Plantação</h2>
+   <div class="plantacao-box">
+  
+  <div class="talhoes-grid">
+    <div class="talhao">T1</div>
+    <div class="talhao">T2</div>
+    <div class="talhao"><a href="dashboardTalhão.html"><button>T3</button></a></div>
+    <div class="talhao">T4</div>
+    <div class="talhao">T5</div>
+    <div class="talhao">T6</div>
+  </div>
+</div>
+ </main>
+<div class="testando">
+<div class="registro-alertas">
+  <h2>Registro de Alertas</h2>
+  <div class="lista-alertas">
+    <div class="alerta-item"><span>T1 - A2 - Umidade: 45%</span><span>31/05/25</span></div>
+    <div class="alerta-item"><span>T2 - D3 - Umidade: 85%</span><span>28/05/25</span></div>
+    <div class="alerta-item"><span>T4 - L7 - Umidade: 50%</span><span>28/05/25</span></div>
+    <div class="alerta-item"><span>T5 - M3 - Umidade: 90%</span><span>25/05/25</span></div>
+    <div class="alerta-item"><span>T6 - R3 - Umidade: 55%</span><span>25/05/25</span></div>
+    <div class="alerta-item"><span>T3 - H5 -  Umidade: 87%</span><span>22/05/25</span></div>
+    <div class="alerta-item"><span>T1 - B3 -  Umidade: 49%</span><span>20/05/25</span></div>
+    <div class="alerta-item"><span>T4 - L7 - Umidade: 50%</span><span>18/05/25</span></div>
+    <div class="alerta-item"><span>T5 - M3 - Umidade: 90%</span><span>18/05/25</span></div>
+    <div class="alerta-item"><span>T6 - R3 - Umidade: 55%</span><span>17/05/25</span></div>
+    <div class="alerta-item"><span>T3 - H5 -  Umidade: 87%</span><span>17/05/25</span></div>
+    <div class="alerta-item"><span>T1 - B3 -  Umidade: 49%</span><span>15/05/25</span></div>
+    <div class="alerta-item"><span>T4 - L7 - Umidade: 50%</span><span>18/05/25</span></div>
+    <div class="alerta-item"><span>T5 - M3 - Umidade: 90%</span><span>18/05/25</span></div>
+    <div class="alerta-item"><span>T6 - R3 - Umidade: 55%</span><span>30/05/25</span></div>
+    <div class="alerta-item"><span>T3 - H5 -  Umidade: 87%</span><span>27/05/25</span></div>
+    <div class="alerta-item"><span>T1 - B3 -  Umidade: 49%</span><span>20/05/25</span></div>
+  </div>
+</div>
+
+   <section class="graficoInicial">
+    <h2>Variação de Umidade por Talhão</h2>
+    <div class="grafico">
+      <canvas id="graficoUmidadeLinha"></canvas>
     </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-// === 1. COMPARATIVO DE TODOS OS SENSORES ===
-const ctx1 = document.getElementById('umidadeSoloChart').getContext('2d');
-new Chart(ctx1, {
-    type: 'bar',
-    data: {
-        labels: ['A1', 'A2', 'A3', 'A4', 'A5', 'B1', 'B2', 'B3', 'B4'],
-        datasets: [{
-            label: 'Umidade Atual (%)',
-            data: [70, 85, 55, 65, 75, 70, 90, 73, 77],
-            backgroundColor: 'rgba(0,255,127, 0.7)', 
-            borderColor: '#ffffff', 
-            borderWidth: 2
-        }]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            x: {
-                ticks: {
-                    color: '#ffffff',
-                    font: { weight: 'bold' }
-                },
-                title: {
-                    display: true,
-                    text: 'Sensores',
-                    color: '#ffffff',
-                    font: { weight: 'bold' }
-                }
-            },
-            y: {
-                min: 0,
-                max: 100,
-                ticks: {
-                    stepSize: 10,
-                    color: '#ffffff',
-                    font: { weight: 'bold' }
-                },
-                title: {
-                    display: true,
-                    text: 'Umidade (%)',
-                    color: '#ffffff',
-                    font: { weight: 'bold' }
-                }
-            }
-        },
-        plugins: {
-            legend: {
-                labels: {
-                    color: '#ffffff',
-                    font: { weight: 'bold' }
-                }
-            }
-        }
-    }
-});
+  </section>
+</div>
+ 
 
-// === 2. TALHÕES ===
-const ctx3 = document.getElementById('umidadetalhaoChart').getContext('2d');
-
-new Chart(ctx3, {
-    type: 'bar',
-    data: {
-        labels: ['Talhão 1', 'Talhão 2'],
-        datasets: [{
-            label: 'Umidade Média (%)',
-            data: [70, 66],
-           
-            backgroundColor: 'rgba(0,255,127, 0.7)', 
-            borderColor: '#ffffff', 
-            borderWidth: 2
-        }]
-    },
-    options: {
-        responsive: true,
-        indexAxis: 'y',
-        scales: {
-            x: {
-                ticks: {
-                    color: '#ffffff',
-                    font: { weight: 'bold' }
-                },
-                title: {
-                    display: true,
-                    text: 'Umidade (%)',
-                    color: '#ffffff',
-                    font: { weight: 'bold' }
-                },
-                min: 10,
-                max: 100,
-                ticks: {
-                    stepSize: 10,
-                    color: '#ffffff',
-                    font: { weight: 'bold' }
-                }
-            },
-            y: {
-                ticks: {
-                    color: '#ffffff',
-                    font: { weight: 'bold' }
-                }
-            }
-        },
-        plugins: {
-            legend: {
-                labels: {
-                    color: '#ffffff',
-                    font: { weight: 'bold' }
-                }
-            }
-        }
-    }
-});
-
-// === 3. ALERTAS - PIZZA ===
-const ctx2 = document.getElementById('alertaChart').getContext('2d');
-new Chart(ctx2, {
-    type: 'doughnut',
-    data: {
-        labels: ['Estáveis', 'Em Alerta'],
-        datasets: [{
-            data: [6, 3],
-            backgroundColor: ['rgba(0,255,127, 0.7)', 'rgba(255,69,0, 0.7)'], 
-            borderColor: ['#ffffff'], 
-            borderWidth: 2,
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                labels: {
-                    color: '#ffffff',
-                    font: { weight: 'bold' }
-                }
-            }
-        }
-    }
-});
-
-    </script>
-    <section style="height: 50px;"></section>
-
-   
-    <footer>
+       <footer>
         <div class="navfot">
             <div id="menu-redes">
                 <div id="lista">
                     <ul>
                         <li><a href="./home.html">Home</a></li>
-                        <li><a href="./dashboard.html">Dashboard</a></li>
-                        <li><a href="#">Calculadora</a></li>
+                        <li><a href="#">Dashboard</a></li>
+                        <li><a href="./calculadora.html">Calculadora</a></li>
                         <li><a href="./quemsomos.html">Quem somos</a></li>     
                     </ul>
                 </div>
 
                 <div id="logo">
-                    <img src="./style/assets/PitaTech_logo.png" alt="PitaTech_logo">
+                    <img src="../style/assets/PitaTech_logo.png" alt="PitaTech_logo">
                 </div>
              
                 <div id="redes2">
-                    <img src="./style/assets/instagram.png" alt="Logo do Instagram"><span id="instagram">Instagram</span>
-                    <img src="./style/assets/linkedin.png" alt="Logo do Linkedin"><span id="linkedin">Linkedin</span>
-                    <img src="./style/assets/facebook.png" alt="Logo do Facebook"><span id="facebook">Facebook</span>
+                    <img src="../style/assets/instagram.png" alt="Logo do Instagram"><span id="instagram">Instagram</span>
+                    <img src="../style/assets/linkedin.png" alt="Logo do Linkedin"><span id="linkedin">Linkedin</span>
+                    <img src="../style/assets/facebook.png" alt="Logo do Facebook"><span id="facebook">Facebook</span>
                 </div>
             </div>
     
             <span id="direitos">PITATECH © 2025. Todos os direitos reservados. Desenvolvido por PITATECH TEAM.</span>
         </div>
-    </footer>
+    </footer>   
+
 </body>
+
 </html>
+
+<script>
+  const ctx = document.getElementById('graficoUmidadeLinha').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['06h', '08h', '10h', '12h', '14h', '16h', '18h'],
+      datasets: [
+        {
+          label: 'T1',
+          data: [45, 48, 50, 52, 49, 47, 46],
+          borderColor: '#ff6384',
+          fill: false
+        },
+        {
+          label: 'T2',
+          data: [85, 87, 86, 88, 90, 89, 90],
+          borderColor: '#36a2eb',
+          fill: false
+        },
+        {
+          label: 'T3',
+          data: [78, 80, 83, 82, 85, 86, 87],
+          borderColor: '#ffcd56',
+          fill: false
+        },
+        {
+          label: 'T4',
+          data: [60, 62, 59, 58, 57, 59, 61],
+          borderColor: '#4bc0c0',
+          fill: false
+        },
+        {
+          label: 'T5',
+          data: [75, 78, 79, 80, 81, 82, 84],
+          borderColor: '#9966ff',
+          fill: false
+        },
+        {
+          label: 'T6',
+          data: [50, 52, 53, 54, 55, 56, 55],
+          borderColor: '#ff9f40',
+          fill: false
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          min: 0,
+          max: 100,
+          title: {
+            display: true,
+            text: 'Umidade (%)'
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: 'Horário'
+          }
+        }
+      }
+    }
+  });
+</script>

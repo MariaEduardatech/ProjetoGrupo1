@@ -7,7 +7,7 @@
 }
 
 body {
-    background-image: url(./style/assets/plano_de_fundo_v2.png);
+    background-image: url(../style/assets/plano_de_fundo_v2.png);
     overflow-x: hidden;
 }
 
@@ -80,8 +80,8 @@ footer {
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    flex-wrap: wrap; /* <- permite quebra de linha */
-    gap: 1rem; /* espaço entre os blocos */
+    flex-wrap: wrap; 
+    gap: 1rem; 
 }
 
 
@@ -145,29 +145,205 @@ footer {
     text-align: center;
 }
 
-    * {
 
-        margin: 0%;
-    
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fffdf5;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
 
-    }
+.header {
+  background-color: #792f87;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
 
-    body {
+.header .container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
 
-        background-image: url(./style/assets/plano_de_fundo_v2.png);
-        overflow-x: hidden;
-    }
+.header .logo img {
+  height: 50px;
+}
 
-    footer {
+.navbar {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
 
-margin-top: 5%;
+.navbar li a, .navbar li span {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.navbar .agora a {
+  border-bottom: 2px solid white;
+}
+
+.kpis {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 2rem auto;
 
 }
 
-footer #redes2 {
+.kpi {
+  background-color: #ffe5e5;
+  border: 2px solid #792f87;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #792f87;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  min-width: 150px;
+  text-align: center;
+}
+.kpi:hover{
+  transform: scale(1.05);
+  cursor: pointer;
+  background-color: #eb0b0b;
+  border: 2px solid #eb0b0b;
+  color: #eee;
+}
+.dashboardPrincipal {
+  padding: 2rem;
+}
 
-margin-right: 4%;
+.titulo {
+  font-size: 2.5rem;
+  text-align: center;
+  color: #792f87;
+  margin-bottom: 1rem;
+}
 
+.tituloPlantação {
+  color: #3e8e41;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.plantacao-box {
+  background-color: #d8fcd6;
+  padding: 1.5rem; 
+  border-radius: 16px;
+  width: 40%;
+  height: 400px;
+  margin: 2rem auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.plantacao-box h2 {
+  text-align: center;
+  color: #3e8e41;
+  margin-bottom: 1rem;
+}
+
+.talhoes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr;
+  gap: 0.5rem 2rem; /* vertical horizontal */
+  height: 100%;
+  align-items: center;
+}
+.talhao a button{
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.talhao {
+  width: 100%;
+  height: 180px;
+  background-color: #c5f7c3;
+  border-radius: 12px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  transition: transform 0.2s ease;
+}
+
+.testando {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin: 2rem auto;
+  max-width: 1000px;
+}
+
+
+.talhao:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.registro-alertas {
+  background-color: #f0d8f0;
+  padding: 1rem;
+  border-radius: 16px;
+  width: 350px;
+  height: fit-content;
+  margin: 1rem auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.registro-alertas h2 {
+  color: #792f87;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.registro-alertas .lista-alertas {
+  max-height: 310px;  
+  overflow-y: auto;     
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding-right: 0.3rem; 
+}
+
+.alerta-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  border-left: 6px solid #e74c3c;
+  border-radius: 12px;
+  padding: 0.7rem 1rem;
+  font-weight: bold;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.graficoInicial {
+  width: 500px;
+  background-color: #fff0fb;
+  padding: 1rem;
+  border-radius: 16px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
 
 .dashboard {
@@ -188,7 +364,8 @@ margin-right: 4%;
 }
 
 .KPIALERTA {
-    background-color: rgb(235, 9, 9);
+   
+    display: flex;
     padding: 10px;
     border-radius: 20px;
     margin: 20px auto;
@@ -201,7 +378,17 @@ margin-right: 4%;
     box-sizing: border-box;
 }
 
-.talhao {
+.nomeKPIdash{
+ background-color: rgb(235, 9, 9);
+   margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 25px;
+    margin-bottom: 20px;
+}
+
+
+
+.talhaoP {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 12px;
@@ -255,7 +442,6 @@ margin-right: 4%;
 }
 
 
-/* Tooltip flutuante */
 .tooltip {
     visibility: hidden;
     background-color: #d40000;
@@ -274,7 +460,6 @@ margin-right: 4%;
     white-space: nowrap;
 }
 
-/* Setinha do tooltip */
 .tooltip::after {
     content: '';
     position: absolute;
@@ -361,129 +546,11 @@ margin-right: 4%;
     box-sizing: border-box;
 }
 
-
-/* === DASHBOARD DE SENSOR === */
-.dashSensor {
-    position: relative;
-    width: 95%;
-    padding: 20px;
-    display: flex; /* Usando Flexbox */
-    flex-wrap: wrap; /* Permitindo que os KPIs quebrem para a próxima linha */
-    gap: 30px; /* Mantendo o espaçamento entre os KPIs */
-  }
-  
-  .dashSensor .KPI {
-
-    background-color: rgb(243, 173, 188);
-    padding: 25px;
-    border-radius: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
-    border: solid 2px black;
-    transition: all 0.3s ease;
-    flex: 1 1 200px; /* Permite que cresçam e encolham, com largura inicial mínima */
-    min-width: 0px; /* Largura mínima para cada KPI */
-    box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
-  }
-  
-  .dashSensor .KPI .nomeKPI {
-    color: black;
-    font-size: 19px;
-    margin-top: 5px;
-  }
-  
-  .dashSensor .KPI .dados {
-    font-weight: bold;
-    font-size: 45px;
-    color: #ea0b55;
-  }
-  
-  .dashSensor .KPI:hover {
-    background-color: #ea0b55;
-  }
-  
-  .dashSensor .KPI:hover .dados,
-  .dashSensor .KPI:hover .nomeKPI {
-    color: white;
-  }
-
-/* === GRÁFICOS SENSOR === */
-.graficosensor {
-    display: flex;
-    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
-    gap: 20px;
-    padding: 20px;
-  }
-  
-  .graficosensor .grafico1,
-  .graficosensor .grafico2,
-  .graficosensor .grafico3 {
-    background: linear-gradient(to right, #A13490, #500745);
-    border-radius: 20px;
-    padding: 10px;
-    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
-    color: white;
-    flex: 1 1 300px; /* Define uma largura base para cada item */
-    min-width: 300px; /* Garante que cada item tenha pelo menos essa largura */
-    height: 360px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    transition: transform 0.3s ease;
-  }
-
-
-.graficosensor .grafico1:hover,
-.graficosensor .grafico2:hover,
-.graficosensor .grafico3:hover {
-    transform: scale(1.02);
-}
-
-.graficosensor h2 {
-    margin-bottom: 15px;
-    font-size: 18px;
-    text-align: center;
-    font-weight: 600;
-    color: white;
-}
-
-#voltar-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px; /* Espaço acima do botão */
-    margin-bottom: 20px; /* Espaço abaixo do botão */
-}
-
-.voltar-btn {
-    padding: 10px 20px;
-    border-radius: 25px;
-    border: none;
-    font-family: 'Aclonica', 'Courier New', Courier, monospace;
-    background-color: rgba(220, 89, 200, 0.3);
-    color: white;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    cursor: pointer;
-    border: 2px solid #dc43c5;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    z-index: 1000;
-    font-size: 1.1em;
-}
-
-.voltar-btn:hover {
-    background-color: #dc59c9;
-    color: white;
-    border-color: #dc59c9;
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
-    }
-
-.voltar-btn img {
-    height: 24px;
-    width: auto;
+.footer {
+  background-color: #eee;
+  color: #666;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  margin-top: 2rem;
 }
