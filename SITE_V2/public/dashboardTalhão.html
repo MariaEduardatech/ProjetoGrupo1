@@ -61,170 +61,27 @@
             <div class="lote em-manutencao"><div class="localS">B5</div><button class="btn-manutencao"><img src="https://cdn-icons-png.freepik.com/512/8509/8509746.png" alt=""><span class="tooltip">Em manutenção</span></button></div>
         </div>
     
-        <div class="graficos">
-            <div class="grafico1">
-                <h2>Comparativo de Todos os Sensores</h2>
-                <canvas id="umidadeSoloChart"></canvas>
+        <div class="graficoa">
+                <div class="grafico">
+                    <h2>Distribuição dos Sensores por Status</h2>
+                    <canvas id="statusPizza"></canvas>
+                </div>
+                <div class="graficou">
+                    <h2>Umidade Mensal</h2>
+                    <canvas id="areaUmidade"></canvas>
+                </div>
             </div>
-          
-            <div class="grafico2">
-                <h2>Umidade Atual dos Sensores por Talhão</h2>
-                <canvas id="umidadetalhaoChart"></canvas>
-            </div>
-    
-            <div class="graficopizza">
-                <h2>Sensores em Alerta</h2>
-                <canvas id="alertaChart"></canvas>
-            </div>
-        </div>
-
-      
-    </section>
+        </section>
     </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-// === 1. COMPARATIVO DE TODOS OS SENSORES ===
-const ctx1 = document.getElementById('umidadeSoloChart').getContext('2d');
-new Chart(ctx1, {
-    type: 'bar',
-    data: {
-        labels: ['A1', 'A2', 'A3', 'A4', 'A5', 'B1', 'B2', 'B3', 'B4'],
-        datasets: [{
-            label: 'Umidade Atual (%)',
-            data: [70, 85, 55, 65, 75, 70, 90, 73, 77],
-            backgroundColor: 'rgba(0,255,127, 0.7)', 
-            borderColor: '#ffffff', 
-            borderWidth: 2
-        }]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            x: {
-                ticks: {
-                    color: '#ffffff',
-                    font: { weight: 'bold' }
-                },
-                title: {
-                    display: true,
-                    text: 'Sensores',
-                    color: '#ffffff',
-                    font: { weight: 'bold' }
-                }
-            },
-            y: {
-                min: 0,
-                max: 100,
-                ticks: {
-                    stepSize: 10,
-                    color: '#ffffff',
-                    font: { weight: 'bold' }
-                },
-                title: {
-                    display: true,
-                    text: 'Umidade (%)',
-                    color: '#ffffff',
-                    font: { weight: 'bold' }
-                }
-            }
-        },
-        plugins: {
-            legend: {
-                labels: {
-                    color: '#ffffff',
-                    font: { weight: 'bold' }
-                }
-            }
-        }
-    }
-});
 
-// === 2. TALHÕES ===
-const ctx3 = document.getElementById('umidadetalhaoChart').getContext('2d');
-
-new Chart(ctx3, {
-    type: 'bar',
-    data: {
-        labels: ['Talhão 1', 'Talhão 2'],
-        datasets: [{
-            label: 'Umidade Média (%)',
-            data: [70, 66],
-           
-            backgroundColor: 'rgba(0,255,127, 0.7)', 
-            borderColor: '#ffffff', 
-            borderWidth: 2
-        }]
-    },
-    options: {
-        responsive: true,
-        indexAxis: 'y',
-        scales: {
-            x: {
-                ticks: {
-                    color: '#ffffff',
-                    font: { weight: 'bold' }
-                },
-                title: {
-                    display: true,
-                    text: 'Umidade (%)',
-                    color: '#ffffff',
-                    font: { weight: 'bold' }
-                },
-                min: 10,
-                max: 100,
-                ticks: {
-                    stepSize: 10,
-                    color: '#ffffff',
-                    font: { weight: 'bold' }
-                }
-            },
-            y: {
-                ticks: {
-                    color: '#ffffff',
-                    font: { weight: 'bold' }
-                }
-            }
-        },
-        plugins: {
-            legend: {
-                labels: {
-                    color: '#ffffff',
-                    font: { weight: 'bold' }
-                }
-            }
-        }
-    }
-});
-
-// === 3. ALERTAS - PIZZA ===
-const ctx2 = document.getElementById('alertaChart').getContext('2d');
-new Chart(ctx2, {
-    type: 'doughnut',
-    data: {
-        labels: ['Estáveis', 'Em Alerta'],
-        datasets: [{
-            data: [6, 3],
-            backgroundColor: ['rgba(0,255,127, 0.7)', 'rgba(255,69,0, 0.7)'], 
-            borderColor: ['#ffffff'], 
-            borderWidth: 2,
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                labels: {
-                    color: '#ffffff',
-                    font: { weight: 'bold' }
-                }
-            }
-        }
-    }
-});
-
-    </script>
-    <section style="height: 50px;"></section>
+    <div id="voltar-container">
+        <a href="dashboard.html" class="voltar-btn">
+            <img src="https://cdn-icons-png.freepik.com/256/9517/9517597.png" alt="Voltar">
+            Voltar
+        </a>
+    </div>
+<!--     
+    <section style="height: 50px;"></section> -->
 
    
     <footer>
@@ -255,3 +112,44 @@ new Chart(ctx2, {
     </footer>
 </body>
 </html>
+
+            
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Gráfico de Pizza - Distribuição dos Sensores por Status
+        new Chart(document.getElementById('statusPizza'), {
+            type: 'pie',
+            data: {
+                labels: ['Normais', 'Em Alerta', 'Inativos'],
+                datasets: [{
+                    data: [6, 3, 1],
+                    backgroundColor: ['#4caf50', '#f44336', '#9e9e9e']
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+      
+        new Chart(document.getElementById('areaUmidade'), {
+            type: 'line',
+            data: {
+                labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
+                datasets: [{
+                    label: 'Umidade',
+                    data: [50, 75, 90, 65],
+                    fill: true,
+                    backgroundColor: 'rgba(76, 175, 80, 0.3)',
+                    borderColor: '#4caf50',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: false }
+                }
+            }
+        });
+    </script>

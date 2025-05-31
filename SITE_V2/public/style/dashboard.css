@@ -387,6 +387,46 @@ body {
 }
 
 
+.graficoa {
+    display: flex;
+    font-family: Arial, sans-serif;
+    background-color: #f9f3ea;
+    color: #631a5b;
+    padding: 20px;
+    text-align: center;
+}
+
+.graficoa h1 {
+    margin-bottom: 30px;
+}
+
+.graficoa .grafico {
+    background: linear-gradient(135deg, #631a5b, #a1488b);
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 10px;
+    width: 400px;
+
+    color: white;
+}
+.graficoa .graficou {
+    background: linear-gradient(135deg, #631a5b, #a1488b);
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 10px;
+    width: 400px;
+    height: 250px;
+
+    color: white;
+}
+
+
+.graficoa canvas {
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
 
 .talhaoP {
     display: grid;
@@ -554,3 +594,85 @@ body {
   font-size: 0.9rem;
   margin-top: 2rem;
 }
+
+/* Tooltip flutuante */
+.tooltip {
+    visibility: hidden;
+    background-color: #d40000;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* Setinha do tooltip */
+.tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #d40000 transparent transparent transparent;
+}
+
+/* Mostrar tooltip ao passar o mouse */
+.btn-manutencao:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.lote button {
+    background: none;
+    border: none;
+    margin-top: 6px;
+    cursor: pointer;
+}
+
+
+    #voltar-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px; /* Espaço acima do botão */
+            margin-bottom: 20px; /* Espaço abaixo do botão */
+        }
+
+        .voltar-btn {
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: none;
+            font-family: 'Aclonica', 'Courier New', Courier, monospace;
+            background-color: rgba(220, 89, 200, 0.3);
+            color: white;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            cursor: pointer;
+            border: 2px solid #dc43c5;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 1000;
+            font-size: 1.1em;
+        }
+
+        .voltar-btn:hover {
+            background-color: #dc59c9;
+            color: white;
+            border-color: #dc59c9;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .voltar-btn img {
+            height: 24px;
+            width: auto;
+        }
