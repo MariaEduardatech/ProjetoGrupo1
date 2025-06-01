@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./js/sessao.js"></script>
 
-    <title>Home | Pitatech</title>
+    <title>Dashboard | Pitatech</title>
 
 </head>
 
@@ -23,7 +23,6 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li id="selecionado"><a href="#">Dashboard</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
                 <li><a href="calculadora.html">Calculadora</a></li>
                 <li><a href="quemsomos.html">Quem somos</a></li>
 
@@ -40,49 +39,37 @@
 
 
   <main class="dashboardPrincipal">
-    <h1 class="titulo">Dashboard</h1>
+    <h1 class="titulo">Dashboard Geral</h1>
 
  <section class="kpis">
-    <div class="kpi">Sensores em Alerta: 4</div>
-    <div class="kpi">Talhão com Maior Umidade: T2 (90%)</div>
-    <div class="kpi">Talhão com Menor Umidade: T1 (45%)</div>
+    <div class="kpi">Quantidade de Talhões com Faixa Ideal<br> <span style="color: black; font-size: 23px;" >2 Talhões</span></div>
+    <div class="kpi">Talhão com Maior Umidade <br> <span style="color: black; font-size: 23px;"> Talhão 2 (90%)</span> </div>
+    <div class="kpi">Talhão com Menor Umidade  <br> <span style="color: black; font-size: 23px;">Talhão 1 (45%)</span></div>
   </section>
 
 
-<h2 class="tituloPlantação">Plantação</h2>
-   <div class="plantacao-box">
-  
-  <div class="talhoes-grid">
-    <div class="talhao">T1</div>
-    <div class="talhao">T2</div>
-    <div class="talhao"><a href="dashboardTalhão.html"><button>T3</button></a></div>
-    <div class="talhao">T4</div>
-    <div class="talhao">T5</div>
-    <div class="talhao">T6</div>
-  </div>
-</div>
  </main>
 <div class="testando">
 <div class="registro-alertas">
-  <h2>Registro de Alertas</h2>
+  <h2>Registro de Alertas Acima e Abaixo da Umidade Ideal</h2>
   <div class="lista-alertas">
-    <div class="alerta-item"><span>T1 - A2 - Umidade: 45%</span><span>31/05/25</span></div>
-    <div class="alerta-item"><span>T2 - D3 - Umidade: 85%</span><span>28/05/25</span></div>
-    <div class="alerta-item"><span>T4 - L7 - Umidade: 50%</span><span>28/05/25</span></div>
-    <div class="alerta-item"><span>T5 - M3 - Umidade: 90%</span><span>25/05/25</span></div>
-    <div class="alerta-item"><span>T6 - R3 - Umidade: 55%</span><span>25/05/25</span></div>
-    <div class="alerta-item"><span>T3 - H5 -  Umidade: 87%</span><span>22/05/25</span></div>
-    <div class="alerta-item"><span>T1 - B3 -  Umidade: 49%</span><span>20/05/25</span></div>
-    <div class="alerta-item"><span>T4 - L7 - Umidade: 50%</span><span>18/05/25</span></div>
-    <div class="alerta-item"><span>T5 - M3 - Umidade: 90%</span><span>18/05/25</span></div>
-    <div class="alerta-item"><span>T6 - R3 - Umidade: 55%</span><span>17/05/25</span></div>
-    <div class="alerta-item"><span>T3 - H5 -  Umidade: 87%</span><span>17/05/25</span></div>
-    <div class="alerta-item"><span>T1 - B3 -  Umidade: 49%</span><span>15/05/25</span></div>
-    <div class="alerta-item"><span>T4 - L7 - Umidade: 50%</span><span>18/05/25</span></div>
-    <div class="alerta-item"><span>T5 - M3 - Umidade: 90%</span><span>18/05/25</span></div>
-    <div class="alerta-item"><span>T6 - R3 - Umidade: 55%</span><span>30/05/25</span></div>
-    <div class="alerta-item"><span>T3 - H5 -  Umidade: 87%</span><span>27/05/25</span></div>
-    <div class="alerta-item"><span>T1 - B3 -  Umidade: 49%</span><span>20/05/25</span></div>
+    <div class="alerta-item"><span>T1 - Umidade: 45%</span><span>31/05/25</span></div>
+    <div class="alerta-item"><span>T2 - Umidade: 85%</span><span>28/05/25</span></div>
+    <div class="alerta-item"><span>T3 - Umidade: 50%</span><span>28/05/25</span></div>
+    <div class="alerta-item"><span>T2 - Umidade: 90%</span><span>25/05/25</span></div>
+    <div class="alerta-item"><span>T3 - Umidade: 55%</span><span>25/05/25</span></div>
+    <div class="alerta-item"><span>T1 -  Umidade: 87%</span><span>22/05/25</span></div>
+    <div class="alerta-item"><span>T2 -  Umidade: 49%</span><span>20/05/25</span></div>
+    <div class="alerta-item"><span>T2 - Umidade: 50%</span><span>18/05/25</span></div>
+    <div class="alerta-item"><span>T3 - Umidade: 90%</span><span>18/05/25</span></div>
+    <div class="alerta-item"><span>T1 - Umidade: 55%</span><span>17/05/25</span></div>
+    <div class="alerta-item"><span>T3 -  Umidade: 87%</span><span>17/05/25</span></div>
+    <div class="alerta-item"><span>T1 -  Umidade: 49%</span><span>15/05/25</span></div>
+    <div class="alerta-item"><span>T2 - Umidade: 50%</span><span>18/05/25</span></div>
+    <div class="alerta-item"><span>T2 - Umidade: 90%</span><span>18/05/25</span></div>
+    <div class="alerta-item"><span>T2 - Umidade: 55%</span><span>30/05/25</span></div>
+    <div class="alerta-item"><span>T3 -  Umidade: 87%</span><span>27/05/25</span></div>
+    <div class="alerta-item"><span>T1 -  Umidade: 49%</span><span>20/05/25</span></div>
   </div>
 </div>
 
@@ -95,6 +82,18 @@
 </div>
  
 
+<h2 class="tituloPlantação">Plantação</h2>
+   <div class="plantacao-box">
+  
+  <div class="talhoes-grid">
+    <div class="talhao">T1</div>
+    <div class="talhao">T2</div>
+    <div class="talhao"><a href="dashboardTalhão.html"><button>T3</button></a></div>
+    <!-- <div class="talhao">T4</div>
+    <div class="talhao">T5</div>
+    <div class="talhao">T6</div> -->
+  </div>
+</div>
        <footer>
         <div class="navfot">
             <div id="menu-redes">
@@ -150,25 +149,26 @@
           data: [78, 80, 83, 82, 85, 86, 87],
           borderColor: '#ffcd56',
           fill: false
-        },
-        {
-          label: 'T4',
-          data: [60, 62, 59, 58, 57, 59, 61],
-          borderColor: '#4bc0c0',
-          fill: false
-        },
-        {
-          label: 'T5',
-          data: [75, 78, 79, 80, 81, 82, 84],
-          borderColor: '#9966ff',
-          fill: false
-        },
-        {
-          label: 'T6',
-          data: [50, 52, 53, 54, 55, 56, 55],
-          borderColor: '#ff9f40',
-          fill: false
         }
+        // },
+        // {
+        //   label: 'T4',
+        //   data: [60, 62, 59, 58, 57, 59, 61],
+        //   borderColor: '#4bc0c0',
+        //   fill: false
+        // },
+        // {
+        //   label: 'T5',
+        //   data: [75, 78, 79, 80, 81, 82, 84],
+        //   borderColor: '#9966ff',
+        //   fill: false
+        // },
+        // {
+        //   label: 'T6',
+        //   data: [50, 52, 53, 54, 55, 56, 55],
+        //   borderColor: '#ff9f40',
+        //   fill: false
+        // }
       ]
     },
     options: {

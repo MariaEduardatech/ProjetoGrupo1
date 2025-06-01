@@ -3,74 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/dashboard.css">
+    <link rel="stylesheet" href="./style/dashboard.css">
     <link rel="icon" href="./style/assets/PitaTech_logo.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./js/sessao.js"></script>
-    <title>Dashboard  Pitatech</title>
+
+    <title>Dashboard | Pitatech</title>
+
 </head>
 
-<body>
+<body onload="validarSessao()">
 
-    <div class="navbar">
+    <header>
+
+        <div class="navbar">
 
             <img src="./style/assets/PitaTech_logo.png" alt="Logo Pitatech">
 
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="#">Dashboard</a></li>
+                <li id="selecionado"><a href="#">Dashboard</a></li>
                 <li><a href="calculadora.html">Calculadora</a></li>
                 <li><a href="quemsomos.html">Quem somos</a></li>
 
             </ul>
 
-           
-    
+            <div id="b_usuario"><a href="./login.html">Entrar</a></div>
+            <div class="sair" onclick="limparSessao()">
+                <h3><a href="./login.html">Sair</a></h3>
+            </div>
+
         </div>
 
     </header>
 
+    
+
     <div class="container-dashboard">
     <section class="dashboard">
         <h1>Talhao 3</h1>
-            <div class="KPIALERTA">
-                <div class="nomeKPIdash">
-                    <b>SENSOR A2 UMIDADE IRREGULAR</b><br>
-                    <img src="https://cdn-icons-png.freepik.com/256/8425/8425341.png" width="50px" height="50px" alt="">
-                </div>
-                <div class="nomeKPIdash">
-                    <b>SENSOR A3 UMIDADE IRREGULAR</b><br>
-                    <img src="https://cdn-icons-png.freepik.com/256/8425/8425341.png" width="50px" height="50px" alt="">
-                </div>
-                <div class="nomeKPIdash">
-                    <b>SENSOR B2 UMIDADE IRREGULAR</b><br>
-                    <img src="https://cdn-icons-png.freepik.com/256/8425/8425341.png" width="50px" height="50px" alt="">
-                </div>
-            </div>
+          
+        <div class="KPITalhão">
+  <div class="kpi-card">
+    <div class="kpi-titulo">Última Chuva Registrada</div>
+    <div class="kpi-valor" id="ultimaChuva"></div>
+  </div>
 
-              <h2 class="tituloTalhoes">Mapa dos Sensores</h2>
-        <div class="talhaoP">
-            <div class="lote"><div class="localS">A1</div><a href="./dashboardsensorA1.html"><button><img src="https://cdn-icons-png.freepik.com/256/16322/16322583.png" alt=""></button></a></div>    
-            <div class="lote"><div class="localS">A2</div><a href="./dashboardsensorA2.html"><button><img src="https://cdn-icons-png.freepik.com/256/8425/8425341.png" alt=""></button></a></div>
-            <div class="lote"><div class="localS">A3</div><a href="./dashboardsensorA3.html"><button><img src="https://cdn-icons-png.freepik.com/256/8425/8425341.png" alt=""></button></a></div>
-            <div class="lote"><div class="localS">A4</div><a href="./dashboardsensorA4.html"><button><img src="https://cdn-icons-png.freepik.com/256/16322/16322583.png" alt=""></button></a></div>
-            <div class="lote"><div class="localS">A5</div><a href="./dashboardsensorA5.html"><button><img src="https://cdn-icons-png.freepik.com/256/16322/16322583.png" alt=""></button></a></div>
-            <div class="lote"><div class="localS">B1</div><a href="./dashboardsensorB1.html"><button><img src="https://cdn-icons-png.freepik.com/256/16322/16322583.png" alt=""></button></a></div>
-            <div class="lote"><div class="localS">B2</div><a href="./dashboardsensorB2.html"><button><img src="https://cdn-icons-png.freepik.com/256/8425/8425341.png" alt=""></button></a></div>
-            <div class="lote"><div class="localS">B3</div><a href="./dashboardsensorB3.html"><button><img src="https://cdn-icons-png.freepik.com/256/16322/16322583.png" alt=""></button></a></div>
-            <div class="lote"><div class="localS">B4</div><a href="./dashboardsensorB4.html"><button><img src="https://cdn-icons-png.freepik.com/256/16322/16322583.png" alt=""></button></a></div>
-            <div class="lote em-manutencao"><div class="localS">B5</div><button class="btn-manutencao"><img src="https://cdn-icons-png.freepik.com/512/8509/8509746.png" alt=""><span class="tooltip">Em manutenção</span></button></div>
+  <div class="kpi-card">
+
+    <div class="kpi-titulo">Tempo desde o Último Alerta</div>
+    <div class="kpi-valor" id="tempoAlerta"></div>
+  </div>
+    <div class="kpi-card" id="kpiSituacao" style="border-left: 13px solid #b51616;">
+      <div class="kpi-title">Situação Atual do Solo</div>
+      <div class="kpi-value" id="valorSituacao">UMIDADE NORMAL</div>
+    </div>
+<div class="legenda">
+    <h3>Legenda de Umidade</h3>
+    <div class="faixa"><div class="cor vermelho-bg"></div> Umidade < 60% ou > 80% - Crítica</div>
+    <div class="faixa"><div class="cor amarelo-bg"></div> Umidade entre 56–59% ou 76–80% - Atenção</div>
+    <div class="faixa"><div class="cor verde-bg"></div> Umidade entre 60% e 76% - Normal</div>
+  </div>
+
+  </div>
+
+  
+
+             <div class="graficoa">
+        <div class="grafico">
+              <h2>Umidade do Solo (Tempo Real)</h2>
+  <canvas id="graficoLinhas"></canvas>
+        </div>
+
+        <div class="graficou">
+           <h2>Gráfico de Dispersão – Umidade vs Tempo Após Chuva</h2>
+  <canvas id="graficoDispersao"></canvas>
         </div>
     
-        <div class="graficoa">
-                <div class="grafico">
-                    <h2>Distribuição dos Sensores por Status</h2>
-                    <canvas id="statusPizza"></canvas>
-                </div>
-                <div class="graficou">
-                    <h2>Umidade Mensal</h2>
-                    <canvas id="areaUmidade"></canvas>
-                </div>
-            </div>
+    </div>
+    </div>
         </section>
     </div>
 
@@ -80,8 +91,7 @@
             Voltar
         </a>
     </div>
-<!--     
-    <section style="height: 50px;"></section> -->
+
 
    
     <footer>
@@ -115,41 +125,146 @@
 
             
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     <script>
-        // Gráfico de Pizza - Distribuição dos Sensores por Status
-        new Chart(document.getElementById('statusPizza'), {
-            type: 'pie',
-            data: {
-                labels: ['Normais', 'Em Alerta', 'Inativos'],
-                datasets: [{
-                    data: [6, 3, 1],
-                    backgroundColor: ['#4caf50', '#f44336', '#9e9e9e']
-                }]
-            },
-            options: {
-                responsive: true
-            }
-        });
+ const ultimaChuva = new Date(Date.now() - 4 * 60 * 60 * 1000);
+    document.getElementById("ultimaChuva").innerText = ultimaChuva.toLocaleString("pt-BR");
 
-      
-        new Chart(document.getElementById('areaUmidade'), {
-            type: 'line',
-            data: {
-                labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
-                datasets: [{
-                    label: 'Umidade',
-                    data: [50, 75, 90, 65],
-                    fill: true,
-                    backgroundColor: 'rgba(76, 175, 80, 0.3)',
-                    borderColor: '#4caf50',
-                    tension: 0.4
-                }]
+    // Simulação: último alerta foi há 1 hora e 45 minutos
+    const tempoAlertaMinutos = 105;
+    const horas = Math.floor(tempoAlertaMinutos / 60);
+    const minutos = tempoAlertaMinutos % 60;
+    document.getElementById("tempoAlerta").innerText = `${horas}h ${minutos}min`;
+    const labels = ["06:00", "09:00", "12:00", "15:00", "18:00", "21:00", "00:00", "03:00"]; // Simulação de horas
+
+    const dadosPorSensor = {
+      T3: [45, 42, 39, 35, 33, 30, 35, 32]
+    };
+
+    const cores = ["#a1488b"];
+
+    const datasets = Object.keys(dadosPorSensor).map((sensor, index) => ({
+      label: `Sensor ${sensor}`,
+      data: dadosPorSensor[sensor],
+      borderColor: cores[index],
+      tension: 0.3,
+      fill: false,
+      pointRadius: 4
+    }));
+
+    new Chart(document.getElementById("graficoLinhas"), {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: datasets
+      },
+      options: {
+        scales: {
+          y: {
+            title: {
+              display: true,
+              text: 'Umidade (%)'
             },
-            options: {
-                responsive: true,
-                scales: {
-                    y: { beginAtZero: false }
-                }
+            min: 0,
+            max: 100
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Horário da leitura'
             }
-        });
+          }
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y}%`
+            }
+          },
+          legend: {
+            position: 'top'
+          }
+        }
+      }
+    });
+
+
+
+    const sensores = [
+      { id: "S1", horasDesdeChuva: 1, umidade: 60 },
+      { id: "S2", horasDesdeChuva: 2, umidade: 55 },
+      { id: "S3", horasDesdeChuva: 4, umidade: 48 },
+      { id: "S4", horasDesdeChuva: 6, umidade: 41 },
+      { id: "S5", horasDesdeChuva: 8, umidade: 36 },
+      { id: "S6", horasDesdeChuva: 10, umidade: 30 },
+      { id: "S7", horasDesdeChuva: 12, umidade: 25 }
+    ];
+
+    const dadosDispersao = sensores.map(sensor => ({
+      x: sensor.horasDesdeChuva,
+      y: sensor.umidade,
+      r: 6
+    }));
+
+    new Chart(document.getElementById("graficoDispersao"), {
+      type: 'scatter',
+      data: {
+        datasets: [{
+          label: 'Umidade por Sensor',
+          data: dadosDispersao,
+          backgroundColor: 'rgba(54, 162, 235, 0.7)'
+        }]
+      },
+      options: {
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Horas desde a última chuva'
+            },
+            beginAtZero: true
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Umidade do solo (%)'
+            },
+            beginAtZero: true,
+            max: 100
+          }
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: ctx => {
+                const index = ctx.dataIndex;
+                return `${sensores[index].id}: ${ctx.parsed.y}% umidade após ${ctx.parsed.x}h`;
+              }
+            }
+          }
+        }
+      }
+    });
+      const umidadeAtual = 58; // você pode trocar aqui para testar outras faixas
+
+// Situação atual
+    const valorSituacao = document.getElementById("valorSituacao");
+    const iconeSituacao = document.getElementById("iconeSituacao");
+    const kpiSituacao = document.getElementById("kpiSituacao");
+
+    if (umidadeAtual > 80 || umidadeAtual < 60) {
+      valorSituacao.innerText = "UMIDADE CRÍTICA";
+      iconeSituacao.innerText = "🔴";
+      iconeSituacao.className = "kpi-icon vermelho";
+    } else if ((umidadeAtual >= 76 && umidadeAtual <= 80) || (umidadeAtual >= 56 && umidadeAtual < 60)) {
+      valorSituacao.innerText = "UMIDADE INSTÁVEL";
+      iconeSituacao.innerText = "🟡";
+      iconeSituacao.className = "kpi-icon amarelo";
+    } else {
+      valorSituacao.innerText = "UMIDADE NORMAL";
+      iconeSituacao.innerText = "🟢";
+      iconeSituacao.className = "kpi-icon verde";
+    }
+
     </script>
+    
