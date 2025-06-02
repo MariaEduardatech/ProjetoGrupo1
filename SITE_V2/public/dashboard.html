@@ -126,6 +126,23 @@
 </html>
 
 <script>
+
+  var idDaEmpresa = sessionStorage.ID_EMPRESA = json.empresa;
+
+  var alertas = [];
+
+  async function checarAlertas(idEmpresa) {
+    const resposta = await fetch("/usuario/BuscarAlertas");
+    const dados = await resposta.json();
+
+    alertas.push(...dados);
+
+    console.log(empresas);
+}
+
+checarAlertas();
+
+
   const ctx = document.getElementById('graficoUmidadeLinha').getContext('2d');
   new Chart(ctx, {
     type: 'line',

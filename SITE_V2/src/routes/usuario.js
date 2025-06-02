@@ -20,4 +20,8 @@ router.get("/BuscarEmpresa", function (req, res) {
     usuarioController.BuscarEmpresa(req, res);
 })
 
+router.get("/BuscarAlertas/:idEmpresa", function (req, res) {
+    usuarioController.BuscarAlertas(req, res);
+})
+
 module.exports = router;
