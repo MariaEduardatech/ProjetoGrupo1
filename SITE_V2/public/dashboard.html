@@ -52,8 +52,8 @@
 <div class="testando">
 <div class="registro-alertas">
   <h2>Registro de Alertas Acima e Abaixo da Umidade Ideal</h2>
-  <div class="lista-alertas">
-    <div class="alerta-item"><span>T1 - Umidade: 45%</span><span>31/05/25</span></div>
+  <div class="lista-alertas" id="lista_alertas">
+    
   </div>
 </div>
 
@@ -121,7 +121,15 @@
 
     alertas.push(...dados);
 
-    console.log(empresas);
+    console.log(alertas);
+
+    for(var i = 0; i < alertas.length; i++){
+
+      lista_alertas.innerHTML += `<div class="alerta-item"><span>T1 - Umidade: ${alertas[i].nivel}</span><span>${alertas[i].dtRegistro}</span></div>`;
+
+    }
+
+    
 }
 
 checarAlertas();
