@@ -51,6 +51,19 @@
 </html>
 
 <script>
+  
+  var empresas = [];
+
+async function checarEmpresas() {
+    const resposta = await fetch("/usuario/BuscarEmpresa");
+    const dados = await resposta.json();
+
+    empresas.push(...dados);
+
+    console.log(empresas);
+}
+
+checarEmpresas();
 
 function checar(){
 
@@ -60,7 +73,7 @@ function checar(){
     var cargo = select_cargo.value;
     var senha = input_senha.value;
     var confSenha = input_confSenha.value;
-    var codigo = input_codigo.value;
+    var codigo = Number(input_codigo.value);
 
     div_mensagem1.innerHTML = ``;
 
@@ -72,6 +85,16 @@ function checar(){
     if(senha != confSenha){
 
         div_mensagem1.innerHTML = `<span style="color: red;">Senhas diferentes!</span>`;
+
+    }
+    else if(codigo.length < 5){
+
+        div_mensagem1.innerHTML = `<span style="color: red;">Insira um código de 5 digitos numéricos!</span>`;
+
+    }
+    else if(!empresas.some(empresas => empresas.idEmpresa === codigo)){
+
+        div_mensagem1.innerHTML = `<span style="color: red;">Insira uma código válido!</span>`;
 
     }
     else{

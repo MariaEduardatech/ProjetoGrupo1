@@ -86,13 +86,26 @@
 
 <script>
 
+    var empresas = [];
+
+async function checarEmpresas() {
+    const resposta = await fetch("/usuario/BuscarEmpresa");
+    const dados = await resposta.json();
+
+    empresas.push(...dados);
+
+    console.log(empresas);
+}
+
+checarEmpresas();
+
 function checar(){
 
     var nomeEmpresa = input_nome.value;
     var rua = input_rua.value;
     var email = input_email.value;
     var cnpj = input_cnpj.value;
-    var codigo = input_codigo.value;
+    var codigo = Number(input_codigo.value);
 
     var rua = input_rua.value;
     var bairro = input_bairro.value;
@@ -117,6 +130,11 @@ function checar(){
     else if(codigo.length < 5){
 
         div_mensagem1.innerHTML = `<span style="color: red;">Insira um código de 5 digitos numéricos!</span>`;
+
+    }
+    else if(empresas.some(empresas => empresas.idEmpresa === codigo)){
+
+        div_mensagem1.innerHTML = `<span style="color: red;">Código já utilizado!</span>`;
 
     }
     else{

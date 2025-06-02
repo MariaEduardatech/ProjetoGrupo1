@@ -105,8 +105,24 @@ function cadastrarUsuario(req, res) {
         );
 }
 
+function BuscarEmpresa(req, res) {
+
+    usuarioModel.BuscarEmpresa().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado); 
+        } else {
+            res.status(204).send("Nenhuma empresa encontrada!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as empresas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
     autenticar,
     cadastrar,
-    cadastrarUsuario
+    cadastrarUsuario,
+    BuscarEmpresa
 }
