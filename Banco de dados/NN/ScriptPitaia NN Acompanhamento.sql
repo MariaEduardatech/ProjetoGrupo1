@@ -26,7 +26,6 @@ create table usuario (
 idUsuario int auto_increment,
 fk1Empresa int,
 nome varchar (45),
-telefone char(11) unique,
 email varchar(80),
 senha varchar(8),
 cargo varchar(45),
@@ -38,15 +37,15 @@ constraint fkEmpUsu
 )auto_increment 10;
 
 insert into usuario values
-(default, 1, 'Laura','11912345670','laura_campal@frutas.com','campal11','Administrador'),
-(default, 1, 'Augusto','11998765433','augusto_campal@frutas.com','campal11','Funcionário'),
-(default, 4, 'Mariana','11982075137','mariana_upfruit@frutas.com','upfruit4','Administrador'),
-(default, 4, 'Vitoria','11923456786','vitoria_upfruit@frutas.com','upfruit4','Funcionário'),
-(default, 3, 'Isabela','31934567894','isabela_bonella@frutas.com','bonella3','Funcionário'),
-(default, 3, 'Ricardo','31912345673','ricardo_bonella@frutas.com','bonella3','Administrador'),
-(default, 3, 'Luiz','31987654327','luiz_bonella@frutas.com','bonella3','Funcionário'),
-(default, 2, 'Rafael','71998765434','rafael_araujo@frutas.com','araujo22','Administrador'),
-(default, 2, 'Iara','71987654322','iara_araujo@frutas.com','araujo22','Funcionário');
+(default, 1, 'Laura', 'laura_campal@frutas.com','campal11','Administrador'),
+(default, 1, 'Augusto', 'augusto_campal@frutas.com','campal11','Funcionário'),
+(default, 4, 'Mariana', 'mariana_upfruit@frutas.com','upfruit4','Administrador'),
+(default, 4, 'Vitoria', 'vitoria_upfruit@frutas.com','upfruit4','Funcionário'),
+(default, 3, 'Isabela', 'isabela_bonella@frutas.com','bonella3','Funcionário'),
+(default, 3, 'Ricardo', 'ricardo_bonella@frutas.com','bonella3','Administrador'),
+(default, 3, 'Luiz', 'luiz_bonella@frutas.com','bonella3','Funcionário'),
+(default, 2, 'Rafael', 'rafael_araujo@frutas.com','araujo22','Administrador'),
+(default, 2, 'Iara', 'iara_araujo@frutas.com','araujo22','Funcionário');
 
 
 create table sensor(
@@ -55,7 +54,7 @@ fK2Empresa int,
 statusSensor varchar(20),
 areaSensor varchar(45),
 dtInstalacao date,
-constraint cckStatus check (statusSensor in ('Ativo', 'Inativo', 'Manutenção')),
+constraint cckStatus check (statusSensor in ('Ativo', 'Inativo', 'Manutenção', 'Suspenso')),
 constraint fkEmpSensor 
 	foreign key (fK2Empresa)
 		references empresa(idEmpresa)
@@ -73,26 +72,21 @@ insert into sensor(fk2Empresa, statusSensor, areaSensor, dtInstalacao) values
 (4, 'Ativo','Pomar Valinhos','2025-03-30'),
 (4, 'Ativo','Pomar Valinhos','2025-03-31');
 
-
 create table localizacao (
 idLocalizacao int auto_increment,
 fk1Sensor int unique,
-localS varchar(7),
+região varchar(30),
+talhão varchar(3),
+coluna varchar(3),
+linha varchar(3),
 constraint pkLocSens primary key (idlocalizacao,fk1Sensor),
-constraint fkSenLocal 
+constraint fkSenLocal
 	foreign key (fk1Sensor)
 		references sensor(idSensor)
 );
 
 insert into localizacao values
-(default, 100, 'A1'),
-(default, 102, 'B2'),
-(default, 103, 'D4'),
-(default, 104, 'C15'),
-(default, 105, 'A12'),
-(default, 107, 'A9'),
-(default, 108, 'C22'),
-(default, 109, 'D30');
+(default, 108, 'Valinhos', 2, 1, 4);
 
 
 create table registro (
@@ -182,6 +176,27 @@ constraint fkSenMan
 insert into manutencao (fk3Sensor, dtManutencao) values
 (104, '2025-04-20'),
 (107, '2025-04-20');
+
+-- Tabela associativa
+create table acompanhamento (
+idAcompanhamento int auto_increment,
+alerta_IdAlerta int,
+alerta_fkRegistro int,
+usuario_idUsuario int,
+usuario_fk1Empresa int,
+DataInicio date,
+DataFinal date,
+constraint pkCompostaAcomp
+	primary key (idAcompanhamento, alerta_IdAlerta,  alerta_fkRegistro, usuario_idUsuario, usuario_fk1Empresa),
+constraint fkAlertaAcomp foreign key (alerta_IdAlerta)
+	references alerta(idAlerta),
+constraint fkRegAcomp foreign key (alerta_fkRegistro)
+	references registro(idRegistro),
+constraint fkUsuarioAcomp foreign key (usuario_idUsuario)
+	references usuario(idUsuario),
+constraint fkEmpAcomp foreign key (usuario_fk1Empresa)
+	references empresa(idEmpresa)
+);
 
 -- Selects
 -- Junção da tabela empresa e usuario (colocando espaço nos nomes dos campos)
