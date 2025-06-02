@@ -78,6 +78,7 @@
     <div class="talhao">T6</div> -->
   </div>
 </div>
+
        <footer>
         <div class="navfot">
             <div id="menu-redes">
@@ -114,6 +115,10 @@
   var idDaEmpresa = sessionStorage.ID_EMPRESA;
 
   var alertas = [];
+  var infos = [];
+  var valoresT1 = [];
+  var valoresT2 = [];
+  var valoresT3 = [];
 
   async function checarAlertas() {
     const resposta = await fetch(`/usuario/BuscarAlertas/${idDaEmpresa}`);
@@ -125,7 +130,7 @@
 
     for(var i = 0; i < alertas.length; i++){
 
-      lista_alertas.innerHTML += `<div class="alerta-item"><span>T1 - Umidade: ${alertas[i].nivel}</span><span>${alertas[i].dtRegistro}</span></div>`;
+      lista_alertas.innerHTML += `<div class="alerta-item"><span>T${alertas[i].talhão} - Sensor: ${alertas[i].coluna}${alertas[i].linha} - Umidade: ${alertas[i].nivel}</span><span>${alertas[i].dtRegistro}</span></div>`;
 
     }
 
@@ -134,49 +139,82 @@
 
 checarAlertas();
 
+async function checarDados() {
+    const resposta2 = await fetch(`/usuario/BuscarDados/${idDaEmpresa}`);
+    const dados2 = await resposta2.json();
 
+    infos.push(...dados2);
+
+    console.log(infos);
+
+    for(var i = 0; i < infos.length; i++){
+
+      if(infos[i].talhão == 1){
+
+        valoresT1.push(parseInt(infos[i].porcentagemUmidade));
+
+      }
+      else if(infos[i].talhão == 2){
+
+        valoresT2.push(parseInt(infos[i].porcentagemUmidade));
+
+      }
+      else{
+
+        valoresT3.push(parseInt(infos[i].porcentagemUmidade));
+
+      }
+
+    }
+    
+    gerarGrafico(valoresT1, valoresT2, valoresT3)
+}
+
+checarDados()
+
+async function gerarGrafico(valores) {
   const ctx = document.getElementById('graficoUmidadeLinha').getContext('2d');
   new Chart(ctx, {
     type: 'line',
     data: {
-      labels: ['06h', '08h', '10h', '12h', '14h', '16h', '18h'],
+      labels: ['12:00', '13:00', '14:00', '15:00', '16:00'],
       datasets: [
-        {
-          label: 'T1',
-          data: [45, 48, 50, 52, 49, 47, 46],
-          borderColor: '#ff6384',
-          fill: false
-        },
-        {
-          label: 'T2',
-          data: [85, 87, 86, 88, 90, 89, 90],
-          borderColor: '#36a2eb',
-          fill: false
-        },
+         {
+           label: 'T1',
+           data: valoresT1,
+           borderColor: '#ff6384',
+           fill: false
+         },
+         {
+           label: 'T2',
+           data: valoresT2,
+           borderColor: '#36a2eb',
+           fill: false
+         },
         {
           label: 'T3',
-          data: [78, 80, 83, 82, 85, 86, 87],
+          data: valoresT3,
           borderColor: '#ffcd56',
           fill: false
         }
-        // },
-        // {
-        //   label: 'T4',
-        //   data: [60, 62, 59, 58, 57, 59, 61],
-        //   borderColor: '#4bc0c0',
-        //   fill: false
-        // },
-        // {
-        //   label: 'T5',
-        //   data: [75, 78, 79, 80, 81, 82, 84],
-        //   borderColor: '#9966ff',
-        //   fill: false
-        // },
-        // {
-        //   label: 'T6',
-        //   data: [50, 52, 53, 54, 55, 56, 55],
-        //   borderColor: '#ff9f40',
-        //   fill: false
+        //  },
+        //  {
+        //    label: 'T4',
+        //    data: [60, 62, 59, 58, 57, 59, 61],
+        //    borderColor: '#4bc0c0',
+        //    fill: false
+        //  },
+        //  {
+        //    label: 'T5',
+        //    data: [75, 78, 79, 80, 81, 82, 84],
+        //    borderColor: '#9966ff',
+        //    fill: false
+        //  },
+        //  {
+        //    label: 'T6',
+        //    data: [50, 52, 53, 54, 55, 56, 55],
+        //    borderColor: '#ff9f40',
+        //    fill: false
         // }
       ]
     },
@@ -200,4 +238,6 @@ checarAlertas();
       }
     }
   });
+}
+
 </script>

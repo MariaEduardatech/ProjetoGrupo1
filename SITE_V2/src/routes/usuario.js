@@ -24,4 +24,8 @@ router.get("/BuscarAlertas/:idDaEmpresa", function (req, res) {
     usuarioController.BuscarAlertas(req, res);
 })
 
+router.get("/BuscarDados/:idDaEmpresa", function (req, res) {
+    usuarioController.BuscarDados(req, res);
+})
+
 module.exports = router;
