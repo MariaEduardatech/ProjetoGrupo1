@@ -112,6 +112,7 @@
 
 <script>
 
+
   var idDaEmpresa = sessionStorage.ID_EMPRESA;
 
   var alertas = [];
@@ -119,6 +120,18 @@
   var valoresT1 = [];
   var valoresT2 = [];
   var valoresT3 = [];
+
+  function formataçaoData(dataVelha){
+    const data = new Date(dataVelha);
+    const dia = ('0' + data.getDate()).slice(-2);
+  const mes = ('0' + (data.getMonth()+ 1)).slice(-2); 
+  const ano = data.getFullYear();
+  const hora = ('0' + data.getHours()).slice(- 2);
+  const minutos = ('0' + data.getMinutes()).slice(-2);
+
+  return `${dia}/${mes}/${ano} ${hora}:${minutos}`;
+}
+  
 
   async function checarAlertas() {
     const resposta = await fetch(`/usuario/BuscarAlertas/${idDaEmpresa}`);
@@ -129,8 +142,9 @@
     console.log(alertas);
 
     for(var i = 0; i < alertas.length; i++){
+const dataCertinha = formataçaoData(alertas[i].dtRegistro);
 
-      lista_alertas.innerHTML += `<div class="alerta-item"><span>T${alertas[i].talhão} - Sensor: ${alertas[i].coluna}${alertas[i].linha} - Umidade: ${alertas[i].nivel}</span><span>${alertas[i].dtRegistro}</span></div>`;
+      lista_alertas.innerHTML += `<div class="alerta-item"><span>T${alertas[i].talhão} - Sensor: ${alertas[i].coluna}${alertas[i].linha} - Umidade: ${alertas[i].nivel}</span><span>${dataCertinha}</span></div>`;
 
     }
 
@@ -239,5 +253,7 @@ async function gerarGrafico(valores) {
     }
   });
 }
+
+
 
 </script>

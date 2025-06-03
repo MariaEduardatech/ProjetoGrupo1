@@ -81,6 +81,17 @@
         </div>
     
     </div>
+    <div class="registro-alertas">
+  <h2>Registro de Umidade</h2>
+  <div class="lista-alertas">
+    <div class="alerta-item"><span>Sensor A1 - Umidade: 45%</span><span>02/05/25</span></div>
+     <div class="alerta-item"><span>Sensor A1 - Umidade: 45%</span><span>02/05/25</span></div>
+      <div class="alerta-item"><span>Sensor A1 - Umidade: 45%</span><span>02/05/25</span></div>
+       <div class="alerta-item"><span>Sensor A1 - Umidade: 45%</span><span>02/05/25</span></div>
+        <div class="alerta-item"><span>Sensor A1 - Umidade: 45%</span><span>02/05/25</span></div>
+         <div class="alerta-item"><span>Sensor A1 - Umidade: 45%</span><span>02/05/25</span></div>
+  </div>
+</div>
     </div>
         </section>
     </div>
@@ -127,15 +138,15 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <script>
- const ultimaChuva = new Date(Date.now() - 4 * 60 * 60 * 1000);
+ const ultimaChuva = new Date(Date.now() - 8 * 60 * 60 * 1000);
     document.getElementById("ultimaChuva").innerText = ultimaChuva.toLocaleString("pt-BR");
 
-    // Simulação: último alerta foi há 1 hora e 45 minutos
+  //  último alerta foi há 1 hora e 45 minutos
     const tempoAlertaMinutos = 105;
     const horas = Math.floor(tempoAlertaMinutos / 60);
     const minutos = tempoAlertaMinutos % 60;
     document.getElementById("tempoAlerta").innerText = `${horas}h ${minutos}min`;
-    const labels = ["06:00", "09:00", "12:00", "15:00", "18:00", "21:00", "00:00", "03:00"]; // Simulação de horas
+    const labels = ["06:00", "09:00", "12:00", "15:00", "18:00", "21:00", "00:00", "03:00"];
 
     const dadosPorSensor = {
       T3: [45, 42, 39, 35, 33, 30, 35, 32]
@@ -245,7 +256,7 @@
         }
       }
     });
-      const umidadeAtual = 58; // você pode trocar aqui para testar outras faixas
+      const umidadeAtual = 58; 
 
 // Situação atual
     const valorSituacao = document.getElementById("valorSituacao");
