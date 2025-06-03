@@ -83,14 +83,11 @@
     </div>
     <div class="registro-alertas">
   <h2>Registro de Umidade</h2>
-  <div class="lista-alertas">
-    <div class="alerta-item"><span>Sensor A1 - Umidade: 45%</span><span>02/05/25</span></div>
-     <div class="alerta-item"><span>Sensor A1 - Umidade: 45%</span><span>02/05/25</span></div>
-      <div class="alerta-item"><span>Sensor A1 - Umidade: 45%</span><span>02/05/25</span></div>
-       <div class="alerta-item"><span>Sensor A1 - Umidade: 45%</span><span>02/05/25</span></div>
-        <div class="alerta-item"><span>Sensor A1 - Umidade: 45%</span><span>02/05/25</span></div>
-         <div class="alerta-item"><span>Sensor A1 - Umidade: 45%</span><span>02/05/25</span></div>
+
+  <div class="lista-alertas" id="lista_alertas">
+    
   </div>
+  
 </div>
     </div>
         </section>
@@ -137,7 +134,43 @@
             
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
-    <script>
+<script>
+
+  var idDaEmpresa = sessionStorage.ID_EMPRESA;
+
+  var infos = [];
+  var ValoresTalhao = [0];
+  var mediaAtual = 0;
+
+  async function checarAlertas() {
+
+      const resposta = await fetch(`/usuario/BuscarAlertas/${idDaEmpresa}`);
+      const dados = await resposta.json();
+
+      var media = 0;
+
+      infos.push(...dados);
+
+      console.log(infos);
+
+      for(var i = 0; i < infos.length; i++){
+        const dataCertinha = formataçaoData(infos[i].dtRegistro);
+
+        if(infos[i].talhão == 3){
+
+          lista_alertas.innerHTML += `<div class="alerta-item"><span>T${infos[i].talhão} - Sensor: ${infos[i].coluna}${infos[i].linha} - Umidade: ${infos[i].nivel}</span><span>${dataCertinha}</span></div>`;
+          ValoresTalhao.push(parseInt(infos[i].porcentagemUmidade));
+          media += parseInt(infos[i].porcentagemUmidade);
+      }
+    }
+
+      mediaAtual = media / (ValoresTalhao.length - 1);
+      console.log(mediaAtual);
+      kpi();
+}
+
+checarAlertas();
+
  const ultimaChuva = new Date(Date.now() - 8 * 60 * 60 * 1000);
     document.getElementById("ultimaChuva").innerText = ultimaChuva.toLocaleString("pt-BR");
 
@@ -255,14 +288,15 @@
           }
         }
       }
-    });
-      const umidadeAtual = 58; 
+    }); 
 
 // Situação atual
+
+  function kpi(){
     const valorSituacao = document.getElementById("valorSituacao");
     const iconeSituacao = document.getElementById("iconeSituacao");
     const kpiSituacao = document.getElementById("kpiSituacao");
-
+    umidadeAtual = mediaAtual;
     if (umidadeAtual > 80 || umidadeAtual < 60) {
       valorSituacao.innerText = "UMIDADE CRÍTICA";
       iconeSituacao.innerText = "🔴";
@@ -277,5 +311,18 @@
       iconeSituacao.className = "kpi-icon verde";
     }
 
-    </script>
-    
+  }
+
+    function formataçaoData(dataVelha){
+      const data = new Date(dataVelha);
+      const dia = ('0' + data.getDate()).slice(-2);
+      const mes = ('0' + (data.getMonth()+ 1)).slice(-2); 
+      const ano = data.getFullYear();
+      const hora = ('0' + data.getHours()).slice(- 2);
+      const minutos = ('0' + data.getMinutes()).slice(-2);
+
+    return `${dia}/${mes}/${ano} ${hora}:${minutos}`;
+}
+
+
+</script>
