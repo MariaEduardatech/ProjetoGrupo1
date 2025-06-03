@@ -22,7 +22,7 @@
 
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li id="selecionado"><a href="#">Dashboard</a></li>
+                <li><a href="#" id="selecionado">Dashboard</a></li>
                 <li><a href="calculadora.html">Calculadora</a></li>
                 <li><a href="quemsomos.html">Quem somos</a></li>
 
@@ -42,9 +42,9 @@
     <h1 class="titulo">Dashboard Geral</h1>
 
  <section class="kpis">
-    <div class="kpi">Quantidade de Talhões com Faixa Ideal<br> <span style="color: black; font-size: 23px;" >2 Talhões</span></div>
-    <div class="kpi">Talhão com Maior Umidade <br> <span style="color: black; font-size: 23px;"> Talhão 2 (90%)</span> </div>
-    <div class="kpi">Talhão com Menor Umidade  <br> <span style="color: black; font-size: 23px;">Talhão 1 (45%)</span></div>
+    <div class="kpi">Quantidade de Talhões com Faixa Ideal<br> <span style="color: black; font-size: 23px;" ><span id="Ideal"></span> Talhões</span></div>
+    <div class="kpi">Talhão com Maior Umidade <br> <span style="color: black; font-size: 23px;"> Talhão <span id="talhao1"></span> (<span id="talhao_maior"></span>%)</span> </div>
+    <div class="kpi">Talhão com Menor Umidade  <br> <span style="color: black; font-size: 23px;">Talhão <span id="talhao2"></span> (<span id="talhao_menor"></span>%)</span></div>
   </section>
 
 
@@ -117,9 +117,11 @@
 
   var alertas = [];
   var infos = [];
-  var valoresT1 = [];
-  var valoresT2 = [];
-  var valoresT3 = [];
+  var valoresT1 = [0];
+  var valoresT2 = [0];
+  var valoresT3 = [0];
+  var min = [];
+  var max = [];
 
   function formataçaoData(dataVelha){
     const data = new Date(dataVelha);
@@ -131,7 +133,6 @@
 
   return `${dia}/${mes}/${ano} ${hora}:${minutos}`;
 }
-  
 
   async function checarAlertas() {
     const resposta = await fetch(`/usuario/BuscarAlertas/${idDaEmpresa}`);
@@ -166,22 +167,26 @@ async function checarDados() {
       if(infos[i].talhão == 1){
 
         valoresT1.push(parseInt(infos[i].porcentagemUmidade));
-
+        min.push(60);
+        max.push(80);
       }
       else if(infos[i].talhão == 2){
 
         valoresT2.push(parseInt(infos[i].porcentagemUmidade));
-
+        min.push(60);
+        max.push(80);
       }
       else{
 
         valoresT3.push(parseInt(infos[i].porcentagemUmidade));
-
+        min.push(60);
+        max.push(80);
       }
 
     }
     
-    gerarGrafico(valoresT1, valoresT2, valoresT3)
+    gerarGrafico(valoresT1, valoresT2, valoresT3);
+    menorMaiorUmidade();
 }
 
 checarDados()
@@ -202,41 +207,34 @@ async function gerarGrafico(valores) {
          {
            label: 'T2',
            data: valoresT2,
-           borderColor: '#36a2eb',
+           borderColor: '#e78ad9',
            fill: false
          },
         {
           label: 'T3',
           data: valoresT3,
-          borderColor: '#ffcd56',
+          borderColor: '#FFFFFF',
           fill: false
-        }
-        //  },
-        //  {
-        //    label: 'T4',
-        //    data: [60, 62, 59, 58, 57, 59, 61],
-        //    borderColor: '#4bc0c0',
-        //    fill: false
-        //  },
-        //  {
-        //    label: 'T5',
-        //    data: [75, 78, 79, 80, 81, 82, 84],
-        //    borderColor: '#9966ff',
-        //    fill: false
-        //  },
-        //  {
-        //    label: 'T6',
-        //    data: [50, 52, 53, 54, 55, 56, 55],
-        //    borderColor: '#ff9f40',
-        //    fill: false
-        // }
+          },
+          {
+            label: 'Umidade Máxima',
+            data: max,
+            borderColor: '#00000',
+            fill: false
+          },
+          {
+            label: 'Umidade Mínima',
+            data: min,
+            borderColor: '#00000',
+            fill: false
+          }  
       ]
     },
     options: {
       responsive: true,
       scales: {
         y: {
-          min: 0,
+          min: 20,
           max: 100,
           title: {
             display: true,
@@ -254,6 +252,125 @@ async function gerarGrafico(valores) {
   });
 }
 
+function menorMaiorUmidade(){
 
+  console.log(`funcao menorMaior`)
+
+    var n1 = 0;
+    var n2 = 0;
+    var n3 = 0;
+
+    var contIdeal = 0;
+    
+    for(var u = 0; u < valoresT1.length; u++){
+    
+      n1 += valoresT1[u];
+                
+    }
+    for(var u = 0; u < valoresT2.length; u++){
+    
+      n2 += valoresT2[u];
+                
+    }
+    for(var u = 0; u < valoresT3.length; u++){
+    
+      n3 += valoresT3[u];
+                
+    }
+    
+    var mediaN1 = n1 / (valoresT1.length - 1);
+    var mediaN2 = n2 / (valoresT2.length - 1);
+    var mediaN3 = n3 / (valoresT3.length - 1);
+    var mediaMaior = 0;
+    var mediaMenor = 0;
+
+    console.log(mediaN1);
+    console.log(mediaN2);
+    console.log(mediaN3);
+
+    if(mediaN1 > mediaN2 && mediaN1 > mediaN3){
+
+      mediaMaior = mediaN1;
+
+    }
+    if(mediaN2 > mediaN1 && mediaN2 > mediaN3){
+
+      mediaMaior = mediaN2;
+
+    }
+    if(mediaN3 > mediaN2 && mediaN3 > mediaN1){
+
+      mediaMaior = mediaN3;
+
+    }
+
+    if(mediaN1 < mediaN2 && mediaN1 < mediaN3){
+
+      mediaMenor = mediaN1;
+
+    }
+    if(mediaN2 < mediaN1 && mediaN2 < mediaN3){
+
+      mediaMenor = mediaN2;
+
+    }
+    if(mediaN3 < mediaN2 && mediaN3 < mediaN1){
+
+      mediaMenor = mediaN3;
+
+    }
+
+    if(mediaMenor == mediaN3){
+
+      talhao2.innerHTML = `3`;
+
+    }
+    if(mediaMenor == mediaN2){
+
+      talhao2.innerHTML = `2`;
+
+    }
+    if(mediaMenor == mediaN1){
+
+      talhao2.innerHTML = `1`;
+
+    }
+    if(mediaMaior == mediaN3){
+
+      talhao1.innerHTML = `3`;
+
+    }
+    if(mediaMaior == mediaN2){
+
+      talhao1.innerHTML = `2`;
+
+    }
+    if(mediaMaior == mediaN1){
+
+      talhao1.innerHTML = `1`;
+
+    }
+
+    talhao_maior.innerHTML = `${Math.floor(mediaMaior)}`;
+    talhao_menor.innerHTML = `${Math.floor(mediaMenor)}`;
+
+    if(mediaN1 >= 60 && mediaN1 <= 80){
+
+      contIdeal++;
+
+    }
+    if(mediaN2 >= 60 && mediaN2 <= 80){
+
+      contIdeal++;
+
+    }
+    if(mediaN3 >= 60 && mediaN3 <= 80){
+
+      contIdeal++;
+
+    }
+    Ideal.innerHTML = `${contIdeal}`;
+
+  }
 
 </script>

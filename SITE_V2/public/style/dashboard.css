@@ -175,22 +175,6 @@ body {
   height: 50px;
 }
 
-.navbar {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-}
-
-.navbar li a, .navbar li span {
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.navbar .agora a {
-  border-bottom: 2px solid white;
-}
-
 .kpis {
   display: flex;
   justify-content: center;
@@ -334,7 +318,8 @@ body {
 }
 
 .graficoInicial {
-  width: 500px;
+  width: 550px;
+  height: 60vh;
   background-color: #fee9f8;
   padding: 1rem;
   border-radius: 16px;
@@ -502,6 +487,7 @@ body {
     background-color: white;
     border-radius: 10px;
     margin-top: 10px;
+
 }
 
 
