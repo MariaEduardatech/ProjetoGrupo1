@@ -495,10 +495,9 @@ body {
       margin-right: 10px;
     }
 
-    .fundo_verde{ background-color: #4caf50; }
-    .fundo_amarelo { background-color: #fbc02d;
-    width: 25px; }
-    .fundo_vermelho { background-color: #e53935; }
+    .fundo_verde{ background-color: #4caf50; width: 20px;}
+    .fundo_amarelo { background-color: #fbc02d; width: 30px; }
+    .fundo_vermelho { background-color: #e53935; width: 30px;}
 
   #kpacho{
     display: flex;
