@@ -85,6 +85,17 @@ function BuscarRegistro(idEmpresa){
     return database.executar(instrucaoSql);
 }
 
+function BuscarSensor(idEmpresa, statusSensor){
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function BuscarSensor():");
+
+     var instrucaoSql = `
+        SELECT statusSensor, porcentagemUmidade, talhão, linha, coluna, nivel FROM registro JOIN sensor ON fk2Sensor = idSensor JOIN empresa ON fk2empresa = idEmpresa JOIN localizacao on fk1Sensor = idSensor WHERE idEmpresa = ${idEmpresa} and statusSensor = '${statusSensor}';
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticar,
     buscarPerfil,
@@ -93,5 +104,6 @@ module.exports = {
     BuscarEmpresa,
     BuscarAlertas,
     BuscarRegistro,
-    BuscarDados
+    BuscarDados,
+    BuscarSensor
 };

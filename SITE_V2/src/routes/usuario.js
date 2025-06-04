@@ -33,4 +33,8 @@ router.get ("/BuscarRegistro/:idDaEmpresa", function(req, res) {
     usuarioController.BuscarRegistro(req, res);
 })
 
+router.get ("/BuscarSensor/:idDaEmpresa/:statusSensor", function(req, res) {
+    usuarioController.BuscarSensor(req, res);
+})
+
 module.exports = router;

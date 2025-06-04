@@ -73,10 +73,11 @@
 
         <div id="div_filtro">
           <select name="" id="estado_sensor">
-            <option value="ativo" selected>Ativos</option>
-            <option value="inativos">Invativos</option>
+            <option value="Ativo" selected>Ativos</option>
+            <option value="Inativo">Inativos</option>
           </select>
         </div>
+        <button onclick="Acharsensores()">Filtrar</button>
 
         <div class="lista_sensores">
           <h2>Lista de Sensores</h2>
@@ -129,12 +130,13 @@
   <script>
 
     var idDaEmpresa = sessionStorage.ID_EMPRESA;
-    var statusSensor = estado_sensor.value;
 
     var infos = [];
     var ValoresTalhao = [0];
     var mediaAtual = 0;
     var registros = [];
+    var sensores = [];
+    var statusSensor = estado_sensor.value;
 
     function formataçaoData(dataVelha) {
       const data = new Date(dataVelha);
@@ -146,6 +148,41 @@
 
       return `${dia}/${mes}/${ano} ${hora}:${minutos}`;
     }
+
+    async function Acharsensores() {
+
+      lista_sensoresStatus.innerHTML = ``;
+      statusSensor = estado_sensor.value;
+
+      const resposta3 = await fetch(`/usuario/BuscarSensor/${idDaEmpresa}/${statusSensor}`);
+      const dados3 = await resposta3.json();
+
+      var mensagem = ``;
+
+      sensores = dados3;
+
+
+      for (var i = 0; i < sensores.length; i++) {
+        
+        if (sensores[i].talhão == 1) {
+          if(sensores[i].statusSensor == 'Ativo'){
+          
+            mensagem += `<div class="umidade-item"><span>Sensor: <span style="Color: green">${sensores[i].statusSensor}</span></span> - <span>Localidade: ${sensores[i].linha}${sensores[i].coluna}</span></div>`;
+          
+          }
+          else{
+
+            mensagem += `<div class="umidade-item"><span>Sensor: <span style="Color: red">${sensores[i].statusSensor}</span> - <span>Localidade: ${sensores[i].linha}${sensores[i].coluna}</span></div>`;
+
+          }
+        }
+      }
+
+      lista_sensoresStatus.innerHTML = `${mensagem}`;
+
+    }
+
+    Acharsensores();
 
     async function BuscarRegistro() {
       const respostaTalhao = await fetch(`/usuario/BuscarRegistro/${idDaEmpresa}`);
@@ -159,8 +196,15 @@
       for (var i = 0; i < registros.length; i++) {
         const dataCertinha = formataçaoData(registros[i].DataHora);
         if(registros[i].Talhao == 1){
+            if(registros[i].Umidade > 80 || registros[i].Umidade < 60){
 
-            lista_umidade.innerHTML += `<div class="umidade-item"><span>Sensor: ${registros[i].Localizacao} - Umidade: ${registros[i].Umidade}%</span><span>${dataCertinha}</span></div>`;
+              lista_umidade.innerHTML += `<div class="umidade-item"><span>Sensor: ${registros[i].Localizacao} - Umidade: <span style = "Color: red">${registros[i].Umidade}%</span><span>${dataCertinha}</span></div>`;
+
+            }else{
+
+              lista_umidade.innerHTML += `<div class="umidade-item"><span>Sensor: ${registros[i].Localizacao} - <span>Umidade: ${registros[i].Umidade}%</span><span>${dataCertinha}</span></div>`;
+
+            }
         
         }
       }
@@ -218,6 +262,7 @@
     }
 
     checarAlertas();
+
 
     console.log("Registros:", registros);
 console.log("Labels:", registros.map(r => formataçaoData(r.dtRegistro)));
