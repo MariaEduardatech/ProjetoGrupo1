@@ -21,7 +21,6 @@
         <br>
         <input type="text" id="input_nome" placeholder="Nome do Funcionario"><br>
         <input type="text" id="input_email" placeholder="Email"><br>
-        <input type="text" id="input_telefone" placeholder="Telefone"><br><br>
 
         <select id="select_cargo">
 
@@ -69,7 +68,6 @@ function checar(){
 
     var nome = input_nome.value;
     var email = input_email.value;
-    var telefone = input_telefone.value;
     var cargo = select_cargo.value;
     var senha = input_senha.value;
     var confSenha = input_confSenha.value;
@@ -77,12 +75,17 @@ function checar(){
 
     div_mensagem1.innerHTML = ``;
 
-    if(email.indexOf("@") == -1 || email == ''){
+    if(nome == `` || email == `` || cargo == `` || senha == `` || confSenha == ``){
+
+        div_mensagem1.innerHTML = `<span style="color: red;">Preencha todos os campos!</span>`;
+
+    }
+    else if(email.indexOf("@") == -1 || email.indexOf(".") == -1){
 
         div_mensagem1.innerHTML = `<span style="color: red;">Insira um email válido!</span>`;
         
     }
-    if(senha != confSenha){
+    else if(senha != confSenha){
 
         div_mensagem1.innerHTML = `<span style="color: red;">Senhas diferentes!</span>`;
 

@@ -54,13 +54,13 @@
         <div class="legenda">
           <h3>Legenda de Umidade</h3>
           <div class="faixa">
-            <div class="cor fundo_vermelho"></div> Umidade < 60% ou> 80% - Crítica
+            <div class="cor fundo_vermelho"></div> Umidade menor que 60% ou maior que 80% - Crítica
           </div>
           <div class="faixa">
-            <div class="cor fundo_amarelo"></div> Umidade entre 57/62% ou 77/82% - Atenção
+            <div class="cor fundo_amarelo"></div> Umidade entre 60% e 62% ou 77% e 80% - Atenção
           </div>
           <div class="faixa">
-            <div class="cor fundo_verde"></div> Umidade entre 62% e 79% - Normal
+            <div class="cor fundo_verde"></div> Umidade entre 60% e 80% - Normal
           </div>
         </div>
       </div>
@@ -69,6 +69,20 @@
         <div class="grafico">
           <h2>Umidade do Solo (Tempo Real)</h2>
           <canvas id="graficoLinhas"></canvas>
+        </div>
+
+        <div id="div_filtro">
+          <select name="" id="estado_sensor">
+            <option value="ativo" selected>Ativos</option>
+            <option value="inativos">Invativos</option>
+          </select>
+        </div>
+
+        <div class="lista_sensores">
+          <h2>Lista de Sensores</h2>
+          <div class="lista_umidade" id="lista_sensoresStatus">
+
+          </div>
         </div>
 
         <div class="registro_Umidade">
@@ -115,6 +129,7 @@
   <script>
 
     var idDaEmpresa = sessionStorage.ID_EMPRESA;
+    var statusSensor = estado_sensor.value;
 
     var infos = [];
     var ValoresTalhao = [0];
@@ -143,9 +158,11 @@
 
       for (var i = 0; i < registros.length; i++) {
         const dataCertinha = formataçaoData(registros[i].DataHora);
+        if(registros[i].Talhao == 1){
 
-        lista_umidade.innerHTML += `<div class="umidade-item"><span>Sensor: ${registros[i].Localizacao} - Umidade: ${registros[i].Umidade}%</span><span>${dataCertinha}</span></div>`;
-
+            lista_umidade.innerHTML += `<div class="umidade-item"><span>Sensor: ${registros[i].Localizacao} - Umidade: ${registros[i].Umidade}%</span><span>${dataCertinha}</span></div>`;
+        
+        }
       }
 
       var sensorMaiorUmidade = registros[0];
@@ -187,9 +204,8 @@
       for (var i = 0; i < infos.length; i++) {
         const dataCertinha = formataçaoData(infos[i].dtRegistro);
 
-        if (infos[i].talhão == 3) {
+        if (infos[i].talhão == 1) {
 
-          lista_umidade.innerHTML += `<div class="alerta-item"><span>T${infos[i].talhão} - Sensor: ${infos[i].coluna}${infos[i].linha} - Umidade: ${infos[i].nivel}</span><span>${dataCertinha}</span></div>`;
           ValoresTalhao.push(parseInt(infos[i].porcentagemUmidade));
           media += parseInt(infos[i].porcentagemUmidade);
         }

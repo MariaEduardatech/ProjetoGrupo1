@@ -322,7 +322,7 @@ body {
   color: #333;
   font-size: 0.95rem;
 }
-.registro_Umidade {
+.registro_Umidade, .lista_sensores {
   background-color: #fee9f8;
   padding: 1rem;
   border-radius: 16px;
@@ -330,9 +330,10 @@ body {
   height: fit-content;
   margin: 1rem auto;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-right: 1%;
 }
 
-.registro_Umidade h2 {
+.registro_Umidade h2, .lista_sensores h2 {
   color: #792f87;
   font-size: 1.5rem;
   text-align: center;
