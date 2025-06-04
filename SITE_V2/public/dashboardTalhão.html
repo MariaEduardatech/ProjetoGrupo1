@@ -50,9 +50,9 @@
                 </div> -->
                 <div class="legenda">
                     <h3>Legenda de Umidade</h3>
-                    <div class="faixa"><div class="cor vermelho-bg"></div> Umidade < 60% ou > 80% - Crítica</div>
-                    <div class="faixa"><div class="cor amarelo-bg"></div> Umidade entre 57–62% ou 77–82% - Atenção</div>
-                    <div class="faixa"><div class="cor verde-bg"></div> Umidade entre 62% e 79% - Normal</div>
+                    <div class="faixa"><div class="cor fundo_vermelho"></div> Umidade < 60% ou > 80% - Crítica</div>
+                    <div class="faixa"><div class="cor fundo_amarelo"></div> Umidade entre 57/62% ou 77/82% - Atenção</div>
+                    <div class="faixa"><div class="cor fundo_verde"></div> Umidade entre 62% e 79% - Normal</div>
                 </div>
             </div>
 
@@ -141,7 +141,7 @@ lista_umidade.innerHTML += `<div class="umidade-item"><span>Sensor: ${registros[
 
 var sensorMaiorUmidade = registros[0];
 for (var i = 1; i < registros.length; i++) {
-  if (registros[i].Umidade < sensorMaiorUmidade.Umidade) {
+  if (registros[i].Umidade > sensorMaiorUmidade.Umidade) {
     sensorMaiorUmidade = registros[i];
   }
 }
@@ -152,7 +152,7 @@ document.getElementById("MaiorUmidade").innerHTML =
 
 var sensorMenorUmidade = registros[0];
 for (var i = 1; i < registros.length; i++) {
-  if (registros[i].Umidade > sensorMenorUmidade.Umidade) {
+  if (registros[i].Umidade < sensorMenorUmidade.Umidade) {
     sensorMenorUmidade = registros[i];
   }
 }

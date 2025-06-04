@@ -268,7 +268,7 @@ body {
   transition: transform 0.2s ease;
 }
 
-.testando {
+.lista {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -425,7 +425,7 @@ body {
       width: 200px;
       text-align: center;
       transition: transform 0.3s ease;
-            height: 70px; 
+      height: 70px; 
     }
 
     #kpiSituacao{
@@ -443,10 +443,12 @@ body {
       transform: scale(1.03);
     }
 
-    .kpi-title {
+    .kpi-titulo {
       font-size: 16px;
       color: #555;
       margin-bottom: 10px;
+      text-align: center;
+     margin-top: -15px;
     }
 
     .kpi-value {
@@ -492,9 +494,10 @@ body {
       margin-right: 10px;
     }
 
-    .verde-bg { background-color: #4caf50; }
-    .amarelo-bg { background-color: #fbc02d; }
-    .vermelho-bg { background-color: #e53935; }
+    .fundo_verde{ background-color: #4caf50; }
+    .fundo_amarelo { background-color: #fbc02d;
+    width: 25px; }
+    .fundo_vermelho { background-color: #e53935; }
 
 .graficoa {
     display: flex;
