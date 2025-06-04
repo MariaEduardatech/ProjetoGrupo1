@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style/dashboard.css">
+  <link rel="icon" href="./style/assets/PitaTech_logo.png">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="./js/sessao.js"></script>
+  <title>Dashboard | Pitatech</title>
+</head>
+
+<body onload="validarSessao()">
+  <header>
+    <div class="navbar">
+      <img src="./style/assets/PitaTech_logo.png" alt="Logo Pitatech">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="calculadora.html">Calculadora</a></li>
+        <li><a href="quemsomos.html">Quem somos</a></li>
+      </ul>
+      <div id="b_usuario"><a href="./login.html">Entrar</a></div>
+      <div class="sair" onclick="limparSessao()">
+        <h3><a href="./login.html">Sair</a></h3>
+      </div>
+    </div>
+  </header>
+
+  <div class="container-dashboard">
+    <section class="dashboard">
+      <h1>Talhao 3</h1>
+      <div class="KPITalhão">
+        <div class="kpi-card">
+          <div class="kpi-titulo">Sensor com Maior Umidade</div>
+          <div class="kpi-valor" id="MaiorUmidade"></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-titulo">Sensor com Menor Umidade</div>
+          <div class="kpi-valor" id="MenorUmidade"></div>
+        </div>
+        <!-- <div class="kpi-card">
+          <div class="kpi-titulo">Tempo desde o Último Alerta</div>
+          <div class="kpi-valor" id="tempoAlerta"></div>
+        </div> -->
+        <div class="kpi-card" id="kpiSituacao">
+                    <div class="kpi-titulo">Situação Atual do Solo</div>
+                    <div id="kpacho">
+                    <div id="iconeSituacao" class="kpi-icon"></div>
+                    <div class="kpi-valor" id="valorSituacao"></div>
+                    </div>
+                </div>
+        <div class="legenda">
+          <h3>Legenda de Umidade</h3>
+          <div class="faixa">
+            <div class="cor fundo_vermelho"></div> Umidade < 60% ou> 80% - Crítica
+          </div>
+          <div class="faixa">
+            <div class="cor fundo_amarelo"></div> Umidade entre 57/62% ou 77/82% - Atenção
+          </div>
+          <div class="faixa">
+            <div class="cor fundo_verde"></div> Umidade entre 62% e 79% - Normal
+          </div>
+        </div>
+      </div>
+
+      <div class="graficoa">
+        <div class="grafico">
+          <h2>Umidade do Solo (Tempo Real)</h2>
+          <canvas id="graficoLinhas"></canvas>
+        </div>
+
+        <div class="registro_Umidade">
+          <h2>Registro de Umidade</h2>
+          <div class="lista_umidade" id="lista_umidade">
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="voltar-container">
+    <a href="dashboard.html" class="voltar-btn">
+      <img src="https://cdn-icons-png.freepik.com/256/9517/9517597.png" alt="Voltar">
+      Voltar
+    </a>
+  </div>
+
+  <footer>
+    <div class="navfot">
+      <div id="menu-redes">
+        <div id="lista">
+          <ul>
+            <li><a href="./home.html">Home</a></li>
+            <li><a href="./dashboard.html">Dashboard</a></li>
+            <li><a href="#">Calculadora</a></li>
+            <li><a href="./quemsomos.html">Quem somos</a></li>
+          </ul>
+        </div>
+        <div id="logo">
+          <img src="./style/assets/PitaTech_logo.png" alt="PitaTech_logo">
+        </div>
+        <div id="redes2">
+          <img src="./style/assets/instagram.png" alt="Logo do Instagram"><span id="instagram">Instagram</span>
+          <img src="./style/assets/linkedin.png" alt="Logo do Linkedin"><span id="linkedin">Linkedin</span>
+          <img src="./style/assets/facebook.png" alt="Logo do Facebook"><span id="facebook">Facebook</span>
+        </div>
+      </div>
+      <span id="direitos">PITATECH © 2025. Todos os direitos reservados. Desenvolvido por PITATECH TEAM.</span>
+    </div>
+  </footer>
+
+  <script>
+
+    var idDaEmpresa = sessionStorage.ID_EMPRESA;
+
+    var infos = [];
+    var ValoresTalhao = [0];
+    var mediaAtual = 0;
+    var registros = [];
+
+    function formataçaoData(dataVelha) {
+      const data = new Date(dataVelha);
+      const dia = ('0' + data.getDate()).slice(-2);
+      const mes = ('0' + (data.getMonth() + 1)).slice(-2);
+      const ano = data.getFullYear();
+      const hora = ('0' + data.getHours()).slice(- 2);
+      const minutos = ('0' + data.getMinutes()).slice(-2);
+
+      return `${dia}/${mes}/${ano} ${hora}:${minutos}`;
+    }
+
+    async function BuscarRegistro() {
+      const respostaTalhao = await fetch(`/usuario/BuscarRegistro/${idDaEmpresa}`);
+
+      const dadosTalhao = await respostaTalhao.json();
+
+      registros.push(...dadosTalhao);
+
+      console.log(registros);
+
+      for (var i = 0; i < registros.length; i++) {
+        const dataCertinha = formataçaoData(registros[i].DataHora);
+
+        lista_umidade.innerHTML += `<div class="umidade-item"><span>Sensor: ${registros[i].Localizacao} - Umidade: ${registros[i].Umidade}%</span><span>${dataCertinha}</span></div>`;
+
+      }
+
+      var sensorMaiorUmidade = registros[0];
+      for (var i = 1; i < registros.length; i++) {
+        if (registros[i].Umidade > sensorMaiorUmidade.Umidade) {
+          sensorMaiorUmidade = registros[i];
+        }
+      }
+
+      document.getElementById("MaiorUmidade").innerHTML =
+        `Sensor ${sensorMaiorUmidade.Localizacao} - ${sensorMaiorUmidade.Umidade}%`;
+
+
+      var sensorMenorUmidade = registros[0];
+      for (var i = 1; i < registros.length; i++) {
+        if (registros[i].Umidade < sensorMenorUmidade.Umidade) {
+          sensorMenorUmidade = registros[i];
+        }
+      }
+
+      document.getElementById("MenorUmidade").innerHTML =
+        `Sensor ${sensorMenorUmidade.Localizacao} - ${sensorMenorUmidade.Umidade}%`;
+
+    }
+
+    BuscarRegistro();
+
+    async function checarAlertas() {
+
+      const resposta = await fetch(`/usuario/BuscarAlertas/${idDaEmpresa}`);
+      const dados = await resposta.json();
+
+      var media = 0;
+
+      infos.push(...dados);
+
+      console.log(infos);
+
+      for (var i = 0; i < infos.length; i++) {
+        const dataCertinha = formataçaoData(infos[i].dtRegistro);
+
+        if (infos[i].talhão == 3) {
+
+          lista_umidade.innerHTML += `<div class="alerta-item"><span>T${infos[i].talhão} - Sensor: ${infos[i].coluna}${infos[i].linha} - Umidade: ${infos[i].nivel}</span><span>${dataCertinha}</span></div>`;
+          ValoresTalhao.push(parseInt(infos[i].porcentagemUmidade));
+          media += parseInt(infos[i].porcentagemUmidade);
+        }
+      }
+
+      mediaAtual = media / (ValoresTalhao.length - 1);
+      console.log(mediaAtual);
+      kpi();
+
+    }
+
+    checarAlertas();
+
+    console.log("Registros:", registros);
+console.log("Labels:", registros.map(r => formataçaoData(r.dtRegistro)));
+console.log("Dados:", registros.map(r => r.porcentagemUmidade));
+
+    const labels = registros.map(r => formataçaoData(r.dtRegistro));
+    const datasets = [{
+      label: 'Umidade',
+      data: registros.map(r => r.porcentagemUmidade),
+      borderColor: 'rgba(75, 192, 192, 1)',
+      backgroundColor: 'rgba(75, 192, 192, 0.2)',
+      fill: true,
+      tension: 0.3
+    }];
+    new Chart(document.getElementById("graficoLinhas"), {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: datasets
+      },
+      options: {
+        scales: {
+          y: {
+            title: {
+              display: true,
+              text: 'Umidade (%)'
+            },
+            min: 40,
+            max: 90
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Horário da leitura'
+            }
+          }
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y}%`
+            }
+          },
+          legend: {
+            position: 'top'
+          }
+        }
+      }
+    });
+
+    // Situação atual
+
+    function kpi() {
+      const valorSituacao = document.getElementById("valorSituacao");
+      const iconeSituacao = document.getElementById("iconeSituacao");
+      const kpiSituacao = document.getElementById("kpiSituacao");
+      umidadeAtual = mediaAtual;
+      if (umidadeAtual > 80 || umidadeAtual < 60) {
+        valorSituacao.innerHTML = "UMIDADE CRÍTICA";
+        iconeSituacao.innerHTML = "🔴";
+        iconeSituacao.className = "kpi-icon vermelho";
+      } else if ((umidadeAtual >= 76 && umidadeAtual <= 79) || (umidadeAtual >= 56 && umidadeAtual < 60)) {
+        valorSituacao.innerHTML = "UMIDADE INSTÁVEL";
+        iconeSituacao.innerHTML = "🟡";
+        iconeSituacao.className = "kpi-icon amarelo";
+      } else {
+        valorSituacao.innerHTML = "UMIDADE NORMAL";
+        iconeSituacao.innerHTML = "🟢";
+        iconeSituacao.className = "kpi-icon verde";
+      }
+
+    }
+
+  </script>

@@ -499,6 +499,20 @@ body {
     width: 25px; }
     .fundo_vermelho { background-color: #e53935; }
 
+  #kpacho{
+    display: flex;
+    font-size: 20px;
+  }  
+
+  #iconeSituacao{
+    width: 5px;
+    height: 5px;
+    margin-left: -25px;
+  }
+
+  #valorSituacao{
+    margin-right: -25px;
+  }
 .graficoa {
     display: flex;
     font-family: Arial, sans-serif;
