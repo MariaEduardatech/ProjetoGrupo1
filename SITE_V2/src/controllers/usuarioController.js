@@ -155,11 +155,29 @@ function BuscarDados(req, res) {
     });
 }
 
+function BuscarRegistro(req, res) {
+
+    var idEmpresa = req.params.idDaEmpresa;
+
+    usuarioModel.BuscarRegistro(idEmpresa).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado); 
+        } else {
+            res.status(204).send("Nenhum dado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os dados.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
     autenticar,
     cadastrar,
     cadastrarUsuario,
     BuscarEmpresa,
     BuscarAlertas,
+    BuscarRegistro,
     BuscarDados
 }

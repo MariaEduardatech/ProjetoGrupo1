@@ -28,4 +28,9 @@ router.get("/BuscarDados/:idDaEmpresa", function (req, res) {
     usuarioController.BuscarDados(req, res);
 })
 
+
+router.get ("/BuscarRegistro/:idDaEmpresa", function(req, res) {
+    usuarioController.BuscarRegistro(req, res);
+})
+
 module.exports = router;

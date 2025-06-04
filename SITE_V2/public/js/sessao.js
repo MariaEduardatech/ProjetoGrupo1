@@ -4,6 +4,7 @@ function validarSessao() {
     var nome = sessionStorage.NOME_USUARIO;
     var cargo = sessionStorage.CARGO_USUARIO;
 
+
     var b_usuario = document.getElementById("b_usuario");
     
     if (email != null && nome != null) {

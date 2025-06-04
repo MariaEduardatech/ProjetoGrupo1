@@ -64,18 +64,14 @@
     </div>
   </section>
 </div>
- 
 
 <h2 class="tituloPlantação">Plantação</h2>
    <div class="plantacao-box">
   
   <div class="talhoes-grid">
-    <div class="talhao">T1</div>
-    <div class="talhao">T2</div>
+    <!-- <div class="talhao"><a href="dashboardTalhão1.html"><button>T1</button></a></div>
+    <div class="talhao"><a href="dashboardTalhão2.html"><button>T2</button></a></div> -->
     <div class="talhao"><a href="dashboardTalhão.html"><button>T3</button></a></div>
-    <!-- <div class="talhao">T4</div>
-    <div class="talhao">T5</div>
-    <div class="talhao">T6</div> -->
   </div>
 </div>
 
@@ -213,7 +209,7 @@ async function gerarGrafico(valores) {
         {
           label: 'T3',
           data: valoresT3,
-          borderColor: '#FFFFFF',
+          borderColor: '#eded06',
           fill: false
           },
           {
@@ -234,8 +230,8 @@ async function gerarGrafico(valores) {
       responsive: true,
       scales: {
         y: {
-          min: 20,
-          max: 100,
+          min: 40,
+          max: 90,
           title: {
             display: true,
             text: 'Umidade (%)'

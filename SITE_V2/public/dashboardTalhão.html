@@ -7,89 +7,68 @@
     <link rel="icon" href="./style/assets/PitaTech_logo.png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./js/sessao.js"></script>
-
     <title>Dashboard | Pitatech</title>
-
 </head>
 
 <body onload="validarSessao()">
-
     <header>
-
         <div class="navbar">
-
             <img src="./style/assets/PitaTech_logo.png" alt="Logo Pitatech">
-
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="dashboard.html">Dashboard</a></li>
                 <li><a href="calculadora.html">Calculadora</a></li>
                 <li><a href="quemsomos.html">Quem somos</a></li>
-
             </ul>
-
             <div id="b_usuario"><a href="./login.html">Entrar</a></div>
             <div class="sair" onclick="limparSessao()">
                 <h3><a href="./login.html">Sair</a></h3>
             </div>
-
         </div>
-
     </header>
 
-    
-
     <div class="container-dashboard">
-    <section class="dashboard">
-        <h1>Talhao 3</h1>
-          
-        <div class="KPITalhão">
-  <div class="kpi-card">
-    <div class="kpi-titulo">Última Chuva Registrada</div>
-    <div class="kpi-valor" id="ultimaChuva"></div>
-  </div>
+        <section class="dashboard">
+            <h1>Talhao 3</h1>
+            <div class="KPITalhão">
+                <div class="kpi-card">
+                  <div class="kpi-titulo">Sensor com Maior Umidade</div>
+                 <div class="kpi-valor" id="MaiorUmidade"></div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-titulo">Sensor com Menor Umidade</div>
+                    <div class="kpi-valor" id="MenorUmidade"></div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-titulo">Tempo desde o Último Alerta</div>
+                    <div class="kpi-valor" id="tempoAlerta"></div>
+                </div>
+                <!-- <div class="kpi-card" id="kpiSituacao" style="border-left: 13px solid #b51616;">
+                    <div class="kpi-title">Situação Atual do Solo</div>
+                    <div id="iconeSituacao" class="kpi-icon"></div>
+                    <div class="kpi-value" id="valorSituacao"></div>
+                </div> -->
+                <div class="legenda">
+                    <h3>Legenda de Umidade</h3>
+                    <div class="faixa"><div class="cor vermelho-bg"></div> Umidade < 60% ou > 80% - Crítica</div>
+                    <div class="faixa"><div class="cor amarelo-bg"></div> Umidade entre 57–62% ou 77–82% - Atenção</div>
+                    <div class="faixa"><div class="cor verde-bg"></div> Umidade entre 62% e 79% - Normal</div>
+                </div>
+            </div>
 
-  <div class="kpi-card">
+            <div class="graficoa">
+                <div class="grafico">
+                    <h2>Umidade do Solo (Tempo Real)</h2>
+                    <canvas id="graficoLinhas"></canvas>
+                </div>
 
-    <div class="kpi-titulo">Tempo desde o Último Alerta</div>
-    <div class="kpi-valor" id="tempoAlerta"></div>
-  </div>
-    <div class="kpi-card" id="kpiSituacao" style="border-left: 13px solid #b51616;">
-      <div class="kpi-title">Situação Atual do Solo</div>
-      <div class="kpi-value" id="valorSituacao">UMIDADE NORMAL</div>
-    </div>
-<div class="legenda">
-    <h3>Legenda de Umidade</h3>
-    <div class="faixa"><div class="cor vermelho-bg"></div> Umidade < 60% ou > 80% - Crítica</div>
-    <div class="faixa"><div class="cor amarelo-bg"></div> Umidade entre 56–59% ou 76–80% - Atenção</div>
-    <div class="faixa"><div class="cor verde-bg"></div> Umidade entre 60% e 76% - Normal</div>
-  </div>
+                <div class="registro_Umidade">
+                    <h2>Registro de Umidade</h2>
+                    <div class="lista_umidade" id="lista_umidade">
 
-  </div>
-
-  
-
-             <div class="graficoa">
-        <div class="grafico">
-              <h2>Umidade do Solo (Tempo Real)</h2>
-  <canvas id="graficoLinhas"></canvas>
-        </div>
-
-        <div class="graficou">
-           <h2>Gráfico de Dispersão – Umidade vs Tempo Após Chuva</h2>
-  <canvas id="graficoDispersao"></canvas>
-        </div>
-    
-    </div>
-    <div class="registro-alertas">
-  <h2>Registro de Umidade</h2>
-
-  <div class="lista-alertas" id="lista_alertas">
-    
-  </div>
-  
-</div>
-    </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
 
@@ -100,8 +79,6 @@
         </a>
     </div>
 
-
-   
     <footer>
         <div class="navfot">
             <div id="menu-redes">
@@ -110,37 +87,82 @@
                         <li><a href="./home.html">Home</a></li>
                         <li><a href="./dashboard.html">Dashboard</a></li>
                         <li><a href="#">Calculadora</a></li>
-                        <li><a href="./quemsomos.html">Quem somos</a></li>     
+                        <li><a href="./quemsomos.html">Quem somos</a></li>
                     </ul>
                 </div>
-
                 <div id="logo">
                     <img src="./style/assets/PitaTech_logo.png" alt="PitaTech_logo">
                 </div>
-             
                 <div id="redes2">
                     <img src="./style/assets/instagram.png" alt="Logo do Instagram"><span id="instagram">Instagram</span>
                     <img src="./style/assets/linkedin.png" alt="Logo do Linkedin"><span id="linkedin">Linkedin</span>
                     <img src="./style/assets/facebook.png" alt="Logo do Facebook"><span id="facebook">Facebook</span>
                 </div>
             </div>
-    
             <span id="direitos">PITATECH © 2025. Todos os direitos reservados. Desenvolvido por PITATECH TEAM.</span>
         </div>
     </footer>
-</body>
-</html>
 
-            
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-<script>
-
+    <script>
+       
   var idDaEmpresa = sessionStorage.ID_EMPRESA;
 
   var infos = [];
   var ValoresTalhao = [0];
   var mediaAtual = 0;
+  var registros = [];
+
+  function formataçaoData(dataVelha){
+      const data = new Date(dataVelha);
+      const dia = ('0' + data.getDate()).slice(-2);
+      const mes = ('0' + (data.getMonth()+ 1)).slice(-2); 
+      const ano = data.getFullYear();
+      const hora = ('0' + data.getHours()).slice(- 2);
+      const minutos = ('0' + data.getMinutes()).slice(-2);
+
+    return `${dia}/${mes}/${ano} ${hora}:${minutos}`;
+}
+
+async function BuscarRegistro() {
+  const respostaTalhao = await fetch(`/usuario/BuscarRegistro/${idDaEmpresa}`);
+
+  const dadosTalhao = await respostaTalhao.json();
+
+  registros.push(...dadosTalhao);
+
+  console.log(registros);
+
+  for(var i = 0; i < registros.length; i ++){
+const dataCertinha = formataçaoData(registros[i].DataHora); 
+
+lista_umidade.innerHTML += `<div class="umidade-item"><span>Sensor: ${registros[i].Localizacao} - Umidade: ${registros[i].Umidade}%</span><span>${dataCertinha}</span></div>`;
+
+  }
+
+var sensorMaiorUmidade = registros[0];
+for (var i = 1; i < registros.length; i++) {
+  if (registros[i].Umidade < sensorMaiorUmidade.Umidade) {
+    sensorMaiorUmidade = registros[i];
+  }
+}
+
+document.getElementById("MaiorUmidade").innerHTML = 
+  `Sensor ${sensorMaiorUmidade.Localizacao} - ${sensorMaiorUmidade.Umidade}%`;
+
+
+var sensorMenorUmidade = registros[0];
+for (var i = 1; i < registros.length; i++) {
+  if (registros[i].Umidade > sensorMenorUmidade.Umidade) {
+    sensorMenorUmidade = registros[i];
+  }
+}
+
+document.getElementById("MenorUmidade").innerHTML = 
+  `Sensor ${sensorMenorUmidade.Localizacao} - ${sensorMenorUmidade.Umidade}%`;
+
+}
+
+BuscarRegistro();
 
   async function checarAlertas() {
 
@@ -167,35 +189,20 @@
       mediaAtual = media / (ValoresTalhao.length - 1);
       console.log(mediaAtual);
       kpi();
+
 }
 
 checarAlertas();
 
- const ultimaChuva = new Date(Date.now() - 8 * 60 * 60 * 1000);
-    document.getElementById("ultimaChuva").innerText = ultimaChuva.toLocaleString("pt-BR");
-
-  //  último alerta foi há 1 hora e 45 minutos
-    const tempoAlertaMinutos = 105;
-    const horas = Math.floor(tempoAlertaMinutos / 60);
-    const minutos = tempoAlertaMinutos % 60;
-    document.getElementById("tempoAlerta").innerText = `${horas}h ${minutos}min`;
-    const labels = ["06:00", "09:00", "12:00", "15:00", "18:00", "21:00", "00:00", "03:00"];
-
-    const dadosPorSensor = {
-      T3: [45, 42, 39, 35, 33, 30, 35, 32]
-    };
-
-    const cores = ["#a1488b"];
-
-    const datasets = Object.keys(dadosPorSensor).map((sensor, index) => ({
-      label: `Sensor ${sensor}`,
-      data: dadosPorSensor[sensor],
-      borderColor: cores[index],
-      tension: 0.3,
-      fill: false,
-      pointRadius: 4
-    }));
-
+const labels = registros.map(r => formataçaoData(r.dtRegistro));
+const datasets = [{
+  label: 'Umidade',
+  data: registros.map(r => r.porcentagemUmidade),
+  borderColor: 'rgba(75, 192, 192, 1)',
+  backgroundColor: 'rgba(75, 192, 192, 0.2)',
+  fill: true,
+  tension: 0.3
+}];
     new Chart(document.getElementById("graficoLinhas"), {
       type: 'line',
       data: {
@@ -232,64 +239,6 @@ checarAlertas();
       }
     });
 
-
-
-    const sensores = [
-      { id: "S1", horasDesdeChuva: 1, umidade: 60 },
-      { id: "S2", horasDesdeChuva: 2, umidade: 55 },
-      { id: "S3", horasDesdeChuva: 4, umidade: 48 },
-      { id: "S4", horasDesdeChuva: 6, umidade: 41 },
-      { id: "S5", horasDesdeChuva: 8, umidade: 36 },
-      { id: "S6", horasDesdeChuva: 10, umidade: 30 },
-      { id: "S7", horasDesdeChuva: 12, umidade: 25 }
-    ];
-
-    const dadosDispersao = sensores.map(sensor => ({
-      x: sensor.horasDesdeChuva,
-      y: sensor.umidade,
-      r: 6
-    }));
-
-    new Chart(document.getElementById("graficoDispersao"), {
-      type: 'scatter',
-      data: {
-        datasets: [{
-          label: 'Umidade por Sensor',
-          data: dadosDispersao,
-          backgroundColor: 'rgba(54, 162, 235, 0.7)'
-        }]
-      },
-      options: {
-        scales: {
-          x: {
-            title: {
-              display: true,
-              text: 'Horas desde a última chuva'
-            },
-            beginAtZero: true
-          },
-          y: {
-            title: {
-              display: true,
-              text: 'Umidade do solo (%)'
-            },
-            beginAtZero: true,
-            max: 100
-          }
-        },
-        plugins: {
-          tooltip: {
-            callbacks: {
-              label: ctx => {
-                const index = ctx.dataIndex;
-                return `${sensores[index].id}: ${ctx.parsed.y}% umidade após ${ctx.parsed.x}h`;
-              }
-            }
-          }
-        }
-      }
-    }); 
-
 // Situação atual
 
   function kpi(){
@@ -298,31 +247,19 @@ checarAlertas();
     const kpiSituacao = document.getElementById("kpiSituacao");
     umidadeAtual = mediaAtual;
     if (umidadeAtual > 80 || umidadeAtual < 60) {
-      valorSituacao.innerText = "UMIDADE CRÍTICA";
-      iconeSituacao.innerText = "🔴";
+      valorSituacao.innerHTML = "UMIDADE CRÍTICA";
+      iconeSituacao.innerHTML = "🔴";
       iconeSituacao.className = "kpi-icon vermelho";
-    } else if ((umidadeAtual >= 76 && umidadeAtual <= 80) || (umidadeAtual >= 56 && umidadeAtual < 60)) {
-      valorSituacao.innerText = "UMIDADE INSTÁVEL";
-      iconeSituacao.innerText = "🟡";
+    } else if ((umidadeAtual >= 76 && umidadeAtual <= 79) || (umidadeAtual >= 56 && umidadeAtual < 60)) {
+      valorSituacao.innerHTML = "UMIDADE INSTÁVEL";
+      iconeSituacao.innerHTML = "🟡";
       iconeSituacao.className = "kpi-icon amarelo";
     } else {
-      valorSituacao.innerText = "UMIDADE NORMAL";
-      iconeSituacao.innerText = "🟢";
+      valorSituacao.innerHTML = "UMIDADE NORMAL";
+      iconeSituacao.innerHTML = "🟢";
       iconeSituacao.className = "kpi-icon verde";
     }
 
   }
-
-    function formataçaoData(dataVelha){
-      const data = new Date(dataVelha);
-      const dia = ('0' + data.getDate()).slice(-2);
-      const mes = ('0' + (data.getMonth()+ 1)).slice(-2); 
-      const ano = data.getFullYear();
-      const hora = ('0' + data.getHours()).slice(- 2);
-      const minutos = ('0' + data.getMinutes()).slice(-2);
-
-    return `${dia}/${mes}/${ano} ${hora}:${minutos}`;
-}
-
 
 </script>

@@ -244,9 +244,15 @@ body {
 }
 .talhao a button{
     border: none;
-    background: none;
+    background: transparent;
+    width: 120px;
+    height: 160px;
     font-size: 1.5rem;
     font-weight: bold;
+}
+
+.talhao a button:hover{
+  cursor: pointer;
 }
 .talhao {
   width: 100%;
@@ -305,6 +311,44 @@ body {
 }
 
 .alerta-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  border-left: 6px solid #e74c3c;
+  border-radius: 12px;
+  padding: 0.7rem 1rem;
+  font-weight: bold;
+  color: #333;
+  font-size: 0.95rem;
+}
+.registro_Umidade {
+  background-color: #fee9f8;
+  padding: 1rem;
+  border-radius: 16px;
+  width: 350px;
+  height: fit-content;
+  margin: 1rem auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.registro_Umidade h2 {
+  color: #792f87;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.registro_Umidade .lista_umidade {
+  max-height: 310px;  
+  overflow-y: auto;     
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding-right: 0.3rem; 
+}
+
+.umidade-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
