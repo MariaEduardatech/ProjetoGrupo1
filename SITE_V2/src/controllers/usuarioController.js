@@ -190,6 +190,24 @@ function BuscarSensor(req, res) {
     });
 }
 
+function BuscarDadosSensor(req, res) {
+
+    var idEmpresa = req.params.idDaEmpresa;
+    var idSensor = req.params.idSensor;
+
+    usuarioModel.BuscarDadosSensor(idEmpresa, idSensor).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado); 
+        } else {
+            res.status(204).send("Nenhum dado do sensor encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os dados do sensor.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
     autenticar,
     cadastrar,
@@ -198,5 +216,6 @@ module.exports = {
     BuscarAlertas,
     BuscarRegistro,
     BuscarDados,
-    BuscarSensor
+    BuscarSensor,
+    BuscarDadosSensor
 }

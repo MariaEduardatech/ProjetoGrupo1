@@ -74,7 +74,7 @@ function BuscarRegistro(idEmpresa){
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function BuscarRegistro():");
 
      var instrucaoSql = `
-        SELECT l.talhão AS Talhao, s.idSensor AS Sensor,
+        SELECT idSensor, l.talhão AS Talhao, s.idSensor AS Sensor,
         CONCAT(l.coluna, l.linha) AS Localizacao,
         r.dtRegistro AS DataHora, r.porcentagemUmidade AS Umidade FROM registro r JOIN sensor s ON r.fk2Sensor = s.idSensor JOIN empresa e ON s.fk2Empresa = e.idEmpresa JOIN localizacao l ON s.idSensor = l.fk1Sensor WHERE e.idEmpresa = ${idEmpresa} AND r.dtRegistro = (
         SELECT MAX(r2.dtRegistro) FROM registro r2
@@ -89,7 +89,22 @@ function BuscarSensor(idEmpresa, statusSensor){
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function BuscarSensor():");
 
      var instrucaoSql = `
-        SELECT statusSensor, porcentagemUmidade, talhão, linha, coluna, nivel FROM registro JOIN sensor ON fk2Sensor = idSensor JOIN empresa ON fk2empresa = idEmpresa JOIN localizacao on fk1Sensor = idSensor WHERE idEmpresa = ${idEmpresa} and statusSensor = '${statusSensor}';
+        SELECT idSensor, statusSensor, talhão, linha, coluna FROM sensor 
+        JOIN empresa ON fk2empresa = idEmpresa 
+        JOIN localizacao on fk1Sensor = idSensor 
+        WHERE idEmpresa = ${idEmpresa} and statusSensor = '${statusSensor}';
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function BuscarDadosSensor(idEmpresa, idSensor){
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function BuscarRegistro():");
+
+     var instrucaoSql = `
+        SELECT porcentagemUmidade, DATE_FORMAT(time(dtRegistro), '%H:%i:%s') FROM registro JOIN sensor ON fk2Sensor = idSensor JOIN empresa ON fk2empresa = idEmpresa JOIN localizacao on fk1Sensor = idSensor WHERE idEmpresa = ${idEmpresa} AND idSensor = ${idSensor};
+
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -105,5 +120,6 @@ module.exports = {
     BuscarAlertas,
     BuscarRegistro,
     BuscarDados,
-    BuscarSensor
+    BuscarSensor,
+    BuscarDadosSensor
 };
