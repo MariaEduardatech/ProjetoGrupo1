@@ -533,6 +533,15 @@ body {
     width: 400px;
     color: white;
 }
+
+.grafico {
+  height: 100%;
+  margin: 20px auto;
+  border-radius: 10px;
+  width: 100%;
+  color: white;
+}
+
 .graficoa .graficou {
     background: linear-gradient(135deg, #631a5b, #a1488b);
     padding: 20px;
