@@ -82,22 +82,22 @@ function checar(){
     }
     else if(email.indexOf("@") == -1 || email.indexOf(".") == -1){
 
-        div_mensagem1.innerHTML = `<span style="color: red;">Insira um email válido!</span>`;
+        div_mensagem1.innerHTML = `<span style="color: white;"><b>Insira um email válido!</b></span>`;
         
     }
     else if(senha != confSenha){
 
-        div_mensagem1.innerHTML = `<span style="color: red;">Senhas diferentes!</span>`;
+        div_mensagem1.innerHTML = `<span style="color: white;"><b>Senhas diferentes!</b></span>`;
 
     }
     else if(codigo.length < 5){
 
-        div_mensagem1.innerHTML = `<span style="color: red;">Insira um código de 5 digitos numéricos!</span>`;
+        div_mensagem1.innerHTML = `<span style="color: white;"><b>Insira um código de 5 digitos numéricos!</b></span>`;
 
     }
     else if(!empresas.some(empresas => empresas.idEmpresa === codigo)){
 
-        div_mensagem1.innerHTML = `<span style="color: red;">Insira uma código válido!</span>`;
+        div_mensagem1.innerHTML = `<span style="color: white;"><b>Insira uma código válido!</b></span>`;
 
     }
     else{

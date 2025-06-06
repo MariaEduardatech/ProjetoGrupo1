@@ -403,17 +403,28 @@ color: #792f87;
 .graficoa{
   display: flex;
   flex-direction: column;
+
 }
 
 
 .graficoInicial {
   width: 550px;
+  height: fit-content;
   color: purple;
   height: 60vh;
   background-color: #fee9f8;
   padding: 1rem;
   border-radius: 16px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+
+}
+
+.graficoInicial canvas{
+  background-color: #ffffff;
+    width: 500px;
+    border-radius: 10px;
+    margin-top: 10px;
+
 }
 
 .dashboard {
@@ -560,6 +571,7 @@ color: #792f87;
   }
 .graficoa {
     display: flex;
+    
     font-family: Arial, sans-serif;
     color: #631a5b;
     padding: 20px;
@@ -572,7 +584,7 @@ color: #792f87;
 
 .graficoa .grafico {
     background: #fee9f8;
-    border: solid 1px #500745;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
     color: #792f87;
     margin: 20px auto;

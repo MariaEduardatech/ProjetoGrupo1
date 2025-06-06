@@ -119,22 +119,22 @@ function checar(){
 
     if(rua == ""){
 
-        div_mensagem3.innerHTML = `<span style="color: red;">Insira um endereço!</span>`;
+        div_mensagem3.innerHTML = `<span style="color: white;"><b>Insira um endereço!</b></span>`;
 
     }
     else if(email.indexOf("@") == -1 || email == ''){
 
-        div_mensagem1.innerHTML = `<span style="color: red;">Insira um email válido!</span>`;
+        div_mensagem1.innerHTML = `<span style="color: white;"><b>Insira um email válido!</b></span>`;
         
     }
     else if(codigo.length < 5){
 
-        div_mensagem1.innerHTML = `<span style="color: red;">Insira um código de 5 digitos numéricos!</span>`;
+        div_mensagem1.innerHTML = `<span style="color: white;"><b>Insira um código de 5 digitos numéricos!</b></span>`;
 
     }
     else if(empresas.some(empresas => empresas.idEmpresa === codigo)){
 
-        div_mensagem1.innerHTML = `<span style="color: red;">Código já utilizado!</span>`;
+        div_mensagem1.innerHTML = `<span style="color: white;"><b>Código já utilizado!</b></span>`;
 
     }
     else{

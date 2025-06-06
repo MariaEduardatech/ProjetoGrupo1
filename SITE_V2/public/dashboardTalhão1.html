@@ -331,19 +331,14 @@ var grafico = new Chart(document.getElementById("graficoLinhas"), {
       grafico.data.datasets[0].data = [];
       grafico.data.labels = [];
 
-      for (var i = 0; i < DadosSensor.length; i++) {
+      for (var i = DadosSensor.length-10; i < DadosSensor.length; i++) {
         grafico.data.datasets[0].data.push(parseInt(DadosSensor[i].porcentagemUmidade));
         grafico.data.labels.push(DadosSensor[i][`DATE_FORMAT(time(dtRegistro), '%H:%i:%s')`]);
       }
       grafico.update();
 
       console.log("LOG MEDIDAS", medidas);
-      console.log("LOG MEDIDAS", dataMedida);
-      
-      // gerarGrafico(medidas, dataMedida);
-
-      medidas = [];
-      dataMedida = [];
+      console.log("LOG MEDIDAS", dataMedida);git 
     }
 
     async function checarAlertas() {
