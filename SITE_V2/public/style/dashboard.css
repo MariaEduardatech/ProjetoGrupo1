@@ -322,12 +322,6 @@ body {
   color: #333;
   font-size: 0.95rem;
 }
-/* .lista_sensores{
-  position: absolute;
-
-} */
-
-
 
 .registro_Umidade, .lista_sensores {
   background-color: #fee9f8;
@@ -363,7 +357,9 @@ body {
   background-color: #fff;
   border-left: 6px solid #e74c3c;
   border-radius: 12px;
-  padding: 0.7rem 1rem;
+  padding: 0.7rem 3rem;
+  margin-bottom: 10px;
+  margin-top: 10px;
   font-weight: bold;
   color: #333;
   font-size: 0.95rem;
@@ -372,12 +368,35 @@ body {
 #div_filtro{
 position: absolute;
 margin-top: 500px;
-margin-left: 400px;
+margin-left: 720px;
+
 }
 
+.lista_sensores{
+  margin-left: 40px;
+ margin-right: 670px;
+ width: 640px;
+}
+
+#div_filtro select{
+  margin-right: 30px; 
+  width: 90px;
+  border: solid 2px #4c0441;
+color: #792f87;
+  border-radius: 12px;
+  height: 40px;
+}
+
+#botaoFiltro{
+  width: 80px;
+  height: 30px;
+  background: #631a5b;
+  color: white;
+  border-radius: 7px ;
+  border: none;
+}
 .teste2{
   display: flex;
-
 
 }
 
@@ -386,13 +405,10 @@ margin-left: 400px;
   flex-direction: column;
 }
 
-#botaoFiltro{
-  width: 80px;
-  height: 30px;
-}
 
 .graficoInicial {
   width: 550px;
+  color: purple;
   height: 60vh;
   background-color: #fee9f8;
   padding: 1rem;
