@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/index.css">
+    <link rel="icon" href="./style/assets/PitaTech_logo.png">
+    <script src="./js/sessao.js"></script>
+
+    <title>Home | Pitatech</title>
+
+</head>
+
+<body onload="validarSessao()">
+
+    <header>
+
+        <div class="navbar">
+
+            <img src="./style/assets/PitaTech_logo.png" alt="Logo Pitatech">
+
+            <ul>
+                <li id="selecionado"><a href="#">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="calculadora.html">Calculadora</a></li>
+                <li><a href="quemsomos.html">Quem somos</a></li>
+
+            </ul>
+
+            <div id="b_usuario"><a href="./login.html">Entrar</a></div>
+            <div class="sair" onclick="limparSessao()">
+                <h3><a href="./login.html">Sair</a></h3>
+            </div>
+
+        </div>
+
+    </header>
+
+     <main>
+    <h1 class="titulo">Nossos Serviços</h1>
+    <hr><br>
+
+    <section class="containerServicos">
+      <img src="./style/assets/monitoramento.jpg" alt="Sensor de Umidade" />
+      <div class="descricao">
+        <h2>Monitoramento de Umidade</h2>
+        <p>Monitoramento contínuo da umidade do solo em tempo real, utilizando sensores de precisão distribuídos estrategicamente no cultivo.</p>
+      </div>
+    </section>
+
+    <section class="containerServicos">
+      <img src="./style/assets/alerta.jpg" alt="Alerta de Umidade" />
+      <div class="descricao">
+        <h2>Alertas Inteligentes</h2>
+        <p>Sistema de alertas automáticos em caso de umidade fora da faixa ideal (60% - 80%), prevenindo danos às plantas e otimizando a irrigação.</p>
+      </div>
+    </section>
+
+    <section class="containerServicos">
+      <img src="./style/assets/dashboardi.jpg" alt="Dashboard" />
+      <div class="descricao">
+        <h2>Dashboard Interativo</h2>
+        <p>Visualização intuitiva dos dados dos sensores com gráficos, históricos e registros por talhão. Ideal para tomada de decisão rápida.</p>
+      </div>
+    </section>
+
+    <section class="containerServicos">
+      <img src="./style/assets/suporte.jpg" alt="Suporte Técnico" />
+      <div class="descricao">
+        <h2>Suporte Técnico Especializado</h2>
+        <p>Equipe técnica disponível para orientação na instalação dos sensores, dúvidas com o sistema e manutenção preventiva.</p>
+      </div>
+    </section>
+<div class="botoas">
+  <a href="index.html"><button onclick="botaoServicos()" id="botaoServ">Voltar</button></a>
+</div>
+  </main>
+
+     
+    <footer>
+        <div class="navfot">
+            <div id="menu-redes">
+                <div id="lista">
+                    <ul>
+                        <li><a href="./home.html">Home</a></li>
+                        <li><a href="./dashboard.html">Dashboard</a></li>
+                        <li><a href="#">Calculadora</a></li>
+                        <li><a href="./quemsomos.html">Quem somos</a></li>     
+                    </ul>
+                </div>
+
+                <div id="logo">
+                    <img src="./style/assets/PitaTech_logo.png" alt="PitaTech_logo">
+                </div>
+             
+                <div id="redes2">
+                    <img src="./style/assets/instagram.png" alt="Logo do Instagram"><span id="instagram">Instagram</span>
+                    <img src="./style/assets/linkedin.png" alt="Logo do Linkedin"><span id="linkedin">Linkedin</span>
+                    <img src="./style/assets/facebook.png" alt="Logo do Facebook"><span id="facebook">Facebook</span>
+                </div>
+            </div>
+    
+            <span id="direitos">PITATECH © 2025. Todos os direitos reservados. Desenvolvido por PITATECH TEAM.</span>
+        </div>
+    </footer>
+     
+</body>
+</html>

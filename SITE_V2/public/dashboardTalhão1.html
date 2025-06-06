@@ -230,12 +230,12 @@ var grafico = new Chart(document.getElementById("graficoLinhas"), {
         if (sensores[i].talhão == 1) {
           if (sensores[i].statusSensor == 'Ativo') {
 
-            mensagem += `<div onclick ="plotarGrafico(${sensores[i].idSensor})" class="umidade-item" id="${sensores[i].idSensor}"><span>Sensor: <span style="Color: green">${sensores[i].statusSensor}</span></span> - <span>Localidade: ${sensores[i].linha}${sensores[i].coluna}</span></div>`;
+            mensagem += `<div onclick ="plotarGrafico(${sensores[i].idSensor})" class="umidade-item" id="${sensores[i].idSensor}"><span>Sensor: <span style="Color: green">${sensores[i].statusSensor}</span></span> - <span>Localização: ${sensores[i].coluna}${sensores[i].linha}</span></div>`;
 
           }
           else {
 
-            mensagem += `<div onclick ="plotarGrafico(${sensores[i].idSensor})" class="umidade-item" id="${sensores[i].idSensor}"><span>Sensor: <span style="Color: red">${sensores[i].statusSensor}</span> - <span>Localidade: ${sensores[i].linha}${sensores[i].coluna}</span></div>`;
+            mensagem += `<div onclick ="plotarGrafico(${sensores[i].idSensor})" class="umidade-item" id="${sensores[i].idSensor}"><span>Sensor: <span style="Color: red">${sensores[i].statusSensor}</span> - <span>Localizaçao: ${sensores[i].coluna}${sensores[i].linha}</span></div>`;
 
           }
         }
