@@ -284,15 +284,14 @@ var grafico = new Chart(document.getElementById("graficoLinhas"), {
 
       lista_umidade.innerHTML = `${mensagem2}`;
 
-      const qtd = await fetch(`/usuario/BuscarQuantidadeSensor/${idDaEmpresa}/${talhao}`);
+      const resp = await fetch(`/usuario/BuscarQuantidadeSensor/${idDaEmpresa}/${talhao}`);
+      const qtd = await resp.json(); // aqui você extrai o conteúdo JSON da resposta
 
       console.log("Quantidade Sensores")
       console.log(qtd);
 
-      var quantidadeSensores = qtd;
-
       document.getElementById("qtdSensoresAlerta").innerHTML =
-        `Quantidade de sensores em Alerta: ${quantidadeSensores[`COUNT(DISTINCT fk2Sensor)`]}`;
+        `${qtd[0].Quantidade}`;
 
 
       var sensorMenorUmidade = registrosTalhao[0];
