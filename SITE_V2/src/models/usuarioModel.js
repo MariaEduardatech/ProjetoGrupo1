@@ -116,10 +116,26 @@ function BuscarAlertaSensor(idEmpresa, talhao){
 
         var instrucaoSql = `
             select idSensor, porcentagemUmidade, dtRegistro, statusSensor, talhão, CONCAT(coluna, linha) AS Localizacao 
-from registro join sensor on idSensor = fk2Sensor 
-join localizacao on fk2Sensor = idSensor 
-join empresa on fk2Empresa = idEmpresa 
-where idEmpresa = ${idEmpresa} and talhão = ${talhao} order by dtRegistro desc LIMIT 15;
+            from registro join sensor on idSensor = fk2Sensor 
+            join localizacao on fk2Sensor = idSensor 
+            join empresa on fk2Empresa = idEmpresa 
+            where idEmpresa = ${idEmpresa} and talhão = ${talhao} order by dtRegistro desc LIMIT 15;
+        `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function BuscarQuantidadeSensor(idEmpresa, talhao){
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function BuscarAlertaRegistro():");
+
+        var instrucaoSql = `
+            SELECT COUNT(DISTINCT fk2Sensor) AS Quantidade
+            FROM registro 
+            JOIN sensor ON fk2Sensor = idSensor
+            JOIN localizacao ON idSensor = fk1Sensor
+            JOIN empresa on fk2Empresa = idEmpresa
+            WHERE nivel IN ('Umidade baixa', 'Umidade elevada') and idEmpresa = ${idEmpresa} and talhão = ${talhao};
         `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -137,5 +153,6 @@ module.exports = {
     BuscarDados,
     BuscarSensor,
     BuscarDadosSensor,
-    BuscarAlertaSensor
+    BuscarAlertaSensor,
+    BuscarQuantidadeSensor
 };

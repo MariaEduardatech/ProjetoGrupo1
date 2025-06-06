@@ -34,8 +34,8 @@
       <h1>Talhao 1</h1>
       <div class="KPITalhão">
         <div class="kpi-card">
-          <div class="kpi-titulo">Sensor com Maior Umidade</div>
-          <div class="kpi-valor" id="MaiorUmidade"></div>
+          <div class="kpi-titulo">Quantidade de sensores em alerta</div>
+          <div class="kpi-valor" id="qtdSensoresAlerta"></div>
         </div>
         <div class="kpi-card">
           <div class="kpi-titulo">Sensor com Menor Umidade</div>
@@ -284,15 +284,15 @@ var grafico = new Chart(document.getElementById("graficoLinhas"), {
 
       lista_umidade.innerHTML = `${mensagem2}`;
 
-      var sensorMaiorUmidade = registrosTalhao[0];
-      for (var i = 1; i < registrosTalhao.length; i++) {
-        if (registrosTalhao[i].porcentagemUmidade > sensorMaiorUmidade.porcentagemUmidade) {
-          sensorMaiorUmidade = registrosTalhao[i];
-        }
-      }
+      const qtd = await fetch(`/usuario/BuscarQuantidadeSensor/${idDaEmpresa}/${talhao}`);
 
-      document.getElementById("MaiorUmidade").innerHTML =
-        `Sensor ${sensorMaiorUmidade.Localizacao} - ${sensorMaiorUmidade.porcentagemUmidade}%`;
+      console.log("Quantidade Sensores")
+      console.log(qtd);
+
+      var quantidadeSensores = qtd;
+
+      document.getElementById("qtdSensoresAlerta").innerHTML =
+        `Quantidade de sensores em Alerta: ${quantidadeSensores[`COUNT(DISTINCT fk2Sensor)`]}`;
 
 
       var sensorMenorUmidade = registrosTalhao[0];

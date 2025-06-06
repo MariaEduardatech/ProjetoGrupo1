@@ -113,9 +113,9 @@
 
   var alertas = [];
   var infos = [];
-  var valoresT1 = [0];
-  var valoresT2 = [0];
-  var valoresT3 = [0];
+  var valoresT1 = [];
+  var valoresT2 = [];
+  var valoresT3 = [];
   var min = [];
   var max = [];
 
@@ -273,9 +273,9 @@ function menorMaiorUmidade(){
                 
     }
     
-    var mediaN1 = n1 / (valoresT1.length - 1);
-    var mediaN2 = n2 / (valoresT2.length - 1);
-    var mediaN3 = n3 / (valoresT3.length - 1);
+    var mediaN1 = n1 / (valoresT1.length);
+    var mediaN2 = n2 / (valoresT2.length);
+    var mediaN3 = n3 / (valoresT3.length);
     var mediaMaior = 0;
     var mediaMenor = 0;
 

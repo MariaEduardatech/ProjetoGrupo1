@@ -45,4 +45,8 @@ router.get ("/BuscarAlertaSensor/:idDaEmpresa/:talhao", function(req, res) {
     usuarioController.BuscarAlertaSensor(req, res);
 })
 
+router.get ("/BuscarQuantidadeSensor/:idDaEmpresa/:talhao", function(req, res) {
+    usuarioController.BuscarQuantidadeSensor(req, res);
+})
+
 module.exports = router;
