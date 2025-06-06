@@ -31,29 +31,26 @@
   </header>
 
   <div class="container-dashboard">
-    
+
     <section class="dashboard">
-      <h1>Talhao 3</h1>
+      <h1>Talhao 1</h1>
       <div class="KPITalhão">
         <div class="kpi-card">
-          <div class="kpi-titulo">Sensor com Maior Umidade</div>
-          <div class="kpi-valor" id="MaiorUmidade"></div>
+          <div class="kpi-titulo">Quantidade de sensores em alerta</div>
+          <div class="kpi-valor" id="qtdSensoresAlerta"></div>
         </div>
         <div class="kpi-card">
           <div class="kpi-titulo">Sensor com Menor Umidade</div>
           <div class="kpi-valor" id="MenorUmidade"></div>
         </div>
-        <!-- <div class="kpi-card">
-          <div class="kpi-titulo">Tempo desde o Último Alerta</div>
-          <div class="kpi-valor" id="tempoAlerta"></div>
-        </div> -->
+     
         <div class="kpi-card" id="kpiSituacao">
-                    <div class="kpi-titulo">Situação Atual do Solo</div>
-                    <div id="kpacho">
-                    <div id="iconeSituacao" class="kpi-icon"></div>
-                    <div class="kpi-valor" id="valorSituacao"></div>
-                    </div>
-                </div>
+          <div class="kpi-titulo">Situação Atual do Solo</div>
+          <div id="kpacho">
+            <div id="iconeSituacao" class="kpi-icon"></div>
+            <div class="kpi-valor" id="valorSituacao"></div>
+          </div>
+        </div>
         <div class="legenda">
           <h3>Legenda de Umidade</h3>
           <div class="faixa">
@@ -69,33 +66,40 @@
       </div>
 
       <div class="graficoa">
+        <div class="teste2">
         <div class="grafico">
           <h2>Umidade do Solo (Tempo Real)</h2>
           <canvas id="graficoLinhas"></canvas>
         </div>
+
+        <div class="registro_Umidade">
+          <h2>Registro de Umidade</h2>
+          <div class="lista_umidade" id="lista_umidade">
+            Não há registros!
+          </div>
+        </div>
+</div>
 
         <div id="div_filtro">
           <select name="" id="estado_sensor">
             <option value="Ativo" selected>Ativos</option>
             <option value="Inativo">Inativos</option>
           </select>
+          <button onclick="Acharsensores()" id="botaoFiltro">Filtrar</button>
         </div>
-        <button onclick="Acharsensores()">Filtrar</button>
+          </div>
+
+
 
         <div class="lista_sensores">
           <h2>Lista de Sensores</h2>
           <div class="lista_umidade" id="lista_sensoresStatus">
-
+            Não há sensores no talhão!
           </div>
         </div>
 
-        <div class="registro_Umidade">
-          <h2>Registro de Umidade</h2>
-          <div class="lista_umidade" id="lista_umidade">
-
-          </div>
-        </div>
-      </div>
+        
+    
     </section>
   </div>
 
@@ -133,6 +137,7 @@
   <script>
 
     var idDaEmpresa = sessionStorage.ID_EMPRESA;
+    var talhao = 3;
 
     var infos = [];
     var ValoresTalhao = [0];
@@ -142,8 +147,53 @@
     var registrosTalhao = [];
     var DadosSensor = [];
     var medidas = [];
-    var data = [];
+    var dataMedida = [];
     var statusSensor = estado_sensor.value;
+
+
+var grafico = new Chart(document.getElementById("graficoLinhas"), {
+        type: 'line',
+        data: {
+          labels: [], // ou use timestamps reais
+          datasets: [{
+            label: 'line',
+            data: [],
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              title: {
+                display: true,
+                text: 'Umidade (%)'
+              },
+              min: 0,
+              max: 100
+            },
+            x: {
+              title: {
+                display: true,
+                text: 'Horário da leitura'
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y}%`
+              }
+            },
+            legend: {
+              position: 'top'
+            }
+          }
+        }
+      });
+
+
+
+
+
 
     function formataçaoData(dataVelha) {
       const data = new Date(dataVelha);
@@ -156,7 +206,7 @@
       return `${dia}/${mes}/${ano} ${hora}:${minutos}`;
     }
 
-    function formataçaoHora(dataVelha){
+    function formataçaoHora(dataVelha) {
       const data = new Date(dataVelha);
       const hora = ('0' + data.getHours()).slice(- 2);
       const minutos = ('0' + data.getMinutes()).slice(-2);
@@ -180,14 +230,14 @@
         console.log("Valores");
         console.log(sensores);
         if (sensores[i].talhão == 3) {
-          if(sensores[i].statusSensor == 'Ativo'){
-          
-            mensagem += `<div onclick ="plotarGrafico(${sensores[i].idSensor})" class="umidade-item" id="${sensores[i].idSensor}"><span>Sensor: <span style="Color: green">${sensores[i].statusSensor}</span></span> - <span>Localidade: ${sensores[i].linha}${sensores[i].coluna}</span></div>`;
-          
-          }
-          else{
+          if (sensores[i].statusSensor == 'Ativo') {
 
-            mensagem += `<div onclick ="plotarGrafico(${sensores[i].idSensor})" class="umidade-item" id="${sensores[i].idSensor}"><span>Sensor: <span style="Color: red">${sensores[i].statusSensor}</span> - <span>Localidade: ${sensores[i].linha}${sensores[i].coluna}</span></div>`;
+            mensagem += `<div onclick ="plotarGrafico(${sensores[i].idSensor})" class="umidade-item" id="${sensores[i].idSensor}"><span>Sensor: <span style="Color: green">${sensores[i].statusSensor}</span></span> - <span>Localização: ${sensores[i].coluna}${sensores[i].linha}</span></div>`;
+
+          }
+          else {
+
+            mensagem += `<div onclick ="plotarGrafico(${sensores[i].idSensor})" class="umidade-item" id="${sensores[i].idSensor}"><span>Sensor: <span style="Color: red">${sensores[i].statusSensor}</span> - <span>Localizaçao: ${sensores[i].coluna}${sensores[i].linha}</span></div>`;
 
           }
         }
@@ -200,61 +250,73 @@
     Acharsensores();
 
     async function BuscarRegistro() {
-      const respostaTalhao = await fetch(`/usuario/BuscarRegistro/${idDaEmpresa}`);
+      const respostaTalhao = await fetch(`/usuario/BuscarAlertaSensor/${idDaEmpresa}/${talhao}`);
 
       const dadosTalhao = await respostaTalhao.json();
 
-      registros.push(...dadosTalhao);
+      registros = dadosTalhao;
 
       console.log(registros);
 
+      var mensagem2 = ``;
+      
+
       for (var i = 0; i < registros.length; i++) {
-        const dataCertinha = formataçaoData(registros[i].DataHora);
-        if(registros[i].Talhao == 3){
-            registrosTalhao.push(registros[i]);
-            }
-
-          }
-
-          for(var i = 0; i < registrosTalhao.length; i++){
-            const dataCertinha = formataçaoData(registros[i].DataHora);
-            if(registrosTalhao[i].Umidade > 80 || registrosTalhao[i].Umidade < 60){
-
-              lista_umidade.innerHTML += `<div class="umidade-item"><span>Sensor: ${registrosTalhao[i].Localizacao} - Umidade: <span style = "Color: red">${registrosTalhao[i].Umidade}%</span><span>${dataCertinha}</span></div>`;
-
-            }else{
-
-              lista_umidade.innerHTML += `<div class="umidade-item"><span>Sensor: ${registrosTalhao[i].Localizacao} - <span>Umidade: ${registrosTalhao[i].Umidade}%</span><span>${dataCertinha}</span></div>`;
-
-            }
+        const dataCertinha = formataçaoData(registros[i].dtRegistro);
+        if (registros[i].talhão == 3) {
+          registrosTalhao.push(registros[i]);
         }
 
-      var sensorMaiorUmidade = registrosTalhao[0];
-      for (var i = 1; i < registrosTalhao.length; i++) {
-        if (registrosTalhao[i].Umidade > sensorMaiorUmidade.Umidade) {
-          sensorMaiorUmidade = registrosTalhao[i];
+      }
+      
+        console.log(registrosTalhao);
+
+      for (var i = 0; i < registrosTalhao.length; i++) {
+        const dataCertinha = formataçaoData(registros[i].dtRegistro);
+        if (registrosTalhao[i].porcentagemUmidade > 80 || registrosTalhao[i].porcentagemUmidade < 60) {
+
+          mensagem2 += `<div class="umidade-item"><span>Sensor: ${registrosTalhao[i].Localizacao} - Umidade: <span style = "Color: red">${registrosTalhao[i].porcentagemUmidade}% </span><span>${dataCertinha}</span></div>`;
+
+        } else {
+
+          mensagem2 += `<div class="umidade-item"><span>Sensor: ${registrosTalhao[i].Localizacao} - <span>Umidade: ${registrosTalhao[i].porcentagemUmidade}%</span><span>${dataCertinha}</span></div>`;
+
         }
       }
 
-      document.getElementById("MaiorUmidade").innerHTML =
-        `Sensor ${sensorMaiorUmidade.Localizacao} - ${sensorMaiorUmidade.Umidade}%`;
+      lista_umidade.innerHTML = `${mensagem2}`;
+
+      const resp = await fetch(`/usuario/BuscarQuantidadeSensor/${idDaEmpresa}/${talhao}`);
+      const qtd = await resp.json(); // aqui você extrai o conteúdo JSON da resposta
+
+      console.log("Quantidade Sensores")
+      console.log(qtd);
+
+      document.getElementById("qtdSensoresAlerta").innerHTML =
+        `${qtd[0].Quantidade}`;
 
 
       var sensorMenorUmidade = registrosTalhao[0];
       for (var i = 1; i < registrosTalhao.length; i++) {
-        if (registrosTalhao[i].Umidade < sensorMenorUmidade.Umidade) {
+        if (registrosTalhao[i].porcentagemUmidade < sensorMenorUmidade.porcentagemUmidade) {
           sensorMenorUmidade = registrosTalhao[i];
         }
       }
 
       document.getElementById("MenorUmidade").innerHTML =
-        `Sensor ${sensorMenorUmidade.Localizacao} - ${sensorMenorUmidade.Umidade}%`;
+        `Sensor ${sensorMenorUmidade.Localizacao} - ${sensorMenorUmidade.porcentagemUmidade}%`;
+
+      registrosTalhao = [];
 
     }
 
-    BuscarRegistro();
+    setInterval(() => {
+            // lista_umidade.innerHTML = ``;
+           BuscarRegistro();
+         }, 2000);
 
-    async function plotarGrafico(id){
+
+    async function plotarGrafico(id) {
 
       var idSensor = id;
 
@@ -262,19 +324,26 @@
 
       const dadosUmidade = await respostaUmidade.json();
 
-      DadosSensor.push(...dadosUmidade);
+      console.log("LOG DADOS UMIDADE: ", dadosUmidade)
 
-      for(var i = 0; i < DadosSensor.length; i++){
-        // const horasCertas = formataçaoHora(DadosSensor[i].dtRegistro);
-        medidas.push(parseInt(DadosSensor[i].porcentagemUmidade));
-        data.push(DadosSensor[i].dtRegistro);
+      DadosSensor = dadosUmidade;
+      
+      grafico.data.datasets[0].data = [];
+      grafico.data.labels = [];
 
+      for (var i = 0; i < DadosSensor.length; i++) {
+        grafico.data.datasets[0].data.push(parseInt(DadosSensor[i].porcentagemUmidade));
+        grafico.data.labels.push(DadosSensor[i][`DATE_FORMAT(time(dtRegistro), '%H:%i:%s')`]);
       }
-      console.log(medidas);
+      grafico.update();
 
-      gerarGrafico(medidas, data);
+      console.log("LOG MEDIDAS", medidas);
+      console.log("LOG MEDIDAS", dataMedida);
+      
+      // gerarGrafico(medidas, dataMedida);
+
       medidas = [];
-      data = [];
+      dataMedida = [];
     }
 
     async function checarAlertas() {
@@ -284,7 +353,7 @@
 
       var media = 0;
 
-      infos.push(...dados);
+      infos = dados;
 
       console.log(infos);
 
@@ -305,54 +374,6 @@
     }
 
     checarAlertas();
-
-    function gerarGrafico() {
-  const datasets = [{
-    label: 'Umidade',
-    data: medidas,
-    borderColor: 'rgba(75, 192, 192, 1)',
-    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-    fill: true,
-    tension: 0.3
-  }];
-
-  new Chart(document.getElementById("graficoLinhas"), {
-    type: 'line',
-    data: {
-      labels: medidas.map((_, i) => `${data}`), // ou use timestamps reais
-      datasets: datasets
-    },
-    options: {
-      scales: {
-        y: {
-          title: {
-            display: true,
-            text: 'Umidade (%)'
-          },
-          min: 40,
-          max: 90
-        },
-        x: {
-          title: {
-            display: true,
-            text: 'Horário da leitura'
-          }
-        }
-      },
-      plugins: {
-        tooltip: {
-          callbacks: {
-            label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y}%`
-          }
-        },
-        legend: {
-          position: 'top'
-        }
-      }
-    }
-  });
-}
-    // Situação atual
 
     function kpi() {
       const valorSituacao = document.getElementById("valorSituacao");
