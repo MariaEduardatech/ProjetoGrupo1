@@ -64,7 +64,7 @@ function BuscarDados(idEmpresa){
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function BuscarDados():");
 
     var instrucaoSql = `
-        SELECT porcentagemUmidade, talhão FROM registro JOIN sensor ON fk2Sensor = idSensor JOIN empresa ON fk2empresa = idEmpresa JOIN localizacao on fk1Sensor = idSensor WHERE idEmpresa = ${idEmpresa};
+        SELECT porcentagemUmidade, talhão, DATE_FORMAT(time(dtRegistro), '%H:%i') as Data FROM registro JOIN sensor ON fk2Sensor = idSensor JOIN empresa ON fk2empresa = idEmpresa JOIN localizacao on fk1Sensor = idSensor WHERE idEmpresa = ${idEmpresa};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

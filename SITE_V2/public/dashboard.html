@@ -118,6 +118,7 @@
   var valoresT1 = [];
   var valoresT2 = [];
   var valoresT3 = [];
+  var horas = [];
   var min = [];
   var max = [];
 
@@ -160,7 +161,7 @@ async function checarDados() {
 
     console.log(infos);
 
-    for(var i = 0; i < infos.length; i++){
+    for(var i = infos.length - 10; i < infos.length; i++){
 
       if(infos[i].talhão == 1){
 
@@ -181,9 +182,11 @@ async function checarDados() {
         max.push(80);
       }
 
+      horas.push(infos[i].Data);
+
     }
     
-    gerarGrafico(valoresT1, valoresT2, valoresT3);
+    gerarGrafico(valoresT1, valoresT2, valoresT3, horas);
     menorMaiorUmidade();
 }
 
@@ -194,7 +197,7 @@ async function gerarGrafico(valores) {
   new Chart(ctx, {
     type: 'line',
     data: {
-      labels: ['12:00', '13:00', '14:00', '15:00', '16:00'],
+      labels: horas,
       datasets: [
          {
            label: 'T1',
@@ -231,8 +234,8 @@ async function gerarGrafico(valores) {
     options: {
       scales: {
         y: {
-          min: 30,
-          max: 90,
+          min: 0,
+          max: 100,
           title: {
             display: true,
             text: 'Umidade (%)'
