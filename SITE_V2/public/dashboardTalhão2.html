@@ -136,6 +136,8 @@
 
   <script>
 
+    var idSensorAtual = null;
+
     var idDaEmpresa = sessionStorage.ID_EMPRESA;
     var talhao = 2;
 
@@ -315,36 +317,30 @@ var grafico = new Chart(document.getElementById("graficoLinhas"), {
            BuscarRegistro();
          }, 2000);
 
+    setInterval(() => {
+        if (idSensorAtual !== null) {
+          plotarGrafico(idSensorAtual); // atualiza o gráfico automaticamente
+          }
+        }, 2000);
+
 
     async function plotarGrafico(id) {
+  idSensorAtual = id; // <- salvar o ID globalmente
 
-      var idSensor = id;
+  const respostaUmidade = await fetch(`/usuario/BuscarDadosSensor/${idDaEmpresa}/${id}`);
+  const dadosUmidade = await respostaUmidade.json();
 
-      const respostaUmidade = await fetch(`/usuario/BuscarDadosSensor/${idDaEmpresa}/${idSensor}`);
+  DadosSensor = dadosUmidade;
 
-      const dadosUmidade = await respostaUmidade.json();
+  grafico.data.datasets[0].data = [];
+  grafico.data.labels = [];
 
-      console.log("LOG DADOS UMIDADE: ", dadosUmidade)
-
-      DadosSensor = dadosUmidade;
-      
-      grafico.data.datasets[0].data = [];
-      grafico.data.labels = [];
-
-      for (var i = 0; i < DadosSensor.length; i++) {
-        grafico.data.datasets[0].data.push(parseInt(DadosSensor[i].porcentagemUmidade));
-        grafico.data.labels.push(DadosSensor[i][`DATE_FORMAT(time(dtRegistro), '%H:%i:%s')`]);
-      }
-      grafico.update();
-
-      console.log("LOG MEDIDAS", medidas);
-      console.log("LOG MEDIDAS", dataMedida);
-      
-      // gerarGrafico(medidas, dataMedida);
-
-      medidas = [];
-      dataMedida = [];
-    }
+  for (var i = Math.max(0, DadosSensor.length - 10); i < DadosSensor.length; i++) {
+    grafico.data.datasets[0].data.push(parseInt(DadosSensor[i].porcentagemUmidade));
+    grafico.data.labels.push(DadosSensor[i][`DATE_FORMAT(time(dtRegistro), '%H:%i:%s')`]);
+  }
+  grafico.update();
+}
 
     async function checarAlertas() {
 
